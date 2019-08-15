@@ -3,6 +3,11 @@ export const setLocal = locale => ({
   locale: locale,
 });
 
+export const setCharacters = characters => ({
+  type: 'SET_CHARACTERS',
+  characters: characters,
+});
+
 // DEMO ===========================
 // let nextTodoId = 0
 // export const addTodo = text => ({

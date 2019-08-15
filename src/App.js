@@ -8,7 +8,19 @@ import Header from './container/Header';
 import Formation from './container/Formation';
 import List from './container/List';
 
+import { setCharacters } from './actions';
+import { getCharacters } from './service/Characters';
+
 class App extends Component {
+  constructor(props) {
+    super();
+    this.dispatch = props.dispatch;
+  }
+
+  componentDidMount() {
+    getCharacters().then(data => this.dispatch(setCharacters(data)));
+  }
+
   render() {
     this.database = this.props.database;
     this.users = this.props.users;
@@ -28,8 +40,7 @@ App.propTypes = {}
 
 const mapStateToProps = state => {
   return {
-    // database: state.database,
-    // users: state.users,
+    characters: state.characters,
   }
 }
 
