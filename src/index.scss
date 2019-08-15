@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster+Two');
+@import '~flag-icon-css/css/flag-icon.min.css';
+@import './scss/index';
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #162028;
+  font-family: $global-font;
+  color: #ffef59;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}

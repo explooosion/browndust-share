@@ -1,0 +1,76 @@
+{
+  "name": "browndust-share",
+  "description": "browndust-share",
+  "version": "0.0.1",
+  "author": {
+    "name": "Robby",
+    "email": "ta7382@gmail.com"
+  },
+  "homepage": "https://poe-hideout.firebaseapp.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/explooosion/browndust-share.git"
+  },
+  "bugs": {
+    "url": "https://github.com/explooosion/browndust-share/issues"
+  },
+  "license": "MIT",
+  "keywords": [
+    "browndust",
+    "formation",
+    "share"
+  ],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && rm -rf firebase/build && mv build firebase/build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && cd firebase && firebase deploy"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "firebase": "^6.3.5",
+    "firebase-admin": "^8.3.0",
+    "flag-icon-css": "^3.3.0",
+    "html-parse-stringify": "^1.0.3",
+    "i18next": "^17.0.11",
+    "i18next-browser-languagedetector": "^3.0.3",
+    "js-cookie": "^2.2.1",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-files": "^2.4.8",
+    "react-html-parser": "^2.0.2",
+    "react-i18next": "^10.12.2",
+    "react-icons": "^3.7.0",
+    "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.1",
+    "react-transition-group": "^4.2.2",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
+    "store2": "^2.8.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-compat": "^3.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "node-sass": "^4.12.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

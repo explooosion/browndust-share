@@ -1,0 +1,73 @@
+.list {
+  margin: .7rem auto;
+  width: 700px;
+  border-radius: .5rem;
+  background-color: rgba(0, 0, 0, .2);
+}
+
+.types {
+  padding: .8rem 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 700px;
+  /* border: 1px solid red; */
+  .type {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 130px;
+    height: 45px;
+    background-color: #3e4e56;
+    border: 1px solid #bbb;
+    border-radius: .25rem;
+    box-shadow: 1px 1px 3px 2px rgba(20%, 20%, 40%, .5);
+    outline: none;
+    cursor: pointer;
+
+    &.active {
+      background-color: rgb(54, 139, 196);
+    }
+
+    span {
+      font-size: 18px;
+      color: #fff;
+    }
+
+    i {
+      margin-top: 3px;
+      width: 34px;
+      height: 34px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100%;
+      display: inline-block;
+    }
+
+    &.attacker i {
+      background-image: url('https://book.browndust.app/src/img/icon/icon_charType__warrior.png');
+    }
+
+    &.defender i {
+      background-image: url('https://book.browndust.app/src/img/icon/icon_charType__defender.png');
+    }
+
+    &.magician i {
+      background-image: url('https://book.browndust.app/src/img/icon/icon_charType__magician.png');
+    }
+
+    &.supporter i {
+      background-image: url('https://book.browndust.app/src/img/icon/icon_charType__supporter.png');
+    }
+  }
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-left: 1rem;
+  padding: 0 .8rem .8rem;
+  height: 100%;
+}
+   
