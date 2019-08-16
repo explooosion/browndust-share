@@ -11,21 +11,14 @@
 - 傭兵選擇
 - 擺放位置
 - 產生圖片或超連結
+- 支援拖曳擺陣
 
-## III. 設計風格
+## III. 介面
 
 ### background
 
-https://jinwooooo.github.io/jinwooooo-blog/uploads/browndust-3-row-power-formation-sample-1.jpg
+![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/src/images/formation_background.jpg)
 
-![img](https://jinwooooo.github.io/jinwooooo-blog/uploads/browndust-3-row-power-formation-sample-1.jpg)
-
-### avatar
-
-https://ic-common.pmang.cloud/static/bdt_book/thumbnail/char2934icon.png
-
-![img](https://ic-common.pmang.cloud/static/bdt_book/thumbnail/char2934icon.png)
-
-## IV. 資源使用
+## IV. 參考資源
 
 - [browndust-global-api](https://browndust-global-api.pmang.cloud/book/getAllCharacters)
