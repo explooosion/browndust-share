@@ -11,12 +11,19 @@ const set = (key = '', value = null) => {
 }
 
 /**
- * Get session
+ * Get session by key
  * @param {string} key
  */
 const get = (key = '') => store.session(key);
 
-export default {
+/**
+ * Remove session by key
+ * @param {string} key 
+ */
+const del = (key = '') => store.session.remove(key);
+
+export {
   set,
   get,
+  del,
 }

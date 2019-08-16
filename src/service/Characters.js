@@ -1,5 +1,5 @@
-const URL = 'https://browndust-global-api.pmang.cloud/book/getAllCharacters';
+import { APIUrl } from '../config/api';
 
-const getCharacters = async () => fetch(URL).then(data => data.json() || [])
+const getCharacters = async () => fetch(APIUrl).then(data => data.json() || [])
 
 export { getCharacters };

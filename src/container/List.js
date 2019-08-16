@@ -1,4 +1,5 @@
 /* eslint-disable no-underscore-dangle */
+/* eslint-disable no-mixed-operators */
 import React, { Component } from 'react';
 import './List.scss';
 import { connect } from 'react-redux';
@@ -10,7 +11,7 @@ import Mercenary from '../components/Mercenary';
 
 class List extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.props = props;
     this.state = {
       type: 1,

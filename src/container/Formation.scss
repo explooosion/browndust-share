@@ -22,45 +22,30 @@
     -ms-user-select: none;
     cursor: pointer;
 
-    &.ftype-1 {
+    &:active {
+      cursor: grabbing;
+      cursor: -moz-grabbing;
+      cursor: -webkit-grabbing;
+    }
+
+    &.over {
+      background-color: rgba(200, 200, 255, .3);
+    }
+
+    &[data-type='1'] {
       background-color: #6e2429;
     }
 
-    &.ftype-2 {
+    &[data-type='2'] {
       background-color: #1763b4;
     }
 
-    &.ftype-3 {
+    &[data-type='3'] {
       background-color: #3e3865;
     }
 
-    &.ftype-4 {
+    &[data-type='4'] {
       background-color: #80980f;
-    }
-
-    /* 14+120*(x-1)+11 */
-    &[data-id='a-1'] {
-      top: 9px;
-      left: 13px;
-      background-image: url('https://ic-common.pmang.cloud/static/bdt_book/thumbnail/char2934icon.png');
-    }
-
-    &[data-id='a-2'] {
-      top: 9px;
-      left: 128px;
-      background-image: url('https://ic-common.pmang.cloud/static/bdt_book/thumbnail/char2924icon.png');
-    }
-
-    &[data-id='a-3'] {
-      top: 9px;
-      left: 242px;
-      background-image: url('https://ic-common.pmang.cloud/static/bdt_book/thumbnail/char2914icon.png');
-    }
-
-    &[data-id='a-4'] {
-      top: 9px;
-      left: 356px;
-      background-image: url('https://ic-common.pmang.cloud/static/bdt_book/thumbnail/char2904icon.png');
     }
   }
 }
