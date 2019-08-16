@@ -13,7 +13,7 @@ import { getCharacters } from './service/Characters';
 
 class App extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.dispatch = props.dispatch;
   }
 
