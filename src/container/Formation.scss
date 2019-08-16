@@ -6,7 +6,7 @@
   background-image: url('../images/formation_background.jpg');
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   border-radius: .25rem;
   /* border: 1px solid red; */
   .box {
@@ -15,7 +15,7 @@
     height: 103px;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
+    background-size: cover;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;

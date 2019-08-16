@@ -1,10 +1,31 @@
 .mercenary {
-  margin: .4rem .25rem;
-  width: 60px;
-  height: 60px;
+  margin: .25rem .3rem;
+  width: 70px;
+  height: 70px;
+  display: inline-block;
   border: 1px solid #bbb;
   border-radius: .5rem;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: cover;
+  cursor: pointer;
+
+  &::before {
+    content: attr(data-tooltip);
+    float: left;
+    margin: 2px 0 0 2px;
+    padding: 1px;
+    border-radius: .25rem;
+    background-color: rgba(#000, .5);
+    font-size: 12px;
+    visibility: hidden;
+  }
+}
+
+.content.show .mercenary::before {
+  visibility: visible;
+}
+
+.content.bold .mercenary::before {
+  font-weight: bold;
 }
