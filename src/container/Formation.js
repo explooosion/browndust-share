@@ -90,7 +90,7 @@ class Formation extends Component {
       this.setState({ alertID: source[0].id });
       setTimeout(() => { this.setState({ alertID: null }) }, 1000);
       // remove target style
-      this.onDragOverStyle(tid, false);
+      this.onDragChangeStyle(tid, false);
       del('_code');
       console.warn('already have!');
       return true;
@@ -102,10 +102,18 @@ class Formation extends Component {
    * Dropover style
    * @param {*} tid 
    */
-  onDragOverStyle(tid = null, bool = true) {
-    this.formation = this.formation.map(f => f.id === tid ? { ...f, dragOver: bool } : f);
-    this.dispatch(updateDataset({ formation: this.formation }));
-
+  onDragChangeStyle(tid = null, bool = true) {
+    let hasUpdate = false;
+    this.formation = this.formation.map(f => {
+      if (f.id === tid) {
+        // need update style [performance]
+        if (f.dragOver !== bool) hasUpdate = true;
+        return { ...f, dragOver: bool };
+      }
+      return f;
+    });
+    if (hasUpdate)
+      this.dispatch(updateDataset({ formation: this.formation }));
   }
 
   /**
@@ -131,12 +139,16 @@ class Formation extends Component {
 
   onDragOver = (ev, tid = null) => {
     ev.preventDefault();
-    this.onDragOverStyle(tid, true);
+  }
+
+  onDragEnter = (ev, tid = null) => {
+    ev.preventDefault();
+    this.onDragChangeStyle(tid, true);
   }
 
   onDragLeave = (ev, tid = null) => {
     ev.preventDefault();
-    this.onDragOverStyle(tid, false);
+    this.onDragChangeStyle(tid, false);
   }
 
   /**
@@ -193,6 +205,7 @@ class Formation extends Component {
           onDoubleClick={() => this.onRemoveImage(id, code)}
           onDragStart={(e) => this.onDragStart(e, code, id)}
           onDragOver={(e) => this.onDragOver(e, id)}
+          onDragEnter={(e) => this.onDragEnter(e, id)}
           onDragLeave={(e) => this.onDragLeave(e, id)}
           onDrop={(e) => { this.onDrop(e, id) }}
           onDragEnd={(e) => this.onDragEnd(e, id, code)}
