@@ -25,15 +25,18 @@
     "build": "react-scripts build && rm -rf firebase/build && mv build firebase/build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "download": "node pre-work/tool.js",
     "deploy": "npm run build && cd firebase && firebase deploy"
   },
   "dependencies": {
     "classnames": "^2.2.6",
     "csshake": "^1.5.3",
+    "dom-to-image": "^2.6.0",
     "firebase": "^6.3.5",
     "firebase-admin": "^8.3.0",
     "flag-icon-css": "^3.3.0",
     "html-parse-stringify": "^1.0.3",
+    "html2canvas": "^1.0.0-rc.3",
     "i18next": "^17.0.11",
     "i18next-browser-languagedetector": "^3.0.3",
     "js-cookie": "^2.2.1",

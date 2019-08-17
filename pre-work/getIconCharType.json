@@ -1,0 +1,18 @@
+[
+    {
+        "url": "http://book.browndust.app/src/img/icon/icon_charType__warrior.png",
+        "name": "icon_charType__warrior.png"
+    },
+    {
+        "url": "http://book.browndust.app/src/img/icon/icon_charType__defender.png",
+        "name": "icon_charType__defender.png"
+    },
+    {
+        "url": "http://book.browndust.app/src/img/icon/icon_charType__magician.png",
+        "name": "icon_charType__magician.png"
+    },
+    {
+        "url": "http://book.browndust.app/src/img/icon/icon_charType__supporter.png",
+        "name": "icon_charType__supporter.png"
+    }
+]
