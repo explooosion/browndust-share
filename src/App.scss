@@ -1,6 +1,7 @@
 @import './scss/index';
 
 #container {
+  margin: 0 auto;
   width: 1450px;
 
   @media only screen and (max-width: $screen-xl) {
