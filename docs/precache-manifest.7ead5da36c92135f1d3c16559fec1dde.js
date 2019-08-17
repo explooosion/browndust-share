@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "70b9c102fefa65c36b66c00a8d7e1938",
+    "revision": "3be2b8860f36cb4e4d8a612dfc1ab9e5",
     "url": "/browndust-share/index.html"
   },
   {
-    "revision": "d635c77b1df57f693ff1",
+    "revision": "1bbfbff7d45d18ab7954",
     "url": "/browndust-share/static/css/2.503e286d.chunk.css"
   },
   {
-    "revision": "6c53f098b5f41eee793d",
-    "url": "/browndust-share/static/css/main.8a06e2f6.chunk.css"
+    "revision": "4fdce30f62580767aae3",
+    "url": "/browndust-share/static/css/main.bfa905c5.chunk.css"
   },
   {
-    "revision": "d635c77b1df57f693ff1",
-    "url": "/browndust-share/static/js/2.79570b4d.chunk.js"
+    "revision": "1bbfbff7d45d18ab7954",
+    "url": "/browndust-share/static/js/2.7f1ab3fa.chunk.js"
   },
   {
-    "revision": "6c53f098b5f41eee793d",
-    "url": "/browndust-share/static/js/main.0f79aa81.chunk.js"
+    "revision": "4fdce30f62580767aae3",
+    "url": "/browndust-share/static/js/main.90491fab.chunk.js"
   },
   {
     "revision": "b194844a5050bd962be3",
