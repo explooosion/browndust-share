@@ -30,11 +30,11 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "csshake": "^1.5.3",
-    "dom-to-image": "^2.6.0",
     "firebase": "^6.3.5",
     "firebase-admin": "^8.3.0",
     "flag-icon-css": "^3.3.0",
     "html-parse-stringify": "^1.0.3",
+    "html-to-image": "^0.1.1",
     "i18next": "^17.0.11",
     "i18next-browser-languagedetector": "^3.0.3",
     "js-cookie": "^2.2.1",
