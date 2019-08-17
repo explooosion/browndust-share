@@ -38,33 +38,30 @@
     }
   }
 
-  &:not(.no-type) .box {
-    &::before {
-      content: '';
-      position: absolute;
-      right: -4px;
-      top: -1px;
-      width: 36px;
-      height: 36px;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 100%;
-      display: inline-block;
-    }
+  &:not(.no-type)  .type {
+    position: absolute;
+    right: -4px;
+    top: -1px;
+    width: 36px;
+    height: 36px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    display: inline-block;
 
-    &[data-type='1']::before {
+    &[data-type='1'] {
       background-image: url($icon_charType__warrior);
     }
 
-    &[data-type='2']::before {
+    &[data-type='2'] {
       background-image: url($icon_charType__defender);
     }
 
-    &[data-type='3']::before {
+    &[data-type='3'] {
       background-image: url($icon_charType__magician);
     }
 
-    &[data-type='4']::before {
+    &[data-type='4'] {
       background-image: url($icon_charType__supporter);
     }
   }

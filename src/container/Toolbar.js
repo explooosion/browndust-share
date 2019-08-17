@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './Toolbar.scss';
 
 import { connect } from 'react-redux';
-import { MdRefresh } from 'react-icons/md';
-import { Checkbox } from 'pretty-checkbox-react';
-import { FaEye } from "react-icons/fa";
+import { MdRefresh, MdCloudDownload } from 'react-icons/md';
+import { Checkbox, Radio } from 'pretty-checkbox-react';
+import domtoimage from 'dom-to-image';
 
 import { updateDataset } from '../actions';
 
@@ -12,11 +12,40 @@ class Toolbar extends Component {
   constructor(props) {
     super(props);
     this.dispatch = props.dispatch;
+    this.state = {
+      downloadSizeSelected: 2,
+      downloadSize: [
+        { value: 1, name: '720px' },
+        { value: 2, name: '520px' },
+        { value: 3, name: '320px' },
+      ],
+    };
   }
 
   onUpdateOptions(payload) {
     const options = { ...this.options, ...payload };
     this.dispatch(updateDataset({ options }));
+  }
+
+  onDownloadClick() {
+    const node = document.getElementById('formation');
+    domtoimage
+      .toPng(node)
+      .then(dataUrl => {
+        const image = new Image;
+        const size = this.state.downloadSize.find(d => d.value === this.state.downloadSizeSelected).name;
+        image.src = dataUrl;
+        image.setAttribute('width', size);
+        document.body.appendChild(image);
+
+        const a = document.createElement('a');
+        a.href = image;
+        a.download = 'output.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      })
+      .catch(error => console.error('oops, something went wrong!', error));
   }
 
   render() {
@@ -67,6 +96,28 @@ class Toolbar extends Component {
           </Checkbox>
         </div>
 
+        <div className='options'>
+          尺寸：
+          {
+            this.state.downloadSize.map(({ value, name }) => {
+              return (
+                <Radio
+                  name='download-size'
+                  shape='round'
+                  color='info'
+                  animation='jelly'
+                  icon={<i className="mdi mdi-check" />}
+                  value={value}
+                  checked={value === this.state.downloadSizeSelected}
+                  onChange={() => this.setState({ downloadSizeSelected: value })}
+                >
+                  {name}
+                </Radio>
+              );
+            })
+          }
+        </div>
+
         <div className='commands'>
           <button
             type='button'
@@ -78,6 +129,14 @@ class Toolbar extends Component {
           >
             <MdRefresh size='2em' color='#fff' />
             <span>重置</span>
+          </button>
+          <button
+            type='button'
+            className='tool attacker'
+            onClick={() => this.onDownloadClick()}
+          >
+            <MdCloudDownload size='2em' color='#fff' />
+            <span>下載</span>
           </button>
         </div>
       </div>

@@ -1,3 +1,5 @@
+@import '../scss/index';
+
 .toolbar {
   margin-bottom: .8rem;
   padding: .75rem;
@@ -13,14 +15,21 @@
   .options {
     margin-bottom: 1rem;
     user-select: none;
+
+    > div {
+      width: 80px;
+    }
   }
 
   .commands {
+    display: flex;
+
     .tool {
       display: flex;
       align-items: center;
       justify-content: space-around;
-      width: 85px;
+      margin: 0 .5rem;
+      width: 100px;
       height: 40px;
       background-color: #3e4e56;
       border: 1px solid #bbb;

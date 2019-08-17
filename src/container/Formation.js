@@ -185,8 +185,8 @@ class Formation extends Component {
         <div
           key={`formation-${id}`}
           className={`box ${dragOver ? 'over' : ''} ${this.state.alertID === id ? 'shake-hard shake-constant shake-constant--hover' : ''}`}
-          data-type={type}
           id={id}
+          data-type={type}
           draggable={code ? true : false}
           style={{ top, left, backgroundImage }}
           onClick={() => this.onFormationClick(id)}
@@ -197,6 +197,7 @@ class Formation extends Component {
           onDrop={(e) => { this.onDrop(e, id) }}
           onDragEnd={(e) => this.onDragEnd(e, id, code)}
         >
+          <div className='type' data-type={type}></div>
         </div>
       )
     });
@@ -207,14 +208,16 @@ class Formation extends Component {
     const { type, backcolor, backimage, order } = this.props.dataset.options;
     this.characters = this.props.characters;
     return (
-      <div className={
-        `formation 
+      <div
+        id='formation'
+        className={
+          `formation 
         ${type ? '' : 'no-type'}
         ${backcolor ? '' : 'no-backcolor'}
         ${backimage ? '' : 'no-backimage'}
         ${order ? '' : 'no-order'}
         `
-      }
+        }
       >
         {this.renderFormation()}
       </div>
