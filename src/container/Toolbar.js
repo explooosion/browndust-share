@@ -7,6 +7,7 @@ import { Checkbox, Radio } from 'pretty-checkbox-react';
 import domtoimage from 'dom-to-image';
 
 import { updateDataset } from '../actions';
+import { resizeImageURL } from '../utils';
 
 class Toolbar extends Component {
   constructor(props) {
@@ -14,10 +15,12 @@ class Toolbar extends Component {
     this.dispatch = props.dispatch;
     this.state = {
       downloadSizeSelected: 2,
+      downloadSizeCustom: null,
       downloadSize: [
-        { value: 1, name: '720px' },
-        { value: 2, name: '520px' },
-        { value: 3, name: '320px' },
+        { value: 1, name: 700 },
+        { value: 2, name: 500 },
+        { value: 3, name: 300 },
+        { value: 4, name: '自訂寬度' },
       ],
     };
   }
@@ -31,15 +34,15 @@ class Toolbar extends Component {
     const node = document.getElementById('formation');
     domtoimage
       .toPng(node)
-      .then(dataUrl => {
-        const image = new Image;
-        const size = this.state.downloadSize.find(d => d.value === this.state.downloadSizeSelected).name;
-        image.src = dataUrl;
-        image.setAttribute('width', size);
-        document.body.appendChild(image);
+      .then(async dataUrl => {
+        const size = this.state.downloadSizeSelected !== 4 ? this.state.downloadSize
+          .find(d => d.value === this.state.downloadSizeSelected).name
+          : Number(this.state.downloadSizeCustom);
+        if (size <= 0) return;
 
         const a = document.createElement('a');
-        a.href = image;
+        const newDataUri = await resizeImageURL(dataUrl, size);
+        a.href = newDataUri;
         a.download = 'output.png';
         document.body.appendChild(a);
         a.click();
@@ -53,7 +56,7 @@ class Toolbar extends Component {
     return (
       <div className='toolbar'>
         <div className='options'>
-          顯示：
+          顯示內容：
           <Checkbox
             shape='round'
             color='info'
@@ -97,11 +100,12 @@ class Toolbar extends Component {
         </div>
 
         <div className='options'>
-          尺寸：
+          圖片寬度：
           {
             this.state.downloadSize.map(({ value, name }) => {
               return (
                 <Radio
+                  key={`download-szie-${value}`}
                   name='download-size'
                   shape='round'
                   color='info'
@@ -111,11 +115,17 @@ class Toolbar extends Component {
                   checked={value === this.state.downloadSizeSelected}
                   onChange={() => this.setState({ downloadSizeSelected: value })}
                 >
-                  {name}
+                  {value !== 4 ? `${name}px` : name}
                 </Radio>
               );
             })
           }
+          <input
+            className='download-size-custom'
+            defaultValue={this.state.downloadSizeCustom}
+            onChange={(e) => this.setState({ downloadSizeCustom: e.target.value })}
+            onFocus={() => this.setState({ downloadSizeSelected: 4 })}
+          />
         </div>
 
         <div className='commands'>

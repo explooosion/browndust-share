@@ -16,6 +16,15 @@
     margin-bottom: 1rem;
     user-select: none;
 
+    .download-size-custom {
+      height: 22px;
+      width: 100px;
+      border: 1px solid $dark;
+      border-radius: .25rem;
+      background-color: #3e4e56;
+      color: #fff;
+    }
+
     > div {
       width: 80px;
     }
