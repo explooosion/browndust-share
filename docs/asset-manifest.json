@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.8baa6462.chunk.css",
-    "main.js": "/static/js/main.21f90f22.chunk.js",
-    "main.js.map": "/static/js/main.21f90f22.chunk.js.map",
-    "runtime~main.js": "/static/js/runtime~main.5e567314.js",
-    "runtime~main.js.map": "/static/js/runtime~main.5e567314.js.map",
-    "static/css/2.4334543c.chunk.css": "/static/css/2.4334543c.chunk.css",
-    "static/js/2.79570b4d.chunk.js": "/static/js/2.79570b4d.chunk.js",
-    "static/js/2.79570b4d.chunk.js.map": "/static/js/2.79570b4d.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.8dbc4131597c41010c83232db074d52d.js": "/precache-manifest.8dbc4131597c41010c83232db074d52d.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.4334543c.chunk.css.map": "/static/css/2.4334543c.chunk.css.map",
-    "static/css/main.8baa6462.chunk.css.map": "/static/css/main.8baa6462.chunk.css.map",
-    "static/media/index.scss": "/static/media/zw.ad4ad36d.svg",
-    "static/media/Formation.scss": "/static/media/formation_background.e8dbae78.jpg"
+    "main.css": "/browndust-share/static/css/main.8a06e2f6.chunk.css",
+    "main.js": "/browndust-share/static/js/main.0f79aa81.chunk.js",
+    "main.js.map": "/browndust-share/static/js/main.0f79aa81.chunk.js.map",
+    "runtime~main.js": "/browndust-share/static/js/runtime~main.87778658.js",
+    "runtime~main.js.map": "/browndust-share/static/js/runtime~main.87778658.js.map",
+    "static/css/2.503e286d.chunk.css": "/browndust-share/static/css/2.503e286d.chunk.css",
+    "static/js/2.79570b4d.chunk.js": "/browndust-share/static/js/2.79570b4d.chunk.js",
+    "static/js/2.79570b4d.chunk.js.map": "/browndust-share/static/js/2.79570b4d.chunk.js.map",
+    "index.html": "/browndust-share/index.html",
+    "precache-manifest.96ea600a2f99b6b3a3c5114993bdccc7.js": "/browndust-share/precache-manifest.96ea600a2f99b6b3a3c5114993bdccc7.js",
+    "service-worker.js": "/browndust-share/service-worker.js",
+    "static/css/2.503e286d.chunk.css.map": "/browndust-share/static/css/2.503e286d.chunk.css.map",
+    "static/css/main.8a06e2f6.chunk.css.map": "/browndust-share/static/css/main.8a06e2f6.chunk.css.map",
+    "static/media/index.scss": "/browndust-share/static/media/zw.ad4ad36d.svg",
+    "static/media/Formation.scss": "/browndust-share/static/media/formation_background.e8dbae78.jpg"
   }
 }
