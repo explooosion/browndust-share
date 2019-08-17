@@ -1,8 +1,17 @@
+@import '../scss/index';
+
 .list {
+  float: right;
+  margin: 0 1rem 0 .2rem;
   padding: .8rem 0;
   width: 700px;
   border-radius: .5rem;
   background-color: rgba(0, 0, 0, .3);
+
+  @media only screen and (max-width: $screen-xl) {
+    float: none;
+    margin: 1rem auto 0;
+  }
 }
 
 .types {
@@ -48,19 +57,19 @@
     }
 
     &.attacker i {
-      background-image: url('https://book.browndust.app/src/img/icon/icon_charType__warrior.png');
+      background-image: url($icon_charType__warrior);
     }
 
     &.defender i {
-      background-image: url('https://book.browndust.app/src/img/icon/icon_charType__defender.png');
+      background-image: url($icon_charType__defender);
     }
 
     &.magician i {
-      background-image: url('https://book.browndust.app/src/img/icon/icon_charType__magician.png');
+      background-image: url($icon_charType__magician);
     }
 
     &.supporter i {
-      background-image: url('https://book.browndust.app/src/img/icon/icon_charType__supporter.png');
+      background-image: url($icon_charType__supporter);
     }
   }
 }

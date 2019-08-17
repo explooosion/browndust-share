@@ -1,3 +1,22 @@
+@import './scss/index';
+
 #container {
-  display: flex;
+  width: 1450px;
+
+  @media only screen and (max-width: $screen-xl) {
+    width: 100%;
+  }
+
+  .main {
+    float: left;
+    position: relative;
+    margin: 0 .2rem 0 1rem;
+    height: 350px;
+    width: 700px;
+
+    @media only screen and (max-width: $screen-xl) {
+      float: none;
+      margin: 0 auto;
+    }
+  }
 }
