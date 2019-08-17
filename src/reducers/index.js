@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
 // import settings from './settings';
-// import database from './database';
 import characters from './characters';
+import dataset from './dataset';
 
 export default combineReducers({
-  // settings,
-  // database,
+  dataset,
   characters,
 })

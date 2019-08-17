@@ -1,14 +1,18 @@
+@import '../scss/index';
+
 .formation {
   position: relative;
-  margin: 0 auto;
+  margin: 0 auto 1rem;
   height: 350px;
-  width: 700px;
+  width: inherit;
   background-image: url('../images/formation_background.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   border-radius: .25rem;
+  border: 1px solid transparent;
   /* border: 1px solid red; */
+
   .box {
     position: absolute;
     width: 103px;
@@ -22,6 +26,19 @@
     -ms-user-select: none;
     cursor: pointer;
 
+    &::before {
+      content: '';
+      position: absolute;
+      right: -4px;
+      top: -1px;
+      width: 36px;
+      height: 36px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100%;
+      display: inline-block;
+    }
+
     &:active {
       cursor: grabbing;
       cursor: -moz-grabbing;
@@ -29,23 +46,40 @@
     }
 
     &.over {
+      border: 1px solid $warning;
       background-color: rgba(200, 200, 255, .3);
     }
 
     &[data-type='1'] {
       background-color: #6e2429;
+
+      &::before {
+        background-image: url($icon_charType__warrior);
+      }
     }
 
     &[data-type='2'] {
       background-color: #1763b4;
+
+      &::before {
+        background-image: url($icon_charType__defender);
+      }
     }
 
     &[data-type='3'] {
       background-color: #3e3865;
+
+      &::before {
+        background-image: url($icon_charType__magician);
+      }
     }
 
     &[data-type='4'] {
       background-color: #80980f;
+
+      &::before {
+        background-image: url($icon_charType__supporter);
+      }
     }
   }
 }

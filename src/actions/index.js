@@ -1,11 +1,21 @@
-export const setLocal = locale => ({
+export const setLocal = payload => ({
   type: 'SET_LOCALE',
-  locale: locale,
+  locale: payload,
 });
 
-export const setCharacters = characters => ({
+export const setCharacters = payload => ({
   type: 'SET_CHARACTERS',
-  characters: characters,
+  payload,
+});
+
+export const updateDataset = payload => ({
+  type: 'UPDATE_FORMATION',
+  payload,
+});
+
+export const resetDataset = payload => ({
+  type: 'RESET_FORMATION',
+  payload,
 });
 
 // DEMO ===========================
