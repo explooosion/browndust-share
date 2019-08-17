@@ -28,6 +28,7 @@
     "download": "node pre-work/tool.js"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.16",
     "classnames": "^2.2.6",
     "csshake": "^1.5.3",
     "firebase": "^6.3.5",
@@ -52,6 +53,7 @@
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
+    "react-spinners": "^0.5.12",
     "react-transition-group": "^4.2.2",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",

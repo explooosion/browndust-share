@@ -5,9 +5,16 @@ import './List.scss';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'pretty-checkbox-react';
-import { FaStar, FaEye } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+import { css } from '@emotion/core';
+import HashLoader from 'react-spinners/HashLoader';
 
 import Mercenary from '../components/Mercenary';
+
+const override = css`
+    display: block;
+    margin: 20vh auto 0;
+`;
 
 class List extends Component {
   constructor(props) {
@@ -144,7 +151,7 @@ class List extends Component {
             {this.renderFilterStars()}
           </div>
           <div className='name'>
-            <span className='filter-title'><FaEye /> 名稱：</span>
+            <span className='filter-title'>名稱：</span>
             {this.renderFilterNameOptions()}
           </div>
         </div>
@@ -154,7 +161,15 @@ class List extends Component {
           ${this.state.nameOptions[1].checked ? 'bold' : ''}
           `}
         >
-          {this.renderCharacters()}
+          {
+            this.props.characters.length === 0 ? (
+              <HashLoader
+                css={override}
+                color={'#5ac0de'}
+                size={100}
+              />
+            ) : this.renderCharacters()
+          }
         </div>
       </div>
     );
