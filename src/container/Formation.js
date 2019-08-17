@@ -162,6 +162,23 @@ class Formation extends Component {
     }
   }
 
+  /**
+   * 移動結束
+   */
+  onDragEnd = (ev, id, code) => {
+    ev.preventDefault();
+    // Plan: remove by drag to outside
+    // console.log(ev.target);
+    // console.log(ev.target.getAttribute('id'), id);
+    // console.log(ev.target.getAttribute('draggable'));
+
+    // const drag = ev.target.getAttribute('draggable');
+    // if (drag) {
+    //   console.log('remove')
+    //   this.onRemoveImage(id, code)
+    // };
+  }
+
   renderFormation() {
     return this.formation.map(({ id, top, left, type, backgroundImage, code, dragOver }) => {
       return (
@@ -178,6 +195,7 @@ class Formation extends Component {
           onDragOver={(e) => this.onDragOver(e, id)}
           onDragLeave={(e) => this.onDragLeave(e, id)}
           onDrop={(e) => { this.onDrop(e, id) }}
+          onDragEnd={(e) => this.onDragEnd(e, id, code)}
         >
         </div>
       )
