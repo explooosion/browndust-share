@@ -2,7 +2,7 @@
 
 .toolbar {
   margin-bottom: .8rem;
-  padding: .75rem;
+  padding: 1rem .75rem;
   display: flex;
   flex-flow: column;
   border-radius: .25rem;
@@ -17,16 +17,24 @@
     user-select: none;
 
     .download-size-custom {
-      height: 22px;
-      width: 100px;
+      padding: 0 .3rem;
+      height: 24px;
+      width: 60px;
       border: 1px solid $dark;
       border-radius: .25rem;
-      background-color: #3e4e56;
+      font-size: 16px;
       color: #fff;
+      outline: none;
+      background-color: lighten(#3e4e56, $amount: 10);
+
+      &:focus,
+      &:hover {
+        background-color: lighten(#3e4e56, $amount: 20);
+      }
     }
 
     > div {
-      width: 80px;
+      width: 85px;
     }
   }
 
@@ -46,6 +54,31 @@
       box-shadow: 1px 1px 3px 2px rgba(20%, 20%, 40%, .5);
       outline: none;
       cursor: pointer;
+
+      > div {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: inherit;
+      }
+
+      &.tool-download {
+        background-color: rgba(54, 139, 196, .6);
+      }
+
+      &.tool-queue {
+        width: 130px;
+        background-color: rgba(#6e2429, .7);
+
+        &:hover {
+          background-color: lighten(#6e2429, 10);
+        }
+
+        &.tool-queue-on {
+          border-color: lighten(#6e2429, 30);
+          background-color: lighten(#6e2429, 30);
+        }
+      }
 
       &:hover {
         background-color: rgb(54, 139, 196);

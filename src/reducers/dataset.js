@@ -6,9 +6,12 @@ const initialState = {
         type: true,
         backcolor: true,
         backimage: true,
-        order: true,
+        queue: true,
     },
     ref: null,
+    queueMode: false,
+    queueMax: 9,
+    queue: [],
 };
 
 const dataset = (state = initialState, action) => {

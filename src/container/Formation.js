@@ -36,16 +36,39 @@ class Formation extends Component {
     // get formation state
     if (code || c) {
       // select target position id
-      this.formation = this.formation.map(f =>
-        f.id === tid ?
-          {
+      const fsource = this.formation.find(f => f.code === code);
+      this.formation = this.formation.map(f => {
+        let payload;
+
+        if (f.id === tid) {
+          payload = {
             ...f,
             backgroundImage: `url(${getThumbnailUrlByImageName(c._uiIconImageName)})`,
             type: Number(c._type),
             code: code,
             dragOver: false,
-          } : f
-      )
+          }
+          if (fsource) {
+            // move to new position, then copy source queue
+            if (f.queue === 0 && fsource.queue > 0) {
+              payload = {
+                ...payload,
+                queue: fsource.queue,
+              }
+            } else {
+              payload = {
+                ...payload,
+                queue: f.queue,
+              }
+            }
+            // payload = { ...payload, ...fsource.queue }
+            // queue: fsource ? fsource.queue : f.queue,
+          }
+        } else {
+          payload = f;
+        }
+        return payload;
+      });
       this.dispatch(updateDataset({ formation: this.formation, ref: this.myRef }));
     }
   }
@@ -68,6 +91,7 @@ class Formation extends Component {
             type: null,
             code: null,
             dragOver: false,
+            queue: 0,
           } : f
       )
       this.dispatch(updateDataset({ formation: this.formation }));
@@ -97,7 +121,7 @@ class Formation extends Component {
       // remove target style
       this.onDragChangeStyle(tid, false);
       del('_code');
-      console.warn('already have!');
+      console.log('already have!');
       return true;
     }
     return false;
@@ -122,15 +146,38 @@ class Formation extends Component {
   }
 
   /**
-   * 座標編號
+   * 新增傭兵或是編輯順序
    * @param {*} id 
    */
   onFormationClick(id = null) {
-    const code = get('_code');
-    if (!code) return;
-    if (this.onCheckExistImage(false, id, null, code)) return;
-    this.onAddImage(id, code);
-    del('_code');
+    const { queue, queueMode, queueMax } = this.props.dataset;
+
+    const formation = this.formation.find(f => f.id === id);
+    // set queue
+    if (queueMode && formation) {
+      // check is character inside
+      if (
+        formation.code !== null &&                // check data exist
+        formation.backgroundImage !== null &&     // check data exist
+        queue.filter(q => q === id).length === 0  // can not repeat id
+      ) {
+        queue.push(id);
+        this.formation = this.formation.map(f => {
+          if (f.id === id) return { ...f, queue: queue.length };
+          return f;
+        });
+        const payload = queue.length === queueMax
+          ? { formation: this.formation, queue, queueMode: false } : { formation: this.formation, queue };
+        this.dispatch(updateDataset(payload))
+      }
+    } else {
+      // add character
+      const code = get('_code');
+      if (!code) return;
+      if (this.onCheckExistImage(false, id, null, code)) return;
+      this.onAddImage(id, code);
+      del('_code');
+    }
   }
 
   /**
@@ -196,8 +243,8 @@ class Formation extends Component {
     // };
   }
 
-  renderFormation() {
-    return this.formation.map(({ id, top, left, type, backgroundImage, code, dragOver }) => {
+  renderFormation(typeShow, queueShow) {
+    return this.formation.map(({ id, top, left, type, backgroundImage, code, dragOver, queue }) => {
       return (
         <div
           key={`formation-${id}`}
@@ -215,7 +262,8 @@ class Formation extends Component {
           onDrop={(e) => { this.onDrop(e, id) }}
           onDragEnd={(e) => this.onDragEnd(e, id, code)}
         >
-          <div className='type' data-type={type}></div>
+          {typeShow ? <div className='type' data-type={type}></div> : null}
+          {queueShow && queue > 0 ? <div className='queue'>{queue}</div> : null}
         </div>
       )
     });
@@ -223,7 +271,7 @@ class Formation extends Component {
 
   render() {
     this.formation = this.props.dataset.formation;
-    const { type, backcolor, backimage, order } = this.props.dataset.options;
+    const { type, backcolor, backimage, queue } = this.props.dataset.options;
     this.characters = this.props.characters;
 
     return (
@@ -235,11 +283,11 @@ class Formation extends Component {
         ${type ? '' : 'no-type'}
         ${backcolor ? '' : 'no-backcolor'}
         ${backimage ? '' : 'no-backimage'}
-        ${order ? '' : 'no-order'}
+        ${queue ? '' : 'no-queue'}
         `
         }
       >
-        {this.renderFormation()}
+        {this.renderFormation(type, queue)}
       </div>
     );
   }

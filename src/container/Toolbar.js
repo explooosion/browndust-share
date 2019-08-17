@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './Toolbar.scss';
 
 import { connect } from 'react-redux';
-import { MdRefresh, MdCloudDownload } from 'react-icons/md';
+import { MdRefresh, MdGetApp } from 'react-icons/md';
+import { GiPerspectiveDiceSixFacesRandom, GiPerspectiveDiceOne } from 'react-icons/gi';
 import { Checkbox, Radio } from 'pretty-checkbox-react';
 import { toPng } from 'html-to-image';
 
@@ -15,12 +16,12 @@ class Toolbar extends Component {
     this.dispatch = props.dispatch;
     this.state = {
       downloadSizeSelected: 2,
-      downloadSizeCustom: null,
+      downloadSizeCustom: 0,
       downloadSize: [
         { value: 1, name: 700 },
         { value: 2, name: 520 },
         { value: 3, name: 420 },
-        { value: 4, name: '自訂寬度' },
+        { value: 4, name: '自訂寬度：' },
       ],
     };
   }
@@ -30,12 +31,25 @@ class Toolbar extends Component {
     this.dispatch(updateDataset({ options }));
   }
 
+  onQueueClick(queueMode) {
+    let payload = {};
+    if (queueMode) {
+      // turn off queue mode
+      payload = { queueMode: !queueMode, queue: [] };
+    } else {
+      // turn on queue mode
+      payload = { queueMode: !queueMode };
+    }
+
+    this.dispatch(updateDataset(payload));
+  }
+
   onDownloadClick() {
     const size = this.state.downloadSizeSelected !== 4 ? this.state.downloadSize
       .find(d => d.value === this.state.downloadSizeSelected).name
       : Number(this.state.downloadSizeCustom);
 
-    if (size <= 0) return;
+    if (Number(size) <= 0) return;
     toPng(this.props.dataset.ref.current)
       .then(async dataUrl => {
         const newDataUri = await resizeImageURL(dataUrl, size);
@@ -49,7 +63,9 @@ class Toolbar extends Component {
   }
 
   render() {
+    this.formation = this.props.dataset.formation;
     this.options = this.props.dataset.options;
+    const { queueMode, queue } = this.props.dataset;
     return (
       <div className='toolbar'>
         <div className='options'>
@@ -69,8 +85,8 @@ class Toolbar extends Component {
             color='info'
             animation='jelly'
             icon={<i className="mdi mdi-check" />}
-            checked={this.options.order}
-            onChange={e => this.onUpdateOptions({ order: e.target.checked })}
+            checked={this.options.queue}
+            onChange={e => this.onUpdateOptions({ queue: e.target.checked })}
           >
             出手順序
           </Checkbox>
@@ -118,20 +134,23 @@ class Toolbar extends Component {
             })
           }
           <input
+            type='number'
+            min={0}
+            max={2000}
             className='download-size-custom'
-            defaultValue={this.state.downloadSizeCustom}
-            onChange={(e) => this.setState({ downloadSizeCustom: e.target.value })}
+            value={this.state.downloadSizeCustom}
+            onChange={(e) => this.setState({ downloadSizeCustom: e.target.value.replace(/\D/, '') })}
             onFocus={() => this.setState({ downloadSizeSelected: 4 })}
-          />
+          /> px
         </div>
 
         <div className='commands'>
           <button
             type='button'
-            className='tool attacker'
+            className='tool tool-reset'
             onClick={() => {
-              const formation = this.props.dataset.formation.map(f => ({ ...f, type: 0, backgroundImage: null, code: null, dragOver: false }));
-              this.dispatch(updateDataset({ formation }));
+              const formation = this.formation.map(f => ({ ...f, type: 0, backgroundImage: null, code: null, dragOver: false }));
+              this.dispatch(updateDataset({ formation, queueMode: false, queue: [] }));
             }}
           >
             <MdRefresh size='2em' color='#fff' />
@@ -139,10 +158,21 @@ class Toolbar extends Component {
           </button>
           <button
             type='button'
-            className='tool attacker'
+            className={`tool tool-queue ${queueMode ? 'tool-queue-on' : ''}`}
+            onClick={() => this.onQueueClick(queueMode)}
+          >
+            {
+              queueMode
+                ? <div><GiPerspectiveDiceOne size='2em' color='#fff' /><span>順序({queue.length})</span></div>
+                : <div><GiPerspectiveDiceSixFacesRandom size='2em' color='#fff' /><span>順序({queue.length})</span></div>
+            }
+          </button>
+          <button
+            type='button'
+            className='tool tool-download'
             onClick={() => this.onDownloadClick()}
           >
-            <MdCloudDownload size='2em' color='#fff' />
+            <MdGetApp size='2em' color='#fff' />
             <span>下載</span>
           </button>
         </div>
