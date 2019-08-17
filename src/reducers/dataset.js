@@ -8,6 +8,7 @@ const initialState = {
         backimage: true,
         order: true,
     },
+    ref: null,
 };
 
 const dataset = (state = initialState, action) => {

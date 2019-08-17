@@ -18,7 +18,8 @@ export const resizeImageURL = (datas, w = null, h = w / 2) => {
             resolve(dataURI);
         };
         img.src = datas;
-        img.crossOrigin = 'Anonymous';
+        // img.crossOrigin = 'anonymous';
+        img.crossOrigin = 'use-credentials';
         // document.body.appendChild(img);
     });
 }

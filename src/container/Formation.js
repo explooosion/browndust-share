@@ -18,6 +18,11 @@ class Formation extends Component {
       alertID: null,
       alertTimer: null,
     }
+    this.myRef = React.createRef();
+  }
+
+  componentDidMount() {
+    this.dispatch(updateDataset({ ref: this.myRef }));
   }
 
   /**
@@ -41,7 +46,7 @@ class Formation extends Component {
             dragOver: false,
           } : f
       )
-      this.dispatch(updateDataset({ formation: this.formation }));
+      this.dispatch(updateDataset({ formation: this.formation, ref: this.myRef }));
     }
   }
 
@@ -220,8 +225,10 @@ class Formation extends Component {
     this.formation = this.props.dataset.formation;
     const { type, backcolor, backimage, order } = this.props.dataset.options;
     this.characters = this.props.characters;
+
     return (
       <div
+        ref={this.myRef}
         id='formation'
         className={
           `formation 

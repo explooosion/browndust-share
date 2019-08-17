@@ -4,7 +4,7 @@ import './Toolbar.scss';
 import { connect } from 'react-redux';
 import { MdRefresh, MdCloudDownload } from 'react-icons/md';
 import { Checkbox, Radio } from 'pretty-checkbox-react';
-import domtoimage from 'dom-to-image';
+import { toPng } from 'html-to-image';
 
 import { updateDataset } from '../actions';
 import { resizeImageURL } from '../utils';
@@ -18,8 +18,8 @@ class Toolbar extends Component {
       downloadSizeCustom: null,
       downloadSize: [
         { value: 1, name: 700 },
-        { value: 2, name: 500 },
-        { value: 3, name: 300 },
+        { value: 2, name: 520 },
+        { value: 3, name: 420 },
         { value: 4, name: '自訂寬度' },
       ],
     };
@@ -31,24 +31,21 @@ class Toolbar extends Component {
   }
 
   onDownloadClick() {
-    const node = document.getElementById('formation');
-    domtoimage
-      .toPng(node)
-      .then(async dataUrl => {
-        const size = this.state.downloadSizeSelected !== 4 ? this.state.downloadSize
-          .find(d => d.value === this.state.downloadSizeSelected).name
-          : Number(this.state.downloadSizeCustom);
-        if (size <= 0) return;
+    const size = this.state.downloadSizeSelected !== 4 ? this.state.downloadSize
+      .find(d => d.value === this.state.downloadSizeSelected).name
+      : Number(this.state.downloadSizeCustom);
 
-        const a = document.createElement('a');
+    if (size <= 0) return;
+    toPng(this.props.dataset.ref.current)
+      .then(async dataUrl => {
         const newDataUri = await resizeImageURL(dataUrl, size);
+        const a = document.createElement('a');
         a.href = newDataUri;
-        a.download = 'output.png';
+        a.download = 'html-output.png';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
-      })
-      .catch(error => console.error('oops, something went wrong!', error));
+      });
   }
 
   render() {
