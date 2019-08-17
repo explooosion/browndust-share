@@ -6,7 +6,6 @@
     "name": "Robby",
     "email": "ta7382@gmail.com"
   },
-  "homepage": "https://poe-hideout.firebaseapp.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/explooosion/browndust-share.git"
@@ -22,11 +21,10 @@
   ],
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && rm -rf firebase/build && mv build firebase/build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "download": "node pre-work/tool.js",
-    "deploy": "npm run build && cd firebase && firebase deploy"
+    "download": "node pre-work/tool.js"
   },
   "dependencies": {
     "classnames": "^2.2.6",
