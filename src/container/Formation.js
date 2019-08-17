@@ -14,6 +14,10 @@ class Formation extends Component {
     super(props);
     this.props = props;
     this.dispatch = props.dispatch;
+    this.state = {
+      alertID: null,
+      alertTimer: null,
+    }
   }
 
   /**
@@ -74,13 +78,18 @@ class Formation extends Component {
    */
   onCheckExistImage(drag, tid, sid = null, scode) {
     let exist = false;
-    if (drag && sid === '0' && this.formation.filter(({ code }) => code === scode).length > 0) {
-      exist = true;
-    } else if (!drag && this.formation.filter(({ code }) => code === scode).length > 0) {
-      exist = true;
+    const source = this.formation.filter(({ code }) => code === scode);
+    if (drag && sid === '0' && source.length > 0) {
+      exist = true; // drag mode
+    } else if (!drag && source.length > 0) {
+      exist = true; // click mode
     }
 
     if (exist) {
+      // add alarm style
+      this.setState({ alertID: source[0].id });
+      setTimeout(() => { this.setState({ alertID: null }) }, 1000);
+      // remove target style
       this.onDragOverStyle(tid, false);
       del('_code');
       console.warn('already have!');
@@ -158,7 +167,7 @@ class Formation extends Component {
       return (
         <div
           key={`formation-${id}`}
-          className={`box ${dragOver ? 'over' : ''}`}
+          className={`box ${dragOver ? 'over' : ''} ${this.state.alertID === id ? 'shake-hard shake-constant shake-constant--hover' : ''}`}
           data-type={type}
           id={id}
           draggable={code ? true : false}
