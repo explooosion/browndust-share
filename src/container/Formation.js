@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 
 import { get, del } from '../service/Session';
 import { getThumbnailUrlByImageName } from '../utils';
-
 import { updateDataset } from '../actions';
 
 class Formation extends Component {
@@ -178,9 +177,18 @@ class Formation extends Component {
 
   render() {
     this.formation = this.props.dataset.formation;
+    const { type, backcolor, backimage, order } = this.props.dataset.options;
     this.characters = this.props.characters;
     return (
-      <div className='formation'>
+      <div className={
+        `formation 
+        ${type ? '' : 'no-type'}
+        ${backcolor ? '' : 'no-backcolor'}
+        ${backimage ? '' : 'no-backimage'}
+        ${order ? '' : 'no-order'}
+        `
+      }
+      >
         {this.renderFormation()}
       </div>
     );

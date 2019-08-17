@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import Header from './container/Header';
 import Formation from './container/Formation';
 import List from './container/List';
+import Toolbar from './container/Toolbar';
 
 import { setCharacters } from './actions';
 import { getCharacters } from './service/Characters';
@@ -25,10 +26,13 @@ class App extends Component {
     this.database = this.props.database;
     this.users = this.props.users;
     return (
-      <div id="wrapper">
+      <div id='wrapper'>
         <Header />
-        <section id="container">
-          <Formation />
+        <section id='container'>
+          <div className='main'>
+            <Formation />
+            <Toolbar />
+          </div>
           <List />
         </section>
       </div>

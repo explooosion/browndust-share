@@ -26,6 +26,19 @@
     -ms-user-select: none;
     cursor: pointer;
 
+    &:active {
+      cursor: grabbing;
+      cursor: -moz-grabbing;
+      cursor: -webkit-grabbing;
+    }
+
+    &.over {
+      border: 1px solid $warning;
+      background-color: rgba(200, 200, 255, .3);
+    }
+  }
+
+  &:not(.no-type) .box {
     &::before {
       content: '';
       position: absolute;
@@ -39,47 +52,42 @@
       display: inline-block;
     }
 
-    &:active {
-      cursor: grabbing;
-      cursor: -moz-grabbing;
-      cursor: -webkit-grabbing;
+    &[data-type='1']::before {
+      background-image: url($icon_charType__warrior);
     }
 
-    &.over {
-      border: 1px solid $warning;
-      background-color: rgba(200, 200, 255, .3);
+    &[data-type='2']::before {
+      background-image: url($icon_charType__defender);
     }
 
+    &[data-type='3']::before {
+      background-image: url($icon_charType__magician);
+    }
+
+    &[data-type='4']::before {
+      background-image: url($icon_charType__supporter);
+    }
+  }
+
+  &.no-backimage {
+    background-image: unset;
+  }
+
+  &:not(.no-backcolor) .box {
     &[data-type='1'] {
       background-color: #6e2429;
-
-      &::before {
-        background-image: url($icon_charType__warrior);
-      }
     }
 
     &[data-type='2'] {
       background-color: #1763b4;
-
-      &::before {
-        background-image: url($icon_charType__defender);
-      }
     }
 
     &[data-type='3'] {
       background-color: #3e3865;
-
-      &::before {
-        background-image: url($icon_charType__magician);
-      }
     }
 
     &[data-type='4'] {
       background-color: #80980f;
-
-      &::before {
-        background-image: url($icon_charType__supporter);
-      }
     }
   }
 }

@@ -6,6 +6,7 @@ const initialState = {
         type: true,
         backcolor: true,
         backimage: true,
+        order: true,
     },
 };
 
