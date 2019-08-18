@@ -22,6 +22,32 @@ An online editorial mercenary formation website. (unofficial)
 
 ![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/2.png)
 
+## Deploay
+
+Installation.
+
+```sh
+yarn # npm install
+```
+
+Download resource (once).
+
+```sh
+yarn download # npm run download
+```
+
+Start server.
+
+```sh
+yarn start # npm start
+```
+
+Buid website.
+
+```sh
+yarn build # npm run build
+```
+
 ## Credit
 
 - [create-react-app](https://github.com/facebook/create-react-app)
