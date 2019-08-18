@@ -9,5 +9,27 @@
 
   h1 {
     margin: 1rem;
+
+    small {
+      @media only screen and (max-width: $screen-sm) {
+        display: none;
+      }
+    }
+  }
+
+  /* overwrite flag-select */
+  .flag-select {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+
+    .arrow-down {
+      display: none;
+      color: #fff;
+    }
   }
 }

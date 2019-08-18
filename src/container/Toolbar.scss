@@ -16,6 +16,11 @@
     margin-bottom: 1rem;
     user-select: none;
 
+    .option-title {
+      display: inline-block;
+      width: 95px;
+    }
+
     .download-size-custom {
       padding: 0 .3rem;
       height: 24px;
@@ -35,6 +40,10 @@
 
     > div {
       width: 85px;
+
+      &:last-child {
+        width: 10px;
+      }
     }
   }
 
@@ -46,7 +55,7 @@
       align-items: center;
       justify-content: space-around;
       margin: 0 .5rem;
-      width: 100px;
+      width: 120px;
       height: 40px;
       background-color: #3e4e56;
       border: 1px solid #bbb;
