@@ -62,6 +62,11 @@ class Toolbar extends Component {
       });
   }
 
+  onResetClick() {
+    const formation = this.formation.map(f => ({ ...f, type: 0, backgroundImage: null, code: null, dragOver: false, queue: 0 }));
+    this.dispatch(updateDataset({ formation, queueMode: false, queue: [] }));
+  }
+
   render() {
     this.formation = this.props.dataset.formation;
     this.options = this.props.dataset.options;
@@ -148,10 +153,7 @@ class Toolbar extends Component {
           <button
             type='button'
             className='tool tool-reset'
-            onClick={() => {
-              const formation = this.formation.map(f => ({ ...f, type: 0, backgroundImage: null, code: null, dragOver: false }));
-              this.dispatch(updateDataset({ formation, queueMode: false, queue: [] }));
-            }}
+            onClick={() => this.onResetClick()}
           >
             <MdRefresh size='2em' color='#fff' />
             <span>重置</span>
