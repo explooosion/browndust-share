@@ -7,6 +7,7 @@ import { MdRefresh, MdGetApp } from 'react-icons/md';
 import { GiPerspectiveDiceSixFacesRandom, GiPerspectiveDiceOne } from 'react-icons/gi';
 import { Checkbox, Radio } from 'pretty-checkbox-react';
 import { toPng } from 'html-to-image';
+import moment from 'moment';
 
 import { updateDataset } from '../actions';
 import { resizeImageURL } from '../utils';
@@ -63,7 +64,7 @@ class Toolbar extends Component {
         const newDataUri = await resizeImageURL(dataUrl, size);
         const a = document.createElement('a');
         a.href = newDataUri;
-        a.download = 'html-output.png';
+        a.download = `output-${moment().format('YYYYMMDDTHmmss')}.png`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
