@@ -19,13 +19,19 @@ class Toolbar extends Component {
     this.state = {
       downloadSizeSelected: 2,
       downloadSizeCustom: 0,
+    };
+  }
+
+  static getDerivedStateFromProps({ t }, state) {
+    return {
+      ...state,
       downloadSize: [
         { value: 1, name: 700 },
         { value: 2, name: 520 },
         { value: 3, name: 420 },
-        { value: 4, name: '' },
+        { value: 4, name: t('image-width-custom') },
       ],
-    };
+    }
   }
 
   onUpdateOptions(payload) {

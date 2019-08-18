@@ -25,46 +25,51 @@ class List extends Component {
     this.t = props.t;
     this.state = {
       type: 1,
-      types: [
-        { type: 1, style: 'attacker', label: this.t('attacker') },
-        { type: 2, style: 'defender', label: this.t('defender') },
-        { type: 3, style: 'magician', label: this.t('magician') },
-        { type: 4, style: 'supporter', label: this.t('supporter') },
-      ],
-      stars: [
-        { label: '5', checked: true, star: 5 },
-        { label: '4', checked: true, star: 4 },
-        { label: '3', checked: false, star: 3 },
-        { label: this.t('normal'), checked: false, star: 2 },
-      ],
-      nameOptions: [
-        { label: this.t('show'), checked: true },
-        { label: this.t('bold'), checked: false },
-      ],
     };
   }
 
-  // componentWillReceiveProps
-  componentWillReceiveProps(props, state) {
-    this.setState({
+  static getDerivedStateFromProps({ t }, state) {
+    return {
+      ...state,
       types: [
-        { type: 1, style: 'attacker', label: this.t('attacker') },
-        { type: 2, style: 'defender', label: this.t('defender') },
-        { type: 3, style: 'magician', label: this.t('magician') },
-        { type: 4, style: 'supporter', label: this.t('supporter') },
+        { type: 1, style: 'attacker', label: t('attacker') },
+        { type: 2, style: 'defender', label: t('defender') },
+        { type: 3, style: 'magician', label: t('magician') },
+        { type: 4, style: 'supporter', label: t('supporter') },
       ],
       stars: [
         { label: '5', checked: true, star: 5 },
         { label: '4', checked: true, star: 4 },
         { label: '3', checked: false, star: 3 },
-        { label: this.t('normal'), checked: false, star: 2 },
+        { label: t('normal'), checked: false, star: 2 },
       ],
       nameOptions: [
-        { label: this.t('show'), checked: true },
-        { label: this.t('bold'), checked: false },
+        { label: t('show'), checked: true },
+        { label: t('bold'), checked: false },
       ],
-    });
+    }
   }
+
+  // componentWillReceiveProps(props, state) {
+  //   this.setState({
+  //     types: [
+  //       { type: 1, style: 'attacker', label: this.t('attacker') },
+  //       { type: 2, style: 'defender', label: this.t('defender') },
+  //       { type: 3, style: 'magician', label: this.t('magician') },
+  //       { type: 4, style: 'supporter', label: this.t('supporter') },
+  //     ],
+  //     stars: [
+  //       { label: '5', checked: true, star: 5 },
+  //       { label: '4', checked: true, star: 4 },
+  //       { label: '3', checked: false, star: 3 },
+  //       { label: this.t('normal'), checked: false, star: 2 },
+  //     ],
+  //     nameOptions: [
+  //       { label: this.t('show'), checked: true },
+  //       { label: this.t('bold'), checked: false },
+  //     ],
+  //   });
+  // }
 
   onStarChange = (_label) => {
     const stars = this.state.stars;
