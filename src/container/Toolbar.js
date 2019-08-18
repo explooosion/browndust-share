@@ -38,9 +38,9 @@ class Toolbar extends Component {
       payload = { queueMode: !queueMode, queue: [] };
     } else {
       // turn on queue mode
-      payload = { queueMode: !queueMode };
+      const formation = this.formation.map(f => ({ ...f, queue: 0 }));
+      payload = { formation, queueMode: !queueMode };
     }
-
     this.dispatch(updateDataset(payload));
   }
 
@@ -69,6 +69,7 @@ class Toolbar extends Component {
 
   render() {
     this.formation = this.props.dataset.formation;
+    const queueLen = this.formation.filter(f => f.queue > 0).length;
     this.options = this.props.dataset.options;
     const { queueMode, queue } = this.props.dataset;
     return (
@@ -165,8 +166,8 @@ class Toolbar extends Component {
           >
             {
               queueMode
-                ? <div><GiPerspectiveDiceOne size='2em' color='#fff' /><span>順序({queue.length})</span></div>
-                : <div><GiPerspectiveDiceSixFacesRandom size='2em' color='#fff' /><span>順序({queue.length})</span></div>
+                ? <div><GiPerspectiveDiceOne size='2em' color='#fff' /><span>順序({queueLen})</span></div>
+                : <div><GiPerspectiveDiceSixFacesRandom size='2em' color='#fff' /><span>順序({queueLen})</span></div>
             }
           </button>
           <button

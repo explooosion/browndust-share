@@ -10,7 +10,7 @@ const initialState = {
     },
     ref: null,
     queueMode: false,
-    queueMax: 9,
+    queueMax: 12,
     queue: [],
 };
 
