@@ -1,24 +1,49 @@
 # Brown Dust Formation Sharing
 
-## I. 專案目的
+An online editorial mercenary formation website. (unofficial) 
 
-- 建立一個線上編輯陣型的網站
-- 提供玩家分享已建立之陣型 
+![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/public/favicon.png)
 
-## II. 網站功能
+## Features
 
-- 建立陣型
-- 傭兵選擇
-- 擺放位置
-- 產生圖片或超連結
-- 支援拖曳擺陣
+- Supports Drag and Drop
 
-## III. 介面
+- Generate an image or URL
 
-### background
+- Customizing your content
 
-![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/src/images/formation_background.jpg)
+- Export a custom size
 
-## IV. 參考資源
+## Grid
+
+### Demo
+
+![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/1.jpg)
+
+![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/2.png)
+
+## Credit
+
+- [create-react-app](https://github.com/facebook/create-react-app)
+
+- [pretty-checkbox](https://github.com/lokesh-coder/pretty-checkbox)
+
+- [react-icons](https://react-icons.netlify.com)
+
+- [react-spinners](https://www.react-spinners.com)
+
+- [csshake](https://elrumordelaluz.github.io/csshake)
+
+- [html-to-image](https://github.com/bubkoo/html-to-image)
+
+## Reference
+
+- [Brown Dust Mercenary Encyclopedia](https://book.browndust.app)
+
+- [Brown Dust Wiki](https://browndust.wiki/wiki/Brown_Dust_Wiki)
 
 - [browndust-global-api](https://browndust-global-api.pmang.cloud/book/getAllCharacters)
+
+## License
+
+Brown Dust share is open source software [licensed as MIT](https://github.com/explooosion/browndust-share/blob/master/LICENSE).
