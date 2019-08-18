@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 const http = require('http');
 const Stream = require('stream').Transform;
 const fs = require('fs');

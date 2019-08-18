@@ -31,8 +31,6 @@
     "@emotion/core": "^10.0.16",
     "classnames": "^2.2.6",
     "csshake": "^1.5.3",
-    "firebase": "^6.3.5",
-    "firebase-admin": "^8.3.0",
     "flag-icon-css": "^3.3.0",
     "html-parse-stringify": "^1.0.3",
     "html-to-image": "^0.1.1",
