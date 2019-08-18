@@ -30,6 +30,7 @@
   "dependencies": {
     "@emotion/core": "^10.0.16",
     "classnames": "^2.2.6",
+    "clipboard": "^2.0.4",
     "csshake": "^1.5.3",
     "html-parse-stringify": "^1.0.3",
     "html-to-image": "^0.1.1",

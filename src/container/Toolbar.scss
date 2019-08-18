@@ -45,6 +45,18 @@
 
   .commands {
     display: flex;
+    margin-bottom: 1rem;
+
+    .tool-copylink-text {
+      width: 80%;
+      min-width: 200px;
+      font-size: 18px;
+      color: #ccc;
+      border: 1px solid $gray;
+      background-color: $dark;
+      border-radius: .25rem;
+      outline: none;
+    }
 
     .tool {
       display: flex;
@@ -60,6 +72,10 @@
       outline: none;
       cursor: pointer;
 
+      &:first-child {
+        margin-left: 0;
+      }
+
       > div {
         display: flex;
         align-items: center;
@@ -68,29 +84,49 @@
       }
 
       &.tool-download {
-        background-color: rgba(54, 139, 196, .6);
+        background-color: rgba($primary, .6);
+
+        &:hover {
+          background-color: rgba($primary, .8);
+        }
+
+        &:active {
+          background-color: rgba($primary, .9);
+        }
+      }
+
+      &.tool-copylink {
+        background-color: rgba($success, .6);
+
+        &:hover {
+          background-color: rgba($success, .7);
+        }
+
+        &:active {
+          background-color: rgba($primary, .8);
+        }
       }
 
       &.tool-queue {
         width: 130px;
-        background-color: rgba(#6e2429, .7);
+        background-color: rgba($danger, .4);
 
         &:hover {
-          background-color: lighten(#6e2429, 10);
+          background-color: rgba($danger, .6);
         }
 
         &.tool-queue-on {
-          border-color: lighten(#6e2429, 30);
-          background-color: lighten(#6e2429, 30);
+          border-color: lighten($danger, 20);
+          background-color: lighten($danger, 20);
         }
       }
 
       &:hover {
-        background-color: rgb(54, 139, 196);
+        background-color: rgba(#3e4e56, .4);
       }
 
       &:active {
-        background-color: rgba(54, 139, 196, .8);
+        background-color: rgba(#3e4e56, .6);
       }
 
       span {

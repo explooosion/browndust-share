@@ -4,11 +4,12 @@ import './Toolbar.scss';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { MdRefresh, MdGetApp } from 'react-icons/md';
+import { FaLink } from 'react-icons/fa';
 import { GiPerspectiveDiceSixFacesRandom, GiPerspectiveDiceOne } from 'react-icons/gi';
 import { Checkbox, Radio } from 'pretty-checkbox-react';
 import { toPng } from 'html-to-image';
 import moment from 'moment';
-
+import Clipboard from 'clipboard';
 import { updateDataset } from '../actions';
 import { resizeImageURL } from '../utils';
 
@@ -21,6 +22,11 @@ class Toolbar extends Component {
       downloadSizeSelected: 2,
       downloadSizeCustom: 0,
     };
+  }
+
+  componentDidMount() {
+    // eslint-disable-next-line no-new
+    new Clipboard('.tool-copylink');
   }
 
   static getDerivedStateFromProps({ t }, state) {
@@ -186,6 +192,17 @@ class Toolbar extends Component {
           >
             <MdGetApp size='2em' color='#fff' />
             <span>{this.t('download')}</span>
+          </button>
+        </div>
+        <div className='commands'>
+          <input id="tool-copylink-text" className='tool-copylink-text' value={window.location.href} readOnly />
+          <button
+            type='button'
+            className='tool tool-copylink'
+            data-clipboard-target='#tool-copylink-text'
+          >
+            <FaLink size='1.5em' color='#fff' />
+            <span>{this.t('copylink')}</span>
           </button>
         </div>
       </div>
