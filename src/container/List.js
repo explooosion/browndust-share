@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-mixed-operators */
 import React, { Component } from 'react';
@@ -25,10 +26,30 @@ class List extends Component {
     this.t = props.t;
     this.state = {
       type: 1,
+      stars: [
+        { label: '5', checked: true, star: 5 },
+        { label: '4', checked: true, star: 4 },
+        { label: '3', checked: false, star: 3 },
+        { label: this.t('normal'), checked: false, star: 2 },
+      ],
+      nameOptions: [
+        { label: this.t('show'), checked: true },
+        { label: this.t('bold'), checked: false },
+      ],
     };
   }
 
   static getDerivedStateFromProps({ t }, state) {
+    let stars = [];
+    let nameOptions = [];
+
+    stars = state.stars;
+    stars[3].label = t('normal');
+
+    nameOptions = state.nameOptions;
+    nameOptions[0].label = t('show');
+    nameOptions[1].label = t('bold');
+
     return {
       ...state,
       types: [
@@ -37,16 +58,8 @@ class List extends Component {
         { type: 3, style: 'magician', label: t('magician') },
         { type: 4, style: 'supporter', label: t('supporter') },
       ],
-      stars: [
-        { label: '5', checked: true, star: 5 },
-        { label: '4', checked: true, star: 4 },
-        { label: '3', checked: false, star: 3 },
-        { label: t('normal'), checked: false, star: 2 },
-      ],
-      nameOptions: [
-        { label: t('show'), checked: true },
-        { label: t('bold'), checked: false },
-      ],
+      stars,
+      nameOptions,
     }
   }
 
