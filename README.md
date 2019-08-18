@@ -10,7 +10,7 @@ An online editorial mercenary formation website. (unofficial)
 
 ## Features
 
-- Supports Drag and Drop
+- Supports drag and drop
 
 - Generate an image or URL
 
@@ -25,6 +25,14 @@ An online editorial mercenary formation website. (unofficial)
 ![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/1.jpg)
 
 ![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/2.png)
+
+![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/3.png)
+
+![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/4.png)
+
+![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/5.png)
+
+![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/6.png)
 
 ## Deploay
 
@@ -56,15 +64,19 @@ yarn build # npm run build
 
 - [create-react-app](https://github.com/facebook/create-react-app)
 
+- [csshake](https://elrumordelaluz.github.io/csshake)
+
+- [html-to-image](https://github.com/bubkoo/html-to-image)
+
+- [react-flags-select](https://github.com/ekwonye-richard/react-flags-select)
+
+- [react-i18next](https://react.i18next.com/)
+
 - [pretty-checkbox](https://github.com/lokesh-coder/pretty-checkbox)
 
 - [react-icons](https://react-icons.netlify.com)
 
 - [react-spinners](https://www.react-spinners.com)
-
-- [csshake](https://elrumordelaluz.github.io/csshake)
-
-- [html-to-image](https://github.com/bubkoo/html-to-image)
 
 ## Reference
 
