@@ -26,7 +26,7 @@ class Formation extends Component {
   }
 
   /**
-   * 新增圖片
+   * Add image to formation
    * @param {*} tid target position id 
    * @param {*} cold character code
    */
@@ -74,7 +74,7 @@ class Formation extends Component {
   }
 
   /**
-   * 刪除圖片
+   * Delete image from formation
    * @param {*} pid position id 
    * @param {*} cold character code
    */
@@ -146,7 +146,7 @@ class Formation extends Component {
   }
 
   /**
-   * 新增傭兵或是編輯順序
+   * Adding charactor or setting queue
    * @param {*} id 
    */
   onFormationClick(id = null) {
@@ -181,6 +181,7 @@ class Formation extends Component {
   }
 
   /**
+   * DragStart event
    * sid source position id
    * scode source position image code
    */
@@ -204,6 +205,7 @@ class Formation extends Component {
   }
 
   /**
+   * Drop event
    * tid target position id
    */
   onDrop = (ev, tid = null) => {
@@ -227,11 +229,10 @@ class Formation extends Component {
   }
 
   /**
-   * 移動結束
+   * Drag end (Plan: remove by drag to outside)
    */
   onDragEnd = (ev, id, code) => {
-    ev.preventDefault();
-    // Plan: remove by drag to outside
+    ev.preventDefault(); 
     // console.log(ev.target);
     // console.log(ev.target.getAttribute('id'), id);
     // console.log(ev.target.getAttribute('draggable'));

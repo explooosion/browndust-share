@@ -50,27 +50,6 @@ class List extends Component {
     }
   }
 
-  // componentWillReceiveProps(props, state) {
-  //   this.setState({
-  //     types: [
-  //       { type: 1, style: 'attacker', label: this.t('attacker') },
-  //       { type: 2, style: 'defender', label: this.t('defender') },
-  //       { type: 3, style: 'magician', label: this.t('magician') },
-  //       { type: 4, style: 'supporter', label: this.t('supporter') },
-  //     ],
-  //     stars: [
-  //       { label: '5', checked: true, star: 5 },
-  //       { label: '4', checked: true, star: 4 },
-  //       { label: '3', checked: false, star: 3 },
-  //       { label: this.t('normal'), checked: false, star: 2 },
-  //     ],
-  //     nameOptions: [
-  //       { label: this.t('show'), checked: true },
-  //       { label: this.t('bold'), checked: false },
-  //     ],
-  //   });
-  // }
-
   onStarChange = (_label) => {
     const stars = this.state.stars;
     const star = stars.find(({ label }) => label === _label);
@@ -86,7 +65,7 @@ class List extends Component {
   }
 
   /**
-   * 渲染傭兵類型
+   * Render charactor types
    */
   renderTypes() {
     return this.state.types.map(({ type, style, label }) =>
@@ -104,7 +83,7 @@ class List extends Component {
   }
 
   /**
-   * 渲染傭兵星級篩選功能
+   * Render stars filter
    */
   renderFilterStars() {
     return this.state.stars.map(({ label, checked }, index) =>
@@ -124,7 +103,7 @@ class List extends Component {
   }
 
   /**
-   * 渲染傭兵名稱呈現功能
+   * Render names filter
    */
   renderFilterNameOptions() {
     return this.state.nameOptions.map(({ label, checked }, index) => (
@@ -143,7 +122,7 @@ class List extends Component {
   }
 
   /**
-   * 渲染傭兵列表
+   * Render lists
    */
   renderCharacters() {
     return this.props.characters

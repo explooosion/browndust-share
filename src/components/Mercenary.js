@@ -17,6 +17,7 @@ class Mercenary extends Component {
   }
 
   /**
+   * DrageStart Event
    * sid source position id
    * scode source position image code
    */
