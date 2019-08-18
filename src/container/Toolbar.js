@@ -72,7 +72,7 @@ class Toolbar extends Component {
   }
 
   onResetClick() {
-    const formation = this.formation.map(f => ({ ...f, type: 0, backgroundImage: null, code: null, dragOver: false, queue: 0 }));
+    const formation = this.formation.map(f => ({ ...f, type: 0, backgroundImage: null, code: 0, dragOver: false, queue: 0 }));
     this.dispatch(updateDataset({ formation, queueMode: false, queue: [] }));
   }
 

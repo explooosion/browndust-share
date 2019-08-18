@@ -1,3 +1,4 @@
+/* eslint-disable prefer-numeric-literals */
 /* eslint-disable no-empty */
 /* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
@@ -30,11 +31,11 @@ class Formation extends Component {
    * @param {*} tid target position id 
    * @param {*} cold character code
    */
-  onAddImage(tid = null, code = null) {
+  onAddImage(tid = null, code = 0) {
     // select character by _code
     const c = this.characters.find(({ _code }) => _code === code);
     // get formation state
-    if (code || c) {
+    if (code > 0 || c) {
       // select target position id
       const fsource = this.formation.find(f => f.code === code);
       this.formation = this.formation.map(f => {
@@ -78,7 +79,7 @@ class Formation extends Component {
    * @param {*} pid position id 
    * @param {*} cold character code
    */
-  onRemoveImage(pid = null, code = null) {
+  onRemoveImage(pid = null, code = 0) {
     const c = this.characters.find(({ _code }) => _code === code);
     if (code || c) {
       // Remove image from source
@@ -89,7 +90,7 @@ class Formation extends Component {
             ...f,
             backgroundImage: null,
             type: null,
-            code: null,
+            code: 0,
             dragOver: false,
             queue: 0,
           } : f
@@ -105,7 +106,7 @@ class Formation extends Component {
    * @param {*} sid source id
    * @param {*} scode source code
    */
-  onCheckExistImage(drag, tid, sid = null, scode) {
+  onCheckExistImage(drag, tid, sid = null, scode = 0) {
     let exist = false;
     const source = this.formation.filter(({ code }) => code === scode);
     if (drag && sid === '0' && source.length > 0) {
@@ -121,7 +122,7 @@ class Formation extends Component {
       // remove target style
       this.onDragChangeStyle(tid, false);
       del('_code');
-      console.log('already have!');
+      console.info('Already exist!', scode);
       return true;
     }
     return false;
@@ -157,7 +158,7 @@ class Formation extends Component {
     if (queueMode && formation) {
       // check is character inside
       if (
-        formation.code !== null &&                // check data exist
+        formation.code > 0 &&                // check data exist
         formation.backgroundImage !== null &&     // check data exist
         queue.filter(q => q === id).length === 0  // can not repeat id
       ) {
@@ -185,7 +186,7 @@ class Formation extends Component {
    * sid source position id
    * scode source position image code
    */
-  onDragStart = (ev, scode = null, sid = null) => {
+  onDragStart = (ev, scode = 0, sid = null) => {
     ev.dataTransfer.setData('scode', scode);
     ev.dataTransfer.setData('sid', sid);
   }
@@ -232,7 +233,7 @@ class Formation extends Component {
    * Drag end (Plan: remove by drag to outside)
    */
   onDragEnd = (ev, id, code) => {
-    ev.preventDefault(); 
+    ev.preventDefault();
     // console.log(ev.target);
     // console.log(ev.target.getAttribute('id'), id);
     // console.log(ev.target.getAttribute('draggable'));
@@ -252,7 +253,7 @@ class Formation extends Component {
           className={`box ${dragOver ? 'over' : ''} ${this.state.alertID === id ? 'shake-hard shake-constant shake-constant--hover' : ''}`}
           id={id}
           data-type={type}
-          draggable={code ? true : false}
+          draggable={code > 0 ? true : false}
           style={{ top, left, backgroundImage }}
           onClick={() => this.onFormationClick(id)}
           onDoubleClick={() => this.onRemoveImage(id, code)}

@@ -4,7 +4,7 @@
 
 # Brown Dust Formation Sharing
 
-An online editorial mercenary formation website. (unofficial) 
+An online mercenary formation share website. (unofficial) 
 
 ![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/public/favicon.png)
 
@@ -17,6 +17,8 @@ An online editorial mercenary formation website. (unofficial)
 - Customizing your content
 
 - Export a custom size
+
+- i18n language
 
 ## Grid
 

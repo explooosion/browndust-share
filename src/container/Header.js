@@ -20,7 +20,6 @@ class Header extends Component {
   }
 
   onSelectFlag(countryCode) {
-    console.log('locale', countryCode);
     this.dispatch(setLocal({ locale: countryCode }));
   }
 
