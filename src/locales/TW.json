@@ -1,0 +1,22 @@
+{
+    "title": "棕色塵埃 × 陣型分享",
+    "attacker": "攻擊",
+    "defender": "防禦",
+    "magician": "魔法",
+    "supporter": "支援",
+    "star": "星級",
+    "name": "名稱",
+    "normal": "一般",
+    "show": "顯示",
+    "bold": "粗體",
+    "show-content": "顯示內容",
+    "mercenary-type": "傭兵類型",
+    "mercenary-queue": "出手順序",
+    "background-color": "背景顏色",
+    "background-grid": "背景方格",
+    "image-width": "圖片寬度",
+    "image-width-custom": "自訂：",
+    "reset":"重置",
+    "queue":"順序",
+    "download":"下載"
+}

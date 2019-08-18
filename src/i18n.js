@@ -1,17 +1,22 @@
 import i18n from 'i18next';
-import { initReactI18next } from "react-i18next";
+import { initReactI18next } from 'react-i18next';
 import detector from "i18next-browser-languagedetector";
+import Cookies from 'js-cookie';
 
 // the translations
 // (tip move them in a JSON file and import them)
-import translationEN from './locales/en.json';
-import translationZHTW from './locales/zh-tw.json';
-import translationZHCN from './locales/zh-cn.json';
+import translationEN from './locales/US.json';
+import translationTW from './locales/TW.json';
+import translationCN from './locales/CN.json';
+import translationKR from './locales/KR.json';
+
+const lng = Cookies.get('locale') === undefined ? 'US' : Cookies.get('locale');
 
 const resources = {
-  en: { translation: translationEN },
-  zhTW: { translation: translationZHTW },
-  zhCN: { translation: translationZHCN },
+  US: { translation: translationEN },
+  TW: { translation: translationTW },
+  CN: { translation: translationCN },
+  KR: { translation: translationKR },
 };
 
 i18n
@@ -19,7 +24,8 @@ i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     resources,
-    lng: 'en',
+
+    lng, // get default from cookie
 
     keySeparator: false, // we do not use keys in form messages.welcome
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Toolbar.scss';
 
 import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
 import { MdRefresh, MdGetApp } from 'react-icons/md';
 import { GiPerspectiveDiceSixFacesRandom, GiPerspectiveDiceOne } from 'react-icons/gi';
 import { Checkbox, Radio } from 'pretty-checkbox-react';
@@ -14,6 +15,7 @@ class Toolbar extends Component {
   constructor(props) {
     super(props);
     this.dispatch = props.dispatch;
+    this.t = props.t;
     this.state = {
       downloadSizeSelected: 2,
       downloadSizeCustom: 0,
@@ -21,7 +23,7 @@ class Toolbar extends Component {
         { value: 1, name: 700 },
         { value: 2, name: 520 },
         { value: 3, name: 420 },
-        { value: 4, name: '自訂寬度：' },
+        { value: 4, name: '' },
       ],
     };
   }
@@ -71,11 +73,11 @@ class Toolbar extends Component {
     this.formation = this.props.dataset.formation;
     const queueLen = this.formation.filter(f => f.queue > 0).length;
     this.options = this.props.dataset.options;
-    const { queueMode, queue } = this.props.dataset;
+    const { queueMode } = this.props.dataset;
     return (
       <div className='toolbar'>
         <div className='options'>
-          顯示內容：
+          <span className='option-title'>{this.t('show-content')}：</span>
           <Checkbox
             shape='round'
             color='info'
@@ -84,7 +86,7 @@ class Toolbar extends Component {
             checked={this.options.type}
             onChange={e => this.onUpdateOptions({ type: e.target.checked })}
           >
-            傭兵類型
+            {this.t('mercenary-type')}
           </Checkbox>
           <Checkbox
             shape='round'
@@ -94,7 +96,7 @@ class Toolbar extends Component {
             checked={this.options.queue}
             onChange={e => this.onUpdateOptions({ queue: e.target.checked })}
           >
-            出手順序
+            {this.t('mercenary-queue')}
           </Checkbox>
           <Checkbox
             shape='round'
@@ -104,7 +106,7 @@ class Toolbar extends Component {
             checked={this.options.backcolor}
             onChange={e => this.onUpdateOptions({ backcolor: e.target.checked })}
           >
-            背景顏色
+            {this.t('background-color')}
           </Checkbox>
           <Checkbox
             shape='round'
@@ -114,14 +116,14 @@ class Toolbar extends Component {
             checked={this.options.backimage}
             onChange={e => this.onUpdateOptions({ backimage: e.target.checked })}
           >
-            背景方格
+            {this.t('background-grid')}
           </Checkbox>
         </div>
 
         <div className='options'>
-          圖片寬度：
+          <span className='option-title'>{this.t('image-width')}：</span>
           {
-            this.state.downloadSize.map(({ value, name }) => {
+            this.state.downloadSize.map(({ value, name }, index) => {
               return (
                 <Radio
                   key={`download-szie-${value}`}
@@ -157,7 +159,7 @@ class Toolbar extends Component {
             onClick={() => this.onResetClick()}
           >
             <MdRefresh size='2em' color='#fff' />
-            <span>重置</span>
+            <span>{this.t('reset')}</span>
           </button>
           <button
             type='button'
@@ -166,8 +168,8 @@ class Toolbar extends Component {
           >
             {
               queueMode
-                ? <div><GiPerspectiveDiceOne size='2em' color='#fff' /><span>順序({queueLen})</span></div>
-                : <div><GiPerspectiveDiceSixFacesRandom size='2em' color='#fff' /><span>順序({queueLen})</span></div>
+                ? <div><GiPerspectiveDiceOne size='2em' color='#fff' /><span>{this.t('queue')}({queueLen})</span></div>
+                : <div><GiPerspectiveDiceSixFacesRandom size='2em' color='#fff' /><span>{this.t('queue')}({queueLen})</span></div>
             }
           </button>
           <button
@@ -176,7 +178,7 @@ class Toolbar extends Component {
             onClick={() => this.onDownloadClick()}
           >
             <MdGetApp size='2em' color='#fff' />
-            <span>下載</span>
+            <span>{this.t('download')}</span>
           </button>
         </div>
       </div>
@@ -192,4 +194,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Toolbar);
+export default withTranslation()(connect(mapStateToProps)(Toolbar));

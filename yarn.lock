@@ -4579,11 +4579,6 @@ find-up@^2.0.0, find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
-flag-icon-css@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-3.3.0.tgz#7772461e4480d3d86da5962f02120a2825688433"
-  integrity sha512-u5lCGVExrJJRykNGd//ZrBU5Bkt0LTZJFSuG+Az/pwcHgzDeFwomwFbsgVtI1aJd6ysyHsx+5UGrA+nhSGd4yw==
-
 flat-cache@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/flat-cache/-/flat-cache-2.0.1.tgz#5d296d6f04bda44a4630a301413bdbc2ec085ec0"
@@ -8819,7 +8814,7 @@ prompts@^2.0.1:
     kleur "^3.0.2"
     sisteransi "^1.0.0"
 
-prop-types@^15.5.10, prop-types@^15.7.2:
+prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -9050,6 +9045,13 @@ react-files@^2.4.8:
   version "2.4.8"
   resolved "https://registry.yarnpkg.com/react-files/-/react-files-2.4.8.tgz#780f140e3830923a368ee56e17e13e48b74acad6"
   integrity sha512-ua1MT5wOT+5qHWa98UxgIA9BhtzzmsgWaacNuuLMs97U/7fhSCSXvvWjG17xGtJN/0bzmkbu04SaKApcAPd1kQ==
+
+react-flags-select@^1.1.10:
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/react-flags-select/-/react-flags-select-1.1.10.tgz#3ad8bd8bbc8ef206bb41d2fa3ac90f522826dbda"
+  integrity sha512-8bGih8XVIXwXpuio0I7MqU3nqh82Hdj28rS21HzNUAVdKGtO3lqY6TLDNSTpanAupXSXGfkajkpFQv5XsRvUfA==
+  dependencies:
+    prop-types "^15.5.8"
 
 react-html-parser@^2.0.2:
   version "2.0.2"

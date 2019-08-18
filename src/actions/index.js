@@ -1,6 +1,6 @@
 export const setLocal = payload => ({
   type: 'SET_LOCALE',
-  locale: payload,
+  payload,
 });
 
 export const setCharacters = payload => ({

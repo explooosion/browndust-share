@@ -1,0 +1,22 @@
+{
+    "title": "formation × share",
+    "attacker": "Warrior",
+    "defender": "Defender",
+    "magician": "Magician",
+    "supporter": "Supporter",
+    "star": "Star",
+    "name": "Name",
+    "normal": "Normal",
+    "show": "Show",
+    "bold": "Bold",
+    "show-content": "Content",
+    "mercenary-type": "Type",
+    "mercenary-queue": "Queue",
+    "background-color": "Bg Color",
+    "background-grid": "Bg Grid",
+    "image-width": "Width",
+    "image-width-custom": "Custom:",
+    "reset":"Reset",
+    "queue":"Queue",
+    "download":"Download"
+}

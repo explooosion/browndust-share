@@ -25,14 +25,25 @@ class Mercenary extends Component {
     ev.dataTransfer.setData('sid', sid);
   }
 
+  getCharNameByLocale = (locale) => {
+    const { _charName, _charName_ENG, _charName_TW } = this.props.params;
+    switch (locale) {
+      case 'US': return _charName_ENG;
+      case 'TW': return _charName_TW;
+      case 'CN': return _charName_TW;
+      case 'KR': return _charName;
+      default: return _charName_ENG;
+    }
+  }
+
   render() {
-    const { _uiIconImageName, _charName_TW, _code } = this.props.params;
+    const { _uiIconImageName, _code } = this.props.params;
     const URL = getThumbnailUrlByImageName(_uiIconImageName);
     return (
       <div
         className='mercenary'
         style={{ backgroundImage: `url(${URL})` }}
-        data-tooltip={_charName_TW}
+        data-tooltip={this.getCharNameByLocale(this.props.settings.locale)}
         draggable
         onClick={() => set('_code', _code)}
         onDragStart={(e) => this.onDragStart(e, _code, 0)}
@@ -46,6 +57,7 @@ Mercenary.propTypes = {}
 
 const mapStateToProps = state => {
   return {
+    settings: state.settings,
   }
 }
 

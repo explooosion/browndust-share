@@ -2,6 +2,8 @@
 /* eslint-disable no-mixed-operators */
 import React, { Component } from 'react';
 import './List.scss';
+
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'pretty-checkbox-react';
@@ -20,25 +22,48 @@ class List extends Component {
   constructor(props) {
     super(props);
     this.props = props;
+    this.t = props.t;
     this.state = {
       type: 1,
       types: [
-        { type: 1, style: 'attacker', label: '攻擊' },
-        { type: 2, style: 'defender', label: '防禦' },
-        { type: 3, style: 'magician', label: '魔法' },
-        { type: 4, style: 'supporter', label: '支援' },
+        { type: 1, style: 'attacker', label: this.t('attacker') },
+        { type: 2, style: 'defender', label: this.t('defender') },
+        { type: 3, style: 'magician', label: this.t('magician') },
+        { type: 4, style: 'supporter', label: this.t('supporter') },
       ],
       stars: [
-        { label: '5星', checked: true, star: 5 },
-        { label: '4星', checked: true, star: 4 },
-        { label: '3星', checked: false, star: 3 },
-        { label: '一般', checked: false, star: 2 },
+        { label: '5', checked: true, star: 5 },
+        { label: '4', checked: true, star: 4 },
+        { label: '3', checked: false, star: 3 },
+        { label: this.t('normal'), checked: false, star: 2 },
       ],
       nameOptions: [
-        { label: '顯示', checked: true },
-        { label: '粗體', checked: false },
+        { label: this.t('show'), checked: true },
+        { label: this.t('bold'), checked: false },
       ],
     };
+  }
+
+  // componentWillReceiveProps
+  componentWillReceiveProps(props, state) {
+    this.setState({
+      types: [
+        { type: 1, style: 'attacker', label: this.t('attacker') },
+        { type: 2, style: 'defender', label: this.t('defender') },
+        { type: 3, style: 'magician', label: this.t('magician') },
+        { type: 4, style: 'supporter', label: this.t('supporter') },
+      ],
+      stars: [
+        { label: '5', checked: true, star: 5 },
+        { label: '4', checked: true, star: 4 },
+        { label: '3', checked: false, star: 3 },
+        { label: this.t('normal'), checked: false, star: 2 },
+      ],
+      nameOptions: [
+        { label: this.t('show'), checked: true },
+        { label: this.t('bold'), checked: false },
+      ],
+    });
   }
 
   onStarChange = (_label) => {
@@ -147,11 +172,11 @@ class List extends Component {
         </div>
         <div className='filter'>
           <div className='star'>
-            <span className='filter-title'><FaStar /> 星級：</span>
+            <span className='filter-title'><FaStar /> {this.t('star')}：</span>
             {this.renderFilterStars()}
           </div>
           <div className='name'>
-            <span className='filter-title'>名稱：</span>
+            <span className='filter-title'>{this.t('name')}：</span>
             {this.renderFilterNameOptions()}
           </div>
         </div>
@@ -186,4 +211,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(List);
+export default withTranslation()(connect(mapStateToProps)(List));

@@ -6,11 +6,9 @@ import i18n from '../i18n';
 const settings = (state = Settings, action) => {
   switch (action.type) {
     case 'SET_LOCALE':
-      i18n.changeLanguage(action.locale);
-      Cookies.set('locale', action.locale);
-      return {
-        locale: action.locale,
-      };
+      i18n.changeLanguage(action.payload.locale);
+      Cookies.set('locale', action.payload.locale);
+      return { ...state, ...action.payload };
     default:
       return state;
   }
