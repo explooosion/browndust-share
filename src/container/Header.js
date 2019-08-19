@@ -27,7 +27,11 @@ class Header extends Component {
     return (
       <header id='header'>
         <center style={{ position: 'relative' }}>
-          <a href='/' className='header-text'><h1>BROWNDUST <small>{this.t('title')}</small></h1></a>
+          <h1>
+            <a href='/' className='header-text'>
+              BROWNDUST <small>{this.t('title')}</small>
+            </a>
+          </h1>
           <ReactFlagsSelect
             className='flag-select'
             defaultCountry={this.state.transDefault}

@@ -8,6 +8,9 @@
   }
 
   .header-text {
+    display: block;
+    margin: 1rem 0;
+    width: 600px;
     color: $warning;
     text-decoration: none;
     -moz-user-select: none;
@@ -18,13 +21,9 @@
       color: $warning;
     }
 
-    h1 {
-      margin: 1rem;
-
-      small {
-        @media only screen and (max-width: $screen-sm) {
-          display: none;
-        }
+    small {
+      @media only screen and (max-width: $screen-sm) {
+        display: none;
       }
     }
   }
