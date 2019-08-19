@@ -25,9 +25,9 @@ class Header extends Component {
 
   render() {
     return (
-      <header id="header">
+      <header id='header'>
         <center style={{ position: 'relative' }}>
-          <h1>BROWNDUST <small>{this.t('title')}</small></h1>
+          <a href='/' className='header-text'><h1>BROWNDUST <small>{this.t('title')}</small></h1></a>
           <ReactFlagsSelect
             className='flag-select'
             defaultCountry={this.state.transDefault}

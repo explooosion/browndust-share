@@ -10,7 +10,6 @@
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
-  cursor: pointer;
 
   .options {
     margin-bottom: 1rem;
@@ -30,11 +29,11 @@
       font-size: 16px;
       color: #fff;
       outline: none;
-      background-color: lighten(#3e4e56, $amount: 10);
+      background-color: lighten(#3e4e56, 10);
 
       &:focus,
       &:hover {
-        background-color: lighten(#3e4e56, $amount: 20);
+        background-color: lighten(#3e4e56, 20);
       }
     }
 
@@ -48,6 +47,7 @@
     margin-bottom: 1rem;
 
     .tool-copylink-text {
+      padding: 0 .5rem;
       width: 80%;
       min-width: 200px;
       font-size: 18px;
@@ -103,7 +103,7 @@
         }
 
         &:active {
-          background-color: rgba($primary, .8);
+          background-color: rgba($success, .8);
         }
       }
 

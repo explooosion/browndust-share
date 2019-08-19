@@ -7,15 +7,28 @@
     text-align: center;
   }
 
-  h1 {
-    margin: 1rem;
+  .header-text {
+    color: $warning;
+    text-decoration: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 
-    small {
-      @media only screen and (max-width: $screen-sm) {
-        display: none;
+    &:visited {
+      color: $warning;
+    }
+
+    h1 {
+      margin: 1rem;
+
+      small {
+        @media only screen and (max-width: $screen-sm) {
+          display: none;
+        }
       }
     }
   }
+
 
   /* overwrite flag-select */
   .flag-select {

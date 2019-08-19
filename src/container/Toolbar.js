@@ -194,7 +194,7 @@ class Toolbar extends Component {
             <span>{this.t('download')}</span>
           </button>
         </div>
-        <div className='commands'>
+        <div className='commands' style={{ marginBottom: 0 }}>
           <input id="tool-copylink-text" className='tool-copylink-text' value={window.location.href} readOnly />
           <button
             type='button'
