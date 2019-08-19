@@ -2,14 +2,15 @@
 
 .footer {
   padding: 0 .75rem;
+  margin-bottom: 5rem;
   display: flex;
   justify-content: flex-start;
-  flex-direction: column;
+  flex-flow: column;
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
 
-  span {
+  .footer-copyright {
     position: fixed;
     bottom: 20px;
     left: 20px;
@@ -19,6 +20,16 @@
 
     @media only screen and (max-width: $screen-xl) {
       display: none;
+    }
+  }
+
+  .footer-tip {
+    margin-bottom: 1rem;
+    color: #fff;
+
+    span {
+      display: block;
+      font-size: 14px;
     }
   }
 
