@@ -4,11 +4,6 @@
 import _ from 'lodash';
 import { thumbnailUrl } from '../config/api';
 
-export const getThumbnailUrlByCode = (code = false) => {
-    if (!code) return null;
-    return `${thumbnailUrl}/char${Number(code) - 1}icon.png`;
-}
-
 export const getThumbnailUrlByImageName = (_uiIconImageName = false) => {
     if (!_uiIconImageName) return null;
     const id = _uiIconImageName.split('*')[1];
@@ -70,7 +65,7 @@ export const initialFormation = (formation, charactors) => {
             if (_.isUndefined(charactor)) { console.error('Invalid url params.', code); return f; }
 
             const type = Number(charactor._type);
-            const backgroundImage = `url(${getThumbnailUrlByCode(code)})`;
+            const backgroundImage = `url(${getThumbnailUrlByImageName(charactor._uiIconImageName)})`;
             const queue = Number(f[2]) > 0 && Number(f[2]) <= 12 ? Number(f[2]) : 0;
 
             // plan to update object by id
