@@ -30,7 +30,7 @@ This library support in the following browsers:
 
 ## Screenshots
 
-![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/1.jpg)
+![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/1.png)
 
 ![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/2.png)
 
