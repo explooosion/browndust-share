@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/browndust-share/static/css/main.34908555.chunk.css",
+    "main.css": "/browndust-share/static/css/main.cdfe9417.chunk.css",
     "main.js": "/browndust-share/static/js/main.b273fc58.chunk.js",
     "main.js.map": "/browndust-share/static/js/main.b273fc58.chunk.js.map",
     "runtime~main.js": "/browndust-share/static/js/runtime~main.87778658.js",
@@ -9,10 +9,10 @@
     "static/js/2.01c74acf.chunk.js": "/browndust-share/static/js/2.01c74acf.chunk.js",
     "static/js/2.01c74acf.chunk.js.map": "/browndust-share/static/js/2.01c74acf.chunk.js.map",
     "index.html": "/browndust-share/index.html",
-    "precache-manifest.40b42f2c34e2cfec7684e3448d31fb68.js": "/browndust-share/precache-manifest.40b42f2c34e2cfec7684e3448d31fb68.js",
+    "precache-manifest.e0b36de825274864bb111afa625163ea.js": "/browndust-share/precache-manifest.e0b36de825274864bb111afa625163ea.js",
     "service-worker.js": "/browndust-share/service-worker.js",
     "static/css/2.e4ea7323.chunk.css.map": "/browndust-share/static/css/2.e4ea7323.chunk.css.map",
-    "static/css/main.34908555.chunk.css.map": "/browndust-share/static/css/main.34908555.chunk.css.map",
+    "static/css/main.cdfe9417.chunk.css.map": "/browndust-share/static/css/main.cdfe9417.chunk.css.map",
     "static/media/ad.svg": "/browndust-share/static/media/ad.2f0263e0.svg",
     "static/media/ae.svg": "/browndust-share/static/media/ae.d038b7ed.svg",
     "static/media/af.svg": "/browndust-share/static/media/af.14c45ecc.svg",
