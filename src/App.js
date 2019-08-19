@@ -8,6 +8,7 @@ import Header from './container/Header';
 import Formation from './container/Formation';
 import List from './container/List';
 import Toolbar from './container/Toolbar';
+import Footer from './container/Footer';
 
 import { setCharacters, updateDataset } from './actions';
 import { getCharacters } from './service/Characters';
@@ -23,13 +24,8 @@ class App extends Component {
   componentDidMount() {
     getCharacters()
       .then(data => this.dispatch(setCharacters(data)))
-      .then(data => this.dispatch(updateDataset({ formation: initialFormation(this.formation, this.characters) })));
+      .then(() => this.dispatch(updateDataset({ formation: initialFormation(this.formation, this.characters) })));
   }
-
-  // static getDerivedStateFromProps(props, state) {
-  //   console.log(props.characters);
-  //   return state;
-  // }
 
   render() {
     this.formation = this.props.dataset.formation;
@@ -39,10 +35,11 @@ class App extends Component {
         <div id='wrapper'>
           <Header />
           <section id='container'>
-            <div className='main'>
+            <main className='main'>
               <Formation />
               <Toolbar />
-            </div>
+              <Footer />
+            </main>
             <List />
           </section>
         </div>
