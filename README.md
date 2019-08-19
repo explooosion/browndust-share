@@ -92,6 +92,10 @@ yarn build # npm run build
 
 - [browndust-global-api](https://browndust-global-api.pmang.cloud/book/getAllCharacters)
 
+## Introduction
+
+<a href="https://forum.gamer.com.tw/C.php?bsn=32104&snA=6437" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/zh/thumb/a/a5/Bahamut_Logo.svg/360px-Bahamut_Logo.svg.png" /></a>
+
 ## License
 
 Brown Dust share is open source software [licensed as MIT](https://github.com/explooosion/browndust-share/blob/master/LICENSE).
