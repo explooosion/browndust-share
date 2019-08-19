@@ -28,7 +28,7 @@ class Header extends Component {
       <header id='header'>
         <center style={{ position: 'relative' }}>
           <h1>
-            <a href='/' className='header-text'>
+            <a href='https://robby570.tw/browndust-share' className='header-text'>
               BROWNDUST <small>{this.t('title')}</small>
             </a>
           </h1>
