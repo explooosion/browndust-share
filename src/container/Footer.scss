@@ -6,9 +6,6 @@
   display: flex;
   justify-content: flex-start;
   flex-flow: column;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
 
   .footer-copyright {
     position: fixed;
@@ -36,6 +33,9 @@
   .footer-items {
     display: flex;
     align-items: center;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 
     .footer-link {
       color: #fff;
