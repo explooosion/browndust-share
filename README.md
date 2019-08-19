@@ -20,6 +20,14 @@ An online mercenary formation share website. (unofficial)
 
 - i18n language
 
+## Browser Support
+
+This library support in the following browsers:
+
+| <img src="http://i.imgur.com/NjIVmRO.png" width="48px" height="48px" alt="Chrome logo"> | <img src="http://i.imgur.com/o1m5RcQ.png" width="48px" height="48px" alt="Firefox logo"> | <img src="http://i.imgur.com/0R5whqc.png" width="48px" height="48px" alt="Internet Explorer logo"> | <img src="http://i.imgur.com/kQ1e7Mk.png" width="45px" height="45px" alt="Edge logo"> | <img src="http://i.imgur.com/FSJB8BL.png" width="48px" height="48px" alt="Opera logo"> | <img src="http://i.imgur.com/yLwF24I.png" width="48px" height="48px" alt="Safari logo"> |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 43+ ✔ | 38+ ✔ | Nope ✘ | Nope ✘ | 32+ ✔ | 8+ ✔ |
+
 ## Screenshots
 
 ![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/1.jpg)
@@ -31,8 +39,6 @@ An online mercenary formation share website. (unofficial)
 ![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/4.png)
 
 ![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/5.png)
-
-![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/6.png)
 
 ## Deploay
 
