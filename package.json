@@ -18,7 +18,8 @@
   "keywords": [
     "browndust",
     "formation",
-    "share"
+    "share",
+    "mercenary"
   ],
   "scripts": {
     "start": "react-scripts start",
