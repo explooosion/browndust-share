@@ -27,12 +27,13 @@ class Mercenary extends Component {
   }
 
   getCharNameByLocale = (locale) => {
-    const { _charName, _charName_ENG, _charName_TW } = this.props.params;
+    const { _charName, _charName_ENG, _charName_TW, _charName_JAP } = this.props.params;
     switch (locale) {
       case 'US': return _charName_ENG;
       case 'TW': return _charName_TW;
       case 'CN': return _charName_TW;
       case 'KR': return _charName;
+      case 'JP': return _charName_JAP;
       default: return _charName_ENG;
     }
   }

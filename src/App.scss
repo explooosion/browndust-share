@@ -1,5 +1,13 @@
 @import './scss/index';
 
+#wrapper[data-locale='JP'] {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+
+#wrapper[data-locale='KR'] {
+  font-family: 'Helvetica Neue', 'Helvetica', 'Apple SD Gothic Neo', 'NanumBarunGothic', 'Malgun Gothic', dotum, 'Lucida Grande', sans-serif;
+}
+
 #container {
   margin: 0 auto;
   width: 1450px;

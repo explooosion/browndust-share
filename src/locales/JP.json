@@ -1,0 +1,23 @@
+{
+    "title": "形成 × 共有する",
+    "attacker": "攻撃",
+    "defender": "防衛",
+    "magician": "魔法",
+    "supporter": "サポート",
+    "star": "星印",
+    "name": "お名前",
+    "normal": "全般",
+    "show": "ディスプレイ",
+    "bold": "太字",
+    "show-content": "画像內容",
+    "mercenary-type": "種類",
+    "mercenary-queue": "順序",
+    "background-color": "背景色",
+    "background-grid": "背景広場",
+    "image-width": "画像の幅",
+    "image-width-custom": "カスタム：",
+    "reset": "リセットする",
+    "queue": "キュー",
+    "copylink": "リンクをコピー",
+    "download": "ダウンロードする"
+}

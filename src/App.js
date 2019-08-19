@@ -30,9 +30,10 @@ class App extends Component {
   render() {
     this.formation = this.props.dataset.formation;
     this.characters = this.props.characters;
+    this.locale = this.props.settings.locale;
     return (
       <HashRouter>
-        <div id='wrapper'>
+        <div id='wrapper' data-locale={this.locale}>
           <Header />
           <section id='container'>
             <main className='main'>
@@ -54,6 +55,7 @@ const mapStateToProps = state => {
   return {
     characters: state.characters,
     dataset: state.dataset,
+    settings: state.settings,
   }
 }
 

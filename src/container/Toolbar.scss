@@ -136,3 +136,13 @@
     }
   }
 }
+
+#wrapper[data-locale='JP'] {
+  .tool {
+    width: 160px;
+
+    span {
+      font-size: 14px;
+    }
+  }
+}

@@ -9,6 +9,7 @@ import translationEN from './locales/US.json';
 import translationTW from './locales/TW.json';
 import translationCN from './locales/CN.json';
 import translationKR from './locales/KR.json';
+import translationJP from './locales/JP.json';
 
 const lng = Cookies.get('locale') === undefined ? 'US' : Cookies.get('locale');
 
@@ -17,6 +18,7 @@ const resources = {
   TW: { translation: translationTW },
   CN: { translation: translationCN },
   KR: { translation: translationKR },
+  JP: { translation: translationJP },
 };
 
 i18n
