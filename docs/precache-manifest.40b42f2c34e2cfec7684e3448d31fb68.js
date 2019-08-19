@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "99fffb31c84f8c3c5844cb8d6bdfa969",
+    "revision": "641a8d7d4de72f1c0e583c4f12c93d24",
     "url": "/browndust-share/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/browndust-share/static/css/2.e4ea7323.chunk.css"
   },
   {
-    "revision": "ef4aa1913c1ecb266361",
+    "revision": "e16523a966aa87e26281",
     "url": "/browndust-share/static/css/main.34908555.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/browndust-share/static/js/2.01c74acf.chunk.js"
   },
   {
-    "revision": "ef4aa1913c1ecb266361",
-    "url": "/browndust-share/static/js/main.b171b323.chunk.js"
+    "revision": "e16523a966aa87e26281",
+    "url": "/browndust-share/static/js/main.b273fc58.chunk.js"
   },
   {
     "revision": "b194844a5050bd962be3",
