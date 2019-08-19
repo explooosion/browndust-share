@@ -20,9 +20,7 @@ An online mercenary formation share website. (unofficial)
 
 - i18n language
 
-## Grid
-
-### Demo
+## Screenshots
 
 ![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/1.jpg)
 
