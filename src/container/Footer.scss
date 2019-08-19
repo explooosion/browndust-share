@@ -3,17 +3,36 @@
 .footer {
   padding: 0 .75rem;
   display: flex;
-  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
 
-  .footer-item {
-    color: #fff;
-    margin-right: .75rem;
+  span {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: block;
+    font-size: 12px;
+    color: $gray;
 
-    &:hover {
-      color: lighten($light-warning, 25);
+    @media only screen and (max-width: $screen-xl) {
+      display: none;
+    }
+  }
+
+  .footer-items {
+    display: flex;
+    align-items: center;
+
+    .footer-link {
+      color: #fff;
+      margin-right: .75rem;
+
+      &:hover {
+        color: lighten($light-warning, 25);
+      }
     }
   }
 }
