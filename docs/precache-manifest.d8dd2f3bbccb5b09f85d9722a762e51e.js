@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "45cfa5277b3972d1456cdcd710f1c8fa",
+    "revision": "947499670f5da54fafbb3045a755df4f",
     "url": "/browndust-share/index.html"
   },
   {
