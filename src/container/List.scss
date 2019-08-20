@@ -76,7 +76,6 @@
 
 .filter {
   padding: 0 1rem;
-  margin-bottom: 1rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -103,6 +102,24 @@
 
   .name {
     margin-left: auto;
+  }
+}
+
+.search {
+  margin: 1rem auto;
+  width: 100%;
+  text-align: center;
+
+  .search-text {
+    margin: 0 auto;
+    padding: .25rem .5rem;
+    width: 625px;
+    font-size: 18px;
+    color: #ccc;
+    border: 1px solid $gray;
+    background-color: $dark;
+    border-radius: .25rem;
+    outline: none;
   }
 }
 

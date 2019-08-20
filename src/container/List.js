@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-mixed-operators */
@@ -25,6 +26,7 @@ class List extends Component {
     this.props = props;
     this.t = props.t;
     this.state = {
+      search: '',
       type: 1,
       stars: [
         { label: '5', checked: true, star: 5 },
@@ -75,6 +77,26 @@ class List extends Component {
       (n.label === _label) ? { ...n, checked: !n.checked } : n
     );
     this.setState({ nameOptions });
+  }
+
+
+  getListBySearch = (search = '', characters) => {
+    if (search === '') return characters;
+
+    return characters.filter(c => {
+      const { _charName, _charName_ENG, _charName_TW, _charName_JAP } = c;
+      let match = false;
+      switch (this.props.settings.locale) {
+        case 'US': match = _charName_ENG.indexOf(search) > -1; break;
+        case 'TW': match = _charName_TW.indexOf(search) > -1; break;
+        case 'CN': match = _charName_TW.indexOf(search) > -1; break;
+        case 'KR': match = _charName.indexOf(search) > -1; break;
+        case 'JP': match = _charName_JAP.indexOf(search) > -1; break;
+        default: match = true;
+      }
+      console.log(_charName_TW.indexOf(search), -1, search);
+      return match;
+    });
   }
 
   /**
@@ -137,8 +159,8 @@ class List extends Component {
   /**
    * Render lists
    */
-  renderCharacters() {
-    return this.props.characters
+  renderCharacters(characters) {
+    return this.getListBySearch(this.state.search, characters)
       .filter(({ _type, _growType, _star }) => {
         return (
           Number(_type) === this.state.type &&
@@ -162,6 +184,7 @@ class List extends Component {
   }
 
   render() {
+    const characters = this.props.characters;
     return (
       <div className='list'>
         <div className='types'>
@@ -177,16 +200,25 @@ class List extends Component {
             {this.renderFilterNameOptions()}
           </div>
         </div>
+        <div className='search'>
+          <input
+            className='search-text'
+            type='text'
+            placeholder={this.t('search')}
+            value={this.state.search}
+            onChange={(e) => this.setState({ search: e.target.value })}
+          />
+        </div>
 
         <div className='content'>
           {
-            this.props.characters.length === 0 ? (
+            characters.length === 0 ? (
               <HashLoader
                 css={override}
                 color={'#5ac0de'}
                 size={100}
               />
-            ) : this.renderCharacters()
+            ) : this.renderCharacters(characters)
           }
         </div>
       </div>
@@ -201,6 +233,7 @@ List.propTypes = {
 const mapStateToProps = state => {
   return {
     characters: state.characters,
+    settings: state.settings,
   }
 }
 

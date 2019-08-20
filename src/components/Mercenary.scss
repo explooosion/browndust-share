@@ -8,6 +8,10 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  transition: opacity .1s ease-in-out;
+  -webkit-transition: opacity .1s ease-in-out;
+  -moz-transition: opacity .1s ease-in-out;
+  -o-transition: opacity .1s ease-in-out;
   cursor: pointer;
 
   &::before {

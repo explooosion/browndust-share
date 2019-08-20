@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import './Formation.scss';
 
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import { get, del } from '../service/Session';
 import { getThumbnailUrlByImageName } from '../utils';
@@ -50,7 +51,7 @@ class Formation extends Component {
             dragOver: false,
           }
           if (fsource) {
-            // move to new position, then copy source queue
+            // move exist queue
             if (f.queue === 0 && fsource.queue > 0) {
               payload = {
                 ...payload,
@@ -62,10 +63,9 @@ class Formation extends Component {
                 queue: f.queue,
               }
             }
-            // payload = { ...payload, ...fsource.queue }
-            // queue: fsource ? fsource.queue : f.queue,
           }
         } else {
+          // add new charactor
           payload = f;
         }
         return payload;
@@ -95,7 +95,8 @@ class Formation extends Component {
             queue: 0,
           } : f
       )
-      this.dispatch(updateDataset({ formation: this.formation }));
+      const queue = this.props.dataset.queue.filter(q => q !== pid);
+      this.dispatch(updateDataset({ formation: this.formation, queue }));
     }
   }
 
@@ -152,10 +153,10 @@ class Formation extends Component {
    */
   onFormationClick(id = null) {
     const { queue, queueMode, queueMax } = this.props.dataset;
-
     const formation = this.formation.find(f => f.id === id);
-    // set queue
-    if (queueMode && formation) {
+
+    // queue mode
+    if (queueMode && !_.isUndefined(formation)) {
       // check is character inside
       if (
         formation.code > 0 &&                // check data exist
@@ -172,7 +173,8 @@ class Formation extends Component {
         this.dispatch(updateDataset(payload))
       }
     } else {
-      // add character
+
+      // add character mode
       const code = get('_code');
       if (!code) return;
       if (this.onCheckExistImage(false, id, null, code)) return;
