@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import ReactFlagsSelect from 'react-flags-select';
 
 import { setLocal } from '../actions';
+import { PRODUCTION_URL } from '../config/base';
 
 class Header extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class Header extends Component {
       <header id='header'>
         <center style={{ position: 'relative' }}>
           <h1>
-            <a href='https://robby570.tw/browndust-share' className='header-text'>
+            <a href={PRODUCTION_URL} className='header-text'>
               BROWNDUST <small>{this.t('title')}</small>
             </a>
           </h1>

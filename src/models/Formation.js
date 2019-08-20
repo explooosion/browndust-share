@@ -1,4 +1,4 @@
-const Formation = [
+export default [
     { id: 'a1', top: '9px', left: '13px', type: 0, backgroundImage: null, code: 0, dragOver: false, queue: 0 },
     { id: 'a2', top: '9px', left: '127.5px', type: 0, backgroundImage: null, code: 0, dragOver: false, queue: 0 },
     { id: 'a3', top: '9px', left: '242px', type: 0, backgroundImage: null, code: 0, dragOver: false, queue: 0 },
@@ -17,6 +17,4 @@ const Formation = [
     { id: 'c4', top: '239px', left: '356px', type: 0, backgroundImage: null, code: 0, dragOver: false, queue: 0 },
     { id: 'c5', top: '239px', left: '471px', type: 0, backgroundImage: null, code: 0, dragOver: false, queue: 0 },
     { id: 'c6', top: '239px', left: '585.5px', type: 0, backgroundImage: null, code: 0, dragOver: false, queue: 0 },
-];
-
-export default Formation;
+]; 

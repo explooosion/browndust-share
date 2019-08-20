@@ -20,12 +20,12 @@
     font-size: 12px;
     visibility: hidden;
   }
-}
 
-.content.show .mercenary::before {
-  visibility: visible;
-}
+  &.show::before {
+    visibility: visible;
+  }
 
-.content.bold .mercenary::before {
-  font-weight: bold;
+  &.bold:before {
+    font-weight: bold;
+  }
 }

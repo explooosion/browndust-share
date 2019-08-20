@@ -2,6 +2,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
 import _ from 'lodash';
+import { PRODUCTION_URL, DEVELOPMENT_URL } from '../config/base';
 import { thumbnailUrl } from '../config/api';
 
 export const getThumbnailUrlByImageName = (_uiIconImageName = false) => {
@@ -33,8 +34,8 @@ export const generateUrlParams = (formation = []) => {
     if (formation.length === 0) return false;
 
     const url = process.env.NODE_ENV === 'development'
-        ? 'http://localhost:3000/#/'
-        : 'https://robby570.tw/browndust-share/#/';
+        ? DEVELOPMENT_URL
+        : PRODUCTION_URL;
 
     // url rule => o{id}o{code}o{queue}
     // each group connect by . => o{id}o{code}o{queue}.o{id}...

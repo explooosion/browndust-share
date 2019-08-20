@@ -1,4 +1,4 @@
-const characters = (state = [], action) => {
+export default (state = [], action) => {
     switch (action.type) {
         case 'SET_CHARACTERS':
             return action.payload;
@@ -6,5 +6,3 @@ const characters = (state = [], action) => {
             return state;
     }
 }
-
-export default characters;

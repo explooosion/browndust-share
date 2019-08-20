@@ -71,9 +71,9 @@ class List extends Component {
   }
 
   onNameOptionsChange = (_label) => {
-    const nameOptions = this.state.nameOptions;
-    const nameOption = nameOptions.find(({ label }) => label === _label);
-    nameOption.checked = !nameOption.checked;
+    const nameOptions = this.state.nameOptions.map(n =>
+      (n.label === _label) ? { ...n, checked: !n.checked } : n
+    );
     this.setState({ nameOptions });
   }
 
@@ -178,11 +178,7 @@ class List extends Component {
           </div>
         </div>
 
-        <div className={`content
-          ${this.state.nameOptions[0].checked ? 'show' : ''} 
-          ${this.state.nameOptions[1].checked ? 'bold' : ''}
-          `}
-        >
+        <div className='content'>
           {
             this.props.characters.length === 0 ? (
               <HashLoader
