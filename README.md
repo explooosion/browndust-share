@@ -62,6 +62,12 @@ Download resource (once).
 yarn download # npm run download
 ```
 
+Copy .env.example, and rename to .env 
+
+```sh
+# checkout variables...
+```
+
 Start server.
 
 ```sh
