@@ -55,22 +55,6 @@
       background-size: 100%;
       display: inline-block;
     }
-
-    &.attacker i {
-      background-image: url($icon_charType__warrior);
-    }
-
-    &.defender i {
-      background-image: url($icon_charType__defender);
-    }
-
-    &.magician i {
-      background-image: url($icon_charType__magician);
-    }
-
-    &.supporter i {
-      background-image: url($icon_charType__supporter);
-    }
   }
 }
 

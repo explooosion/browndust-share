@@ -14,6 +14,7 @@ import { css } from '@emotion/core';
 import HashLoader from 'react-spinners/HashLoader';
 
 import Mercenary from '../components/Mercenary';
+import { getIconUrlByTypeId } from '../utils';
 
 const override = css`
     display: block;
@@ -55,10 +56,10 @@ class List extends Component {
     return {
       ...state,
       types: [
-        { type: 1, style: 'attacker', label: t('attacker') },
-        { type: 2, style: 'defender', label: t('defender') },
-        { type: 3, style: 'magician', label: t('magician') },
-        { type: 4, style: 'supporter', label: t('supporter') },
+        { type: 1, label: t('attacker') },
+        { type: 2, label: t('defender') },
+        { type: 3, label: t('magician') },
+        { type: 4, label: t('supporter') },
       ],
       stars,
       nameOptions,
@@ -103,15 +104,15 @@ class List extends Component {
    * Render charactor types
    */
   renderTypes() {
-    return this.state.types.map(({ type, style, label }) =>
+    return this.state.types.map(({ type, label }) =>
       (
         <button
           key={`type-${label}`}
           type='button'
-          className={`type ${style} ${type === this.state.type ? 'active' : ''}`}
+          className={`type  ${type === this.state.type ? 'active' : ''}`}
           onClick={() => this.setState({ type })}
         >
-          <i></i>
+          <i style={{ backgroundImage: getIconUrlByTypeId(type) }}></i>
           <span>{label}</span>
         </button>
       ));

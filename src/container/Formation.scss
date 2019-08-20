@@ -63,22 +63,6 @@
     background-position: center;
     background-size: 100%;
     display: inline-block;
-
-    &[data-type='1'] {
-      background-image: url($icon_charType__warrior);
-    }
-
-    &[data-type='2'] {
-      background-image: url($icon_charType__defender);
-    }
-
-    &[data-type='3'] {
-      background-image: url($icon_charType__magician);
-    }
-
-    &[data-type='4'] {
-      background-image: url($icon_charType__supporter);
-    }
   }
 
   &.no-backimage {

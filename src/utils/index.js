@@ -2,8 +2,18 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
 import _ from 'lodash';
-import { PRODUCTION_URL, DEVELOPMENT_URL } from '../config/base';
-import { thumbnailUrl } from '../config/api';
+import { thumbnailUrl, iconlUrl } from '../config/api';
+
+export const getIconUrlByTypeId = (type = false) => {
+    if (!type) return null;
+    switch (Number(type)) {
+        case 1: return `url(${iconlUrl}/icon_charType__warrior.png)`;
+        case 2: return `url(${iconlUrl}/icon_charType__defender.png)`;
+        case 3: return `url(${iconlUrl}/icon_charType__magician.png)`;
+        case 4: return `url(${iconlUrl}/icon_charType__supporter.png)`;
+        default: return null;
+    }
+}
 
 export const getThumbnailUrlByImageName = (_uiIconImageName = false) => {
     if (!_uiIconImageName) return null;
@@ -34,8 +44,8 @@ export const generateUrlParams = (formation = []) => {
     if (formation.length === 0) return false;
 
     const url = process.env.NODE_ENV === 'development'
-        ? DEVELOPMENT_URL
-        : PRODUCTION_URL;
+        ? process.env.REACT_APP_WEB_URL_DEV
+        : process.env.REACT_APP_WEB_URL;
 
     // url rule => o{id}o{code}o{queue}
     // each group connect by . => o{id}o{code}o{queue}.o{id}...

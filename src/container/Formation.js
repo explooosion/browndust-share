@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 
 import { get, del } from '../service/Session';
-import { getThumbnailUrlByImageName } from '../utils';
+import { getThumbnailUrlByImageName, getIconUrlByTypeId } from '../utils';
 import { updateDataset } from '../actions';
 
 class Formation extends Component {
@@ -266,7 +266,7 @@ class Formation extends Component {
           onDrop={(e) => { this.onDrop(e, id) }}
           onDragEnd={(e) => this.onDragEnd(e, id, code)}
         >
-          {typeShow ? <div className='type' data-type={type}></div> : null}
+          {typeShow ? <div className='type' style={{ backgroundImage: getIconUrlByTypeId(type) }}></div> : null}
           {queueShow && queue > 0 ? <div className='queue'>{queue}</div> : null}
         </div>
       )
