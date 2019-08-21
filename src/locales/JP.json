@@ -15,6 +15,7 @@
     "mercenary-queue": "順序",
     "background-color": "背景色",
     "background-grid": "背景広場",
+    "reverse": "画像反転",
     "image-width": "画像の幅",
     "image-width-custom": "カスタム：",
     "reset": "リセットする",

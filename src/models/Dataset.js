@@ -8,6 +8,7 @@ export default {
         backcolor: true,
         backimage: true,
         queue: true,
+        reverse: false,
     },
     ref: null,
     queueMode: false,

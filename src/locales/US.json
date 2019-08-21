@@ -15,6 +15,7 @@
     "mercenary-queue": "Queue",
     "background-color": "Bg Color",
     "background-grid": "Bg Grid",
+    "reverse": "Reverse",
     "image-width": "Width",
     "image-width-custom": "Custom:",
     "reset": "Reset",

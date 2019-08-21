@@ -15,6 +15,7 @@
     "mercenary-queue": "큐",
     "background-color": "배경색",
     "background-grid": "배경 그리드",
+    "reverse": "이미지 반전",
     "image-width": "이미지 너비",
     "image-width-custom": "관습 :",
     "reset": "재설정",

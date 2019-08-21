@@ -15,6 +15,7 @@
     "mercenary-queue": "出手順序",
     "background-color": "背景顏色",
     "background-grid": "背景方格",
+    "reverse": "圖片反向",
     "image-width": "圖片寬度",
     "image-width-custom": "自定義：",
     "reset": "重置",

@@ -131,6 +131,16 @@ class Toolbar extends Component {
           >
             {this.t('background-grid')}
           </Checkbox>
+          <Checkbox
+            shape='round'
+            color='info'
+            animation='jelly'
+            icon={<i className="mdi mdi-check" />}
+            checked={this.options.reverse}
+            onChange={e => this.onUpdateOptions({ reverse: e.target.checked })}
+          >
+            {this.t('reverse')}
+          </Checkbox>
         </div>
 
         <div className='options'>

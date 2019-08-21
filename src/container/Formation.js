@@ -275,7 +275,7 @@ class Formation extends Component {
 
   render() {
     this.formation = this.props.dataset.formation;
-    const { type, backcolor, backimage, queue } = this.props.dataset.options;
+    const { type, backcolor, backimage, queue, reverse } = this.props.dataset.options;
     this.characters = this.props.characters;
 
     return (
@@ -288,6 +288,7 @@ class Formation extends Component {
         ${backcolor ? '' : 'no-backcolor'}
         ${backimage ? '' : 'no-backimage'}
         ${queue ? '' : 'no-queue'}
+        ${reverse ? 'reverse' : ''}
         `
         }
       >

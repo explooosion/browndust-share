@@ -69,6 +69,13 @@
     background-image: unset;
   }
 
+  &.reverse .box {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+  }
+
   &:not(.no-backcolor) .box {
     &[data-type='1'] {
       background-color: #6e2429;
