@@ -104,6 +104,8 @@ yarn build # npm run build
 
 - [Brown Dust Wiki](https://browndust.wiki/wiki/Brown_Dust_Wiki)
 
+- [browndust-api](https://browndust-api.pmang.cloud/book/getAllCharacters)
+
 - [browndust-global-api](https://browndust-global-api.pmang.cloud/book/getAllCharacters)
 
 ## Introduction
