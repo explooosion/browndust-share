@@ -8,6 +8,11 @@ export const setCharacters = payload => ({
   payload,
 });
 
+export const setCharactersGlobal = payload => ({
+  type: 'SET_CHARACTERS_GLOBAL',
+  payload,
+});
+
 export const updateDataset = payload => ({
   type: 'UPDATE_FORMATION',
   payload,

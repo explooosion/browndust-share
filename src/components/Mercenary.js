@@ -33,15 +33,32 @@ class Mercenary extends Component {
   getCharNameByLocale = (locale = 'US', params = null) => {
     if (_.isNull(params)) return;
 
-    const { _charName, _charName_ENG, _charName_TW, _charName_JAP } = params;
+    const { _uniqueCode, _charName, _charName_ENG, _charName_TW, _charName_JAP } = params;
+    let name = '';
     switch (locale) {
-      case 'US': return _charName_ENG;
-      case 'TW': return _charName_TW;
-      case 'CN': return _charName_TW;
-      case 'KR': return _charName;
-      case 'JP': return _charName_JAP;
-      default: return _charName_ENG;
+      case 'US': name = _charName_ENG; break;
+      case 'TW': name = _charName_TW; break;
+      case 'CN': name = _charName_TW; break;
+      case 'KR': name = _charName; break;
+      case 'JP': name = _charName_JAP; break;
+      default: name = _charName_ENG; break;
     }
+    // check the name is empty
+    if (!_.isEmpty(name)) return name;
+    // if empty return korea name, but global api is faild..
+    if (_.isUndefined(this.props.charactersGlobal)) return _charName;
+    // if empty return korea name
+    const cGlobal = this.props.charactersGlobal.find(c => c._uniqueCode === _uniqueCode);
+    if (_.isUndefined(cGlobal)) return _charName;
+    switch (locale) {
+      case 'US': name = cGlobal._charName_ENG; break;
+      case 'TW': name = cGlobal._charName_TW; break;
+      case 'CN': name = cGlobal._charName_TW; break;
+      case 'KR': name = cGlobal._charName; break;
+      case 'JP': name = cGlobal._charName_JAP; break;
+      default: name = cGlobal._charName_ENG; break;
+    }
+    return _.isEmpty(name) ? cGlobal._charName : name;
   }
 
   render() {
@@ -76,6 +93,7 @@ const mapStateToProps = state => {
   return {
     settings: state.settings,
     dataset: state.dataset,
+    charactersGlobal: state.charactersGlobal,
   }
 }
 

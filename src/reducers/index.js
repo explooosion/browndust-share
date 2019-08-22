@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import settings from './settings';
 import characters from './characters';
+import charactersGlobal from './charactersGlobal';
 import dataset from './dataset';
 
 export default combineReducers({
   dataset,
   characters,
+  charactersGlobal,
   settings,
 })

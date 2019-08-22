@@ -10,8 +10,8 @@ import List from './container/List';
 import Toolbar from './container/Toolbar';
 import Footer from './container/Footer';
 
-import { setCharacters, updateDataset } from './actions';
-import { getCharacters } from './service/Characters';
+import { setCharacters, setCharactersGlobal, updateDataset } from './actions';
+import { getCharacters, getCharactersGlobal } from './service/Characters';
 import { initialFormation } from './utils';
 
 class App extends Component {
@@ -21,8 +21,10 @@ class App extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    getCharacters()
+  async componentDidMount() {
+    await getCharactersGlobal()
+      .then(data => this.dispatch(setCharactersGlobal(data)));
+    await getCharacters()
       .then(data => this.dispatch(setCharacters(data)))
       .then(() => this.dispatch(updateDataset({ formation: initialFormation(this.formation, this.characters) })));
   }
@@ -54,6 +56,7 @@ App.propTypes = {}
 const mapStateToProps = state => {
   return {
     characters: state.characters,
+    charactersGlobal: state.charactersGlobal,
     dataset: state.dataset,
     settings: state.settings,
   }
