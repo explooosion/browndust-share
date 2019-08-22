@@ -95,7 +95,6 @@ class List extends Component {
         case 'JP': match = _charName_JAP.indexOf(search) > -1; break;
         default: match = true;
       }
-      console.log(_charName_TW.indexOf(search), -1, search);
       return match;
     });
   }
