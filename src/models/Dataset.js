@@ -14,4 +14,5 @@ export default {
     queueMode: false,
     queueMax: 12,
     queue: [],
+    levelDialog: { show: false, left: 0, top: 0, id: null },
 };

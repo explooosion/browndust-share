@@ -7,9 +7,12 @@ import './Formation.scss';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
+import { MenuProvider } from 'react-contexify';
+import ContextMenu from '../components/ContextMenu';
 import { get, del } from '../service/Session';
 import { getThumbnailUrlByImageName, getIconUrlByTypeId } from '../utils';
 import { updateDataset } from '../actions';
+import Dialog from '../components/Dialog';
 
 class Formation extends Component {
   constructor(props) {
@@ -248,7 +251,7 @@ class Formation extends Component {
   }
 
   renderFormation(typeShow, queueShow) {
-    return this.formation.map(({ id, top, left, type, backgroundImage, code, dragOver, queue }) => {
+    return this.formation.map(({ id, top, left, type, backgroundImage, code, dragOver, queue, level }) => {
       return (
         <div
           key={`formation-${id}`}
@@ -268,15 +271,18 @@ class Formation extends Component {
         >
           {typeShow ? <div className='type' style={{ backgroundImage: getIconUrlByTypeId(type) }}></div> : null}
           {queueShow && queue > 0 ? <div className='queue'>{queue}</div> : null}
+          {level > 0 ? <div className={`level ${level < 10 ? 'min-level' : ''}`}>{level}</div> : null}
         </div>
       )
     });
   }
 
   render() {
-    this.formation = this.props.dataset.formation;
+    this.dataset = this.props.dataset;
+    this.formation = this.dataset.formation;
     const { type, backcolor, backimage, queue, reverse } = this.props.dataset.options;
     this.characters = this.props.characters;
+    const levelDialog = this.dataset.levelDialog;
 
     return (
       <div
@@ -292,7 +298,14 @@ class Formation extends Component {
         `
         }
       >
-        {this.renderFormation(type, queue)}
+        <MenuProvider id="ctmenu">
+          {this.renderFormation(type, queue)}
+        </MenuProvider>
+        <ContextMenu />
+        {
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          levelDialog.show ? <Dialog {...levelDialog} mode='level' /> : null
+        }
       </div>
     );
   }
