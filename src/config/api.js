@@ -1,5 +1,6 @@
+// using online api to know how diff is it.
 export const APIUrl = process.env.NODE_ENV === 'development'
-  ? process.env.REACT_APP_API_URL_DEV
+  ? process.env.REACT_APP_API_URL
   : process.env.REACT_APP_API_URL;
 
 // origin, cross-origin permission
