@@ -80,11 +80,10 @@ class List extends Component {
     this.setState({ nameOptions });
   }
 
-
   getListBySearch = (search = '', characters) => {
     if (search === '') return characters;
 
-    return characters.filter(c => {
+    return this.props.charactersGlobal.filter(c => {
       const { _charName, _charName_ENG, _charName_TW, _charName_JAP } = c;
       let match = false;
       switch (this.props.settings.locale) {
@@ -233,6 +232,7 @@ List.propTypes = {
 const mapStateToProps = state => {
   return {
     characters: state.characters,
+    charactersGlobal: state.charactersGlobal,
     settings: state.settings,
   }
 }
