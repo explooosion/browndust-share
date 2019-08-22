@@ -47,11 +47,11 @@ export const generateUrlParams = (formation = []) => {
         ? process.env.REACT_APP_WEB_URL_DEV
         : process.env.REACT_APP_WEB_URL;
 
-    // url rule => o{id}o{code}o{queue}
-    // each group connect by . => o{id}o{code}o{queue}.o{id}...
+    // url rule => o{id}o{code}o{queue}o{level}o{mask}
+    // each group connect by . => o{id}o{code}o{queue}.o{level}o{mask}...
     return url + formation
         .filter(f => f.code !== 0) // query exist id
-        .map(f => `o${f.id}o${f.code}${f.queue === 0 ? '' : 'o' + f.queue}`)
+        .map(f => `o${f.id}o${f.code}o${f.queue === 0 ? '' : f.queue}o${f.level === 0 ? '' : f.level}`)
         .join('.');
 }
 
@@ -62,8 +62,8 @@ export const initialFormation = (formation, charactors) => {
         .filter(String)
         .map(u => {
             // check url params valid
-            const f = u.split('o').filter(String);
-            if (f.length === 0 || f.length > 3) { console.error('Invalid url params.', u); return f; }
+            const f = u.split('o'); f.shift();
+            if (f.length === 0) { console.error('Invalid url params.', u); return f; }
 
             // check position id
             const id = String(f[0]);
@@ -79,8 +79,9 @@ export const initialFormation = (formation, charactors) => {
             const backgroundImage = `url(${getThumbnailUrlByImageName(charactor._uiIconImageName)})`;
             const queue = Number(f[2]) > 0 && Number(f[2]) <= 12 ? Number(f[2]) : 0;
 
+            const level = Number(f[3]) > 15 || Number(f[3]) < 1 ? 0 : Number(f[3]);
             // plan to update object by id
-            return { id, code, type, backgroundImage, queue }
+            return { id, code, type, backgroundImage, queue, level }
         })
         .forEach(u => {
             const index = formation.findIndex((f) => f.id === u.id);
