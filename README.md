@@ -56,7 +56,7 @@ Installation.
 yarn # npm install
 ```
 
-Download resource (once).
+Download resource (everytime when the game has been update.).
 
 ```sh
 yarn download # npm run download
@@ -79,6 +79,16 @@ Buid website.
 ```sh
 yarn build # npm run build
 ```
+
+## Update
+
+Download [getAllCharacters](https://browndust-api.pmang.cloud/book/getAllCharacters), and replace the `getAllCharacters.json` in `pre-work`.
+
+```sh
+yarn download # npm run download
+```
+
+After running script, you will get new images.
 
 ## Credit
 
