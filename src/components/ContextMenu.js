@@ -19,7 +19,7 @@ class RightMenu extends Component {
 
   onAddLevel = ({ event }) => {
     const levelDialog = {
-      ... this.props.dataset.levelDialog,
+      ...this.props.dataset.levelDialog,
       show: true,
       left: event.clientX,
       top: event.clientY,
