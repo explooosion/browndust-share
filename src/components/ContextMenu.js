@@ -40,7 +40,8 @@ class RightMenu extends Component {
   };
 
   onClearAll = ({ event, props }) => {
-
+    const formation = this.props.dataset.formation.map(f => f.id === event.target.id ? { ...f, level: 0 } : f);
+    this.dispatch(updateDataset({ formation }));
   }
 
   render() {

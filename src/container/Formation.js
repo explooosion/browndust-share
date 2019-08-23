@@ -54,7 +54,6 @@ class Formation extends Component {
             dragOver: false,
           }
           // move exist queue
-          console.log(fsource)
           if (fsource) {
             payload = (f.queue === 0 && fsource.queue > 0)
               ? { ...payload, queue: fsource.queue }
