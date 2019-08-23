@@ -24,7 +24,7 @@ class Dialog extends Component {
   }
 
   onLevelClick(id) {
-    if (_.isUndefined(id)) return;
+    if (_.isUndefined(id) || this.state.level > 15 || this.state.level < 0) return;
     const formation = this.props.dataset.formation
       .map(f => f.id === id ? { ...f, level: this.state.level } : f);
 

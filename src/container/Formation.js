@@ -43,8 +43,8 @@ class Formation extends Component {
       // select target position id
       const fsource = this.formation.find(f => f.code === code);
       this.formation = this.formation.map(f => {
-        let payload;
-
+        let payload = null;
+        // setup target
         if (f.id === tid) {
           payload = {
             ...f,
@@ -53,25 +53,18 @@ class Formation extends Component {
             code: code,
             dragOver: false,
           }
+          // move exist queue
+          console.log(fsource)
           if (fsource) {
-            // move exist queue
-            if (f.queue === 0 && fsource.queue > 0) {
-              payload = {
-                ...payload,
-                queue: fsource.queue,
-              }
-            } else {
-              payload = {
-                ...payload,
-                queue: f.queue,
-              }
-            }
+            payload = (f.queue === 0 && fsource.queue > 0)
+              ? { ...payload, queue: fsource.queue }
+              : { ...payload, queue: f.queue };
+            payload = (f.level === 0 && fsource.level > 0)
+              ? { ...payload, level: fsource.level }
+              : { ...payload, level: f.level };
           }
-        } else {
-          // add new charactor
-          payload = f;
         }
-        return payload;
+        return _.isNull(payload) ? f : payload;
       });
       this.dispatch(updateDataset({ formation: this.formation, ref: this.myRef }));
     }
@@ -96,6 +89,7 @@ class Formation extends Component {
             code: 0,
             dragOver: false,
             queue: 0,
+            level: 0,
           } : f
       )
       const queue = this.props.dataset.queue.filter(q => q !== pid);

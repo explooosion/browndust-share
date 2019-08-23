@@ -79,7 +79,8 @@ export const initialFormation = (formation, charactors) => {
             const backgroundImage = `url(${getThumbnailUrlByImageName(charactor._uiIconImageName)})`;
             const queue = Number(f[2]) > 0 && Number(f[2]) <= 12 ? Number(f[2]) : 0;
 
-            const level = Number(f[3]) > 15 || Number(f[3]) < 1 ? 0 : Number(f[3]);
+            let level = Number(f[3]) > 15 || Number(f[3]) < 1 ? 0 : Number(f[3]);
+            level = _.isNaN(level) ? 0 : level;
             // plan to update object by id
             return { id, code, type, backgroundImage, queue, level }
         })
