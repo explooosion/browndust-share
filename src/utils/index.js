@@ -47,8 +47,8 @@ export const generateUrlParams = (formation = []) => {
         ? process.env.REACT_APP_WEB_URL_DEV
         : process.env.REACT_APP_WEB_URL;
 
-    // url rule => o{id}o{code}o{queue}o{level}o{mask}
-    // each group connect by . => o{id}o{code}o{queue}.o{level}o{mask}...
+    // url rule => o{id}o{code}o{queue}o{level}
+    // each group connect by . => o{id}o{code}o{queue}.o{level}...
     return url + formation
         .filter(f => f.code !== 0) // query exist id
         .map(f => `o${f.id}o${f.code}o${f.queue === 0 ? '' : f.queue}o${f.level === 0 ? '' : f.level}`)
