@@ -4,7 +4,7 @@ import './ContextMenu.scss';
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { FaBookMedical, FaTrash } from 'react-icons/fa';
-import { Menu, Item, Separator, Submenu, animation } from 'react-contexify';
+import { Menu, Item, Separator, animation } from 'react-contexify';
 import 'react-contexify/dist/ReactContexify.min.css';
 
 import { updateDataset } from '../actions';
@@ -17,7 +17,8 @@ class RightMenu extends Component {
     this.dispatch = props.dispatch;
   }
 
-  onAddLevel = ({ event, props }) => {
+  onAddLevel = ({ event }) => {
+    console.log(props)
     const levelDialog = {
       ... this.props.dataset.levelDialog,
       show: true,
@@ -26,17 +27,6 @@ class RightMenu extends Component {
       id: event.target.id,
     }
     this.dispatch(updateDataset({ levelDialog }));
-  };
-
-  onAddMask = ({ event, props }) => {
-    const maskDialog = {
-      ... this.props.dataset.maskDialog,
-      show: true,
-      left: event.clientX,
-      top: event.clientY,
-      id: event.target.id,
-    }
-    this.dispatch(updateDataset({ maskDialog }));
   };
 
   onClearAll = ({ event, props }) => {
