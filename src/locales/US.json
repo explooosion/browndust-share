@@ -24,7 +24,8 @@
     "download": "Download",
     "tip1": "Select the mercenary list, and click the formation. Or just drag and drop.",
     "tip2": "Drag the mercenary in the grid to change the position.",
-    "tip3": "Double click to remove the mercenary from the grid.",
-    "tip4": "Click [turnorder] to setup priority.",
-    "tip5": "Click [download] to get image or [copylink] get share link."
+    "tip3": "Right click to setup mercenary level.",
+    "tip4": "Double click to remove the mercenary from the grid.",
+    "tip5": "Click [turnorder] to setup priority.",
+    "tip6": "Click [download] to get image or [copylink] get share link."
 }

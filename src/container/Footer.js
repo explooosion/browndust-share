@@ -22,6 +22,7 @@ class Footer extends Component {
           <span>3. {this.t('tip3')}</span>
           <span>4. {this.t('tip4')}</span>
           <span>5. {this.t('tip5')}</span>
+          <span>6. {this.t('tip6')}</span>
         </div>
         <div className='footer-items'>
           <a className='footer-link' alt='github' title='github' href='https://github.com/explooosion/browndust-share' target='_blank' rel="noopener noreferrer"><FaGithub size='2em' /></a>
