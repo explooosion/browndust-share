@@ -3,8 +3,7 @@ import './ContextMenu.scss';
 
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
-import { FaBookMedical, FaTrash } from "react-icons/fa";
-import { IoIosPhotos } from "react-icons/io";
+import { FaBookMedical, FaTrash } from 'react-icons/fa';
 import { Menu, Item, Separator, Submenu, animation } from 'react-contexify';
 import 'react-contexify/dist/ReactContexify.min.css';
 
@@ -18,7 +17,7 @@ class RightMenu extends Component {
     this.dispatch = props.dispatch;
   }
 
-  onClick = ({ event, props }) => {
+  onAddLevel = ({ event, props }) => {
     const levelDialog = {
       ... this.props.dataset.levelDialog,
       show: true,
@@ -29,6 +28,21 @@ class RightMenu extends Component {
     this.dispatch(updateDataset({ levelDialog }));
   };
 
+  onAddMask = ({ event, props }) => {
+    const maskDialog = {
+      ... this.props.dataset.maskDialog,
+      show: true,
+      left: event.clientX,
+      top: event.clientY,
+      id: event.target.id,
+    }
+    this.dispatch(updateDataset({ maskDialog }));
+  };
+
+  onClearAll = ({ event, props }) => {
+
+  }
+
   render() {
 
     /**
@@ -37,10 +51,9 @@ class RightMenu extends Component {
      */
     return (
       <Menu id='ctmenu' animation={animation.flip}>
-        <Item onClick={this.onClick}><FaBookMedical />Add Level</Item>
-        <Item onClick={this.onClick}><IoIosPhotos />Add Mask</Item>
+        <Item onClick={this.onAddLevel}><FaBookMedical />Add Level</Item>
         <Separator />
-        <Item onClick={this.onClick}><FaTrash />Clear All</Item>
+        <Item onClick={this.onClearAll}><FaTrash />Clear All</Item>
         {
           /**
            * Sample Code

@@ -58,16 +58,11 @@ class Dialog extends Component {
     );
   }
 
-  renderMask(id) {
-    return null;
-  }
-
   render() {
     const { id, left, top, mode } = this.props;
     let renderTemplate = null;
     switch (mode) {
       case 'level': renderTemplate = this.renderLevelDialog(id); break;
-      case 'mask': renderTemplate = this.renderMask(id); break;
       default: renderTemplate = null;
     }
     return (
