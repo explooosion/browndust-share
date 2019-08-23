@@ -49,6 +49,8 @@ This website support in the following browsers:
 
 ![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/5.png)
 
+![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/6.png)
+
 ## Deploay
 
 Installation.
