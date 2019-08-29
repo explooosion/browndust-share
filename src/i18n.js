@@ -1,8 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import detector from "i18next-browser-languagedetector";
-import Cookies from 'js-cookie';
-
+import { get } from './service/Cookies';
 // the translations
 // (tip move them in a JSON file and import them)
 import translationEN from './locales/US.json';
@@ -11,7 +10,7 @@ import translationCN from './locales/CN.json';
 import translationKR from './locales/KR.json';
 import translationJP from './locales/JP.json';
 
-const lng = Cookies.get('locale') === undefined ? 'US' : Cookies.get('locale');
+const lng = get('locale') === undefined ? 'US' : get('locale');
 
 const resources = {
   US: { translation: translationEN },
