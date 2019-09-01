@@ -51,6 +51,8 @@ This website support in the following browsers:
 
 ![img](https://raw.githubusercontent.com/explooosion/browndust-share/master/screenshots/6.png)
 
+![img](https://media.giphy.com/media/fuQmvP1aoiPSGLkv6Q/giphy.gif)
+
 ## Deploay
 
 Installation.
