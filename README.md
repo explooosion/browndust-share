@@ -25,7 +25,7 @@ An online mercenary formation share website. (unofficial)
 1. Select the mercenary list, and click the formation. Or just drag and drop.
 2. Drag the mercenary in the grid to change the position.
 3. Right click can set skill enhancement level.
-4. Double click to remove the mercenary from the grid.
+4. Double-click or drag to the right to remove the mercenaries in the grid.
 5. Click [turnorder] to setup priority.
 6. Click [download] to get image or [copylink] get share link.
 
