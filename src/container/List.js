@@ -15,6 +15,7 @@ import HashLoader from 'react-spinners/HashLoader';
 
 import Mercenary from '../components/Mercenary';
 import { getIconUrlByTypeId } from '../utils';
+import { updateDataset } from '../actions';
 
 const override = css`
     display: block;
@@ -25,6 +26,7 @@ class List extends Component {
   constructor(props) {
     super(props);
     this.props = props;
+    this.dispatch = props.dispatch;
     this.t = props.t;
     this.state = {
       search: '',
@@ -78,6 +80,21 @@ class List extends Component {
       (n.label === _label) ? { ...n, checked: !n.checked } : n
     );
     this.setState({ nameOptions });
+  }
+
+  onRemoveByDrop = (ev) => {
+    const sid = ev.dataTransfer.getData('sid');
+    if (sid === '0') return;
+    const formation = this.props.dataset.formation.map((f) => {
+      return sid !== f.id
+        ? f
+        : { ...f, type: 0, backgroundImage: null, code: 0, dragOver: false, queue: 0, level: 0 };
+    });
+    this.dispatch(updateDataset({ formation }))
+  }
+
+  onDragOver = (ev) => {
+    ev.preventDefault();
   }
 
   getListBySearch = (search = '', characters) => {
@@ -185,7 +202,11 @@ class List extends Component {
   render() {
     const characters = this.props.characters;
     return (
-      <div className='list'>
+      <div
+        className='list'
+        onDragOver={(e) => this.onDragOver(e)}
+        onDrop={(e) => this.onRemoveByDrop(e)}
+      >
         <div className='types'>
           {this.renderTypes()}
         </div>
@@ -233,6 +254,7 @@ const mapStateToProps = state => {
   return {
     characters: state.characters,
     charactersGlobal: state.charactersGlobal,
+    dataset: state.dataset,
     settings: state.settings,
   }
 }
