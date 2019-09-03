@@ -9,6 +9,7 @@ import _ from 'lodash';
 
 import { set } from '../service/Session';
 import { getThumbnailUrlByImageName } from '../utils';
+import { bookDetailUrl } from '../config/api';
 
 class Mercenary extends Component {
   constructor(props) {
@@ -26,8 +27,8 @@ class Mercenary extends Component {
     ev.dataTransfer.setData('sid', sid);
   }
 
-  onDoubleClick = () => {
-    console.log('db click');
+  onDoubleClick = (_uniqueCode) => {
+    window.open(bookDetailUrl + _uniqueCode, '_blank');
   }
 
   getCharNameByLocale = (locale = 'US', params = null) => {
@@ -62,7 +63,7 @@ class Mercenary extends Component {
   }
 
   render() {
-    const { _uiIconImageName, _code } = this.props.params;
+    const { _uiIconImageName, _code, _uniqueCode } = this.props.params;
     const formation = this.props.dataset.formation;
     const nops = this.props.nameOptions.map(n => n.checked);
     const URL = getThumbnailUrlByImageName(_uiIconImageName);
@@ -77,7 +78,7 @@ class Mercenary extends Component {
         draggable
         onClick={() => set('_code', _code)}
         onDragStart={(e) => this.onDragStart(e, _code, 0)}
-        onDoubleClick={() => this.onDoubleClick()}
+        onDoubleClick={() => this.onDoubleClick(_uniqueCode)}
       >
       </div>
     );

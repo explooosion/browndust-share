@@ -1,13 +1,15 @@
+/* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
 import './ContextMenu.scss';
 
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
-import { FaBookMedical, FaTrash } from 'react-icons/fa';
+import { FaBookMedical, FaTrash, FaFortAwesomeAlt } from 'react-icons/fa';
 import { Menu, Item, Separator, animation } from 'react-contexify';
 import 'react-contexify/dist/ReactContexify.min.css';
 
 import { updateDataset } from '../actions';
+import { bookDetailUrl } from '../config/api';
 
 class RightMenu extends Component {
 
@@ -33,6 +35,13 @@ class RightMenu extends Component {
     this.dispatch(updateDataset({ formation }));
   }
 
+  onLinkClick = ({ event }) => {
+    const { code } = this.props.dataset.formation.find(f => f.id === event.target.id);
+    if (code === 0) return;
+    const { _uniqueCode } = this.props.characters.find(c => c._code === code);
+    window.open(bookDetailUrl + _uniqueCode, '_blank');
+  }
+
   render() {
 
     /**
@@ -41,9 +50,10 @@ class RightMenu extends Component {
      */
     return (
       <Menu id='ctmenu' animation={animation.flip}>
+        <Item onClick={this.onLinkClick}><FaFortAwesomeAlt />Mercenary Info</Item>
         <Item onClick={this.onAddLevel}><FaBookMedical />Add Level</Item>
         <Separator />
-        <Item onClick={this.onClearAll}><FaTrash />Clear All</Item>
+        <Item onClick={this.onClearAll}><FaTrash />Clear Settings</Item>
         {
           /**
            * Sample Code
@@ -64,6 +74,7 @@ RightMenu.propTypes = {}
 const mapStateToProps = state => {
   return {
     dataset: state.dataset,
+    characters: state.characters,
   }
 }
 
