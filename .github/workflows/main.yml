@@ -19,4 +19,4 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: docs
         FOLDER: build
-        BUILD_SCRIPT: cp .env.example .env && npm install && npm build
+        BUILD_SCRIPT: cp .env.example .env && yarn && yarn build
