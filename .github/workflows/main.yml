@@ -6,9 +6,6 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [8.x, 10.x, 12.x]
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -17,6 +14,6 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@master
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: docs
+        BRANCH: website
         FOLDER: build
         BUILD_SCRIPT: cp .env.example .env && yarn && yarn build
