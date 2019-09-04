@@ -16,7 +16,7 @@ jobs:
     - name: Build and Deploy
       uses: JamesIves/github-pages-deploy-action@master
       env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        ACCESS_TOKEN: f790f03f65a1023cfa8a4d8814b32cf6a13c1c6c
         BRANCH: docs
         FOLDER: build
         BUILD_SCRIPT: npm install && npm build
