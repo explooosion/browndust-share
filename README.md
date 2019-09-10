@@ -85,6 +85,12 @@ Buid website.
 yarn build # npm run build
 ```
 
+This website will update when git push by github actions. 
+
+```sh
+git push origin master
+```
+
 ## Update
 
 Download [getAllCharacters](https://browndust-api.pmang.cloud/book/getAllCharacters), and replace the `getAllCharacters.json` in `pre-work`.

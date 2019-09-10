@@ -1,12 +1,12 @@
 {
   "name": "browndust-share",
   "description": "browndust-share",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Robby",
     "email": "ta7382@gmail.com"
   },
-  "homepage": "http://robby570.tw/browndust-share/",
+  "homepage": "https://browndust.info/",
   "repository": {
     "type": "git",
     "url": "https://github.com/explooosion/browndust-share.git"
