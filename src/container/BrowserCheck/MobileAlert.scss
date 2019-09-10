@@ -1,0 +1,29 @@
+@import '../../scss/index';
+
+.m-alert { 
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  color: #fff;
+  background-color: rgba($success, .9);
+  text-align: center;
+  z-index: 999; 
+
+  &.checked {
+    display: none;
+  }
+  
+  span { 
+    font-size: 25px;
+  }
+
+  svg {
+    margin: 0 .25rem;
+  }
+}

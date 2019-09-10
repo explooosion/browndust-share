@@ -3,12 +3,23 @@ import './App.scss';
 
 import { HashRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import {
+  // BrowserView,
+  // MobileView,
+  // isBrowser,
+  isMobile,
+  isEdge,
+  isIE,
+} from "react-device-detect";
 
 import Header from './container/Header';
 import Formation from './container/Formation';
 import List from './container/List';
 import Toolbar from './container/Toolbar';
 import Footer from './container/Footer';
+
+import NotSupport from './container/BrowserCheck/NotSupport';
+import MobileAlert from './container/BrowserCheck/MobileAlert';
 
 import { setCharacters, setCharactersGlobal, updateDataset } from './actions';
 import { getCharacters, getCharactersGlobal } from './service/Characters';
@@ -33,9 +44,13 @@ class App extends Component {
     this.formation = this.props.dataset.formation;
     this.characters = this.props.characters;
     this.locale = this.props.settings.locale;
+
+    if (isEdge || isIE) return <NotSupport />;
+
     return (
       <HashRouter>
         <div id='wrapper' data-locale={this.locale}>
+          {isMobile ? <MobileAlert /> : null}
           <Header />
           <section id='container'>
             <main className='main'>

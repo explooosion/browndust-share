@@ -14,9 +14,9 @@
     "mercenary-type": "유형",
     "mercenary-queue": "큐",
     "background-color": "배경색",
-    "background-grid": "배경 그리드",
-    "reverse": "이미지 반전",
-    "image-width": "이미지 너비",
+    "background-grid": "그리드",
+    "reverse": "뒤집기",
+    "image-width": "너비",
     "image-width-custom": "관습 :",
     "reset": "재설정",
     "queue": "큐",
@@ -27,5 +27,6 @@
     "tip3": "마우스 오른쪽 버튼을 클릭하면 기술 향상 수준을 설정할 수 있습니다.",
     "tip4": "오른쪽을 두 번 클릭하거나 드래그하여 제거하십시오.",
     "tip5": "우선 순위를 설정하려면 턴 오더 버튼을 클릭하십시오.",
-    "tip6": "[다운로드] 버튼을 클릭하여 이미지를 가져옵니다."
+    "tip6": "[다운로드] 버튼을 클릭하여 이미지를 가져옵니다.",
+    "browser-mobile-alert": "데스크탑은 모바일보다 낫습니다."
 }

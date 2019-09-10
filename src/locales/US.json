@@ -27,5 +27,6 @@
     "tip3": "Right click can set skill enhancement level.",
     "tip4": "Double-click or drag to the right to remove the mercenaries in the grid.",
     "tip5": "Click [turnorder] to setup priority.",
-    "tip6": "Click [download] to get image or [copylink] get share link."
+    "tip6": "Click [download] to get image or [copylink] get share link.",
+    "browser-mobile-alert": "The desktop is better than the mobile."
 }
