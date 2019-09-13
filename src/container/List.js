@@ -12,6 +12,7 @@ import { Checkbox } from 'pretty-checkbox-react';
 import { FaStar } from "react-icons/fa";
 import { css } from '@emotion/core';
 import HashLoader from 'react-spinners/HashLoader';
+import { sify } from 'chinese-conv';
 
 import Mercenary from '../components/Mercenary';
 import { getIconUrlByTypeId } from '../utils';
@@ -103,10 +104,11 @@ class List extends Component {
     return this.props.charactersGlobal.filter(c => {
       const { _charName, _charName_ENG, _charName_TW, _charName_JAP } = c;
       let match = false;
+      console.log(search, _charName_TW, _charName_TW.indexOf(search))
       switch (this.props.settings.locale) {
         case 'US': match = _charName_ENG.indexOf(search) > -1; break;
-        case 'TW': match = _charName_TW.indexOf(search) > -1; break;
-        case 'CN': match = _charName_TW.indexOf(search) > -1; break;
+        case 'TW': match = _charName_TW.indexOf(search) > -1 || sify(_charName_TW).indexOf(search) > -1; break;
+        case 'CN': match = _charName_TW.indexOf(search) > -1 || sify(_charName_TW).indexOf(search) > -1; break;
         case 'KR': match = _charName.indexOf(search) > -1; break;
         case 'JP': match = _charName_JAP.indexOf(search) > -1; break;
         default: match = true;

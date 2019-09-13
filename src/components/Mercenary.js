@@ -6,6 +6,7 @@ import './Mercenary.scss';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { sify } from 'chinese-conv';
 
 import { set } from '../service/Session';
 import { getThumbnailUrlByImageName } from '../utils';
@@ -39,7 +40,7 @@ class Mercenary extends Component {
     switch (locale) {
       case 'US': name = _charName_ENG; break;
       case 'TW': name = _charName_TW; break;
-      case 'CN': name = _charName_TW; break;
+      case 'CN': name = sify(_charName_TW); break;
       case 'KR': name = _charName; break;
       case 'JP': name = _charName_JAP; break;
       default: name = _charName_ENG; break;
@@ -54,7 +55,7 @@ class Mercenary extends Component {
     switch (locale) {
       case 'US': name = cGlobal._charName_ENG; break;
       case 'TW': name = cGlobal._charName_TW; break;
-      case 'CN': name = cGlobal._charName_TW; break;
+      case 'CN': name = sify(cGlobal._charName_TW); break;
       case 'KR': name = cGlobal._charName; break;
       case 'JP': name = cGlobal._charName_JAP; break;
       default: name = cGlobal._charName_ENG; break;
