@@ -208,7 +208,7 @@ class Formation extends Component {
    * tid target position id
    */
   onDrop = (ev, tid = null) => {
-    const sid = _.toNumber(ev.dataTransfer.getData('sid'));
+    const sid = ev.dataTransfer.getData('sid');
     const scode = _.toNumber(ev.dataTransfer.getData('scode'));
     const target = this.formation.find(({ id }) => id === tid);
     // check is exist
