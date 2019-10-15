@@ -95,7 +95,9 @@ git push origin master
 
 ## Update
 
-Download [getAllCharacters](https://browndust-api.pmang.cloud/book/getAllCharacters) (Korea), and replace the `getAllCharacters.json` in `pre-work`.
+~~Download [getAllCharacters](https://browndust-api.pmang.cloud/book/getAllCharacters) (Korea), and replace the `getAllCharacters.json` in `pre-work`.~~
+
+Update characters from Korea version with the following script.
 
 ```sh
 yarn download # npm run download
