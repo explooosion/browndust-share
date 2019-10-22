@@ -19,7 +19,7 @@ class Toolbar extends Component {
     this.dispatch = props.dispatch;
     this.t = props.t;
     this.state = {
-      downloadSizeSelected: 2,
+      downloadSizeSelected: 1,
       downloadSizeCustom: 0,
     };
   }
