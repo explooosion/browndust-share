@@ -33,15 +33,15 @@ class Formation extends Component {
   /**
    * Add image to formation
    * @param {*} tid target position id 
-   * @param {*} cold character code
+   * @param {*} uniqueCode character uniqueueCode
    */
-  onAddImage(tid = null, code = 0) {
-    // select character by _code
-    const c = this.characters.find(({ _code }) => _code === code);
+  onAddImage(tid = null, uniqueCode = 0) {
+    // select character by _uniqueCode
+    const c = this.characters.find(({ _uniqueCode }) => _uniqueCode === uniqueCode);
     // get formation state
-    if (code > 0 || c) {
+    if (uniqueCode > 0 || c) {
       // select target position id
-      const fsource = this.formation.find(f => f.code === code);
+      const fsource = this.formation.find(f => f.uniqueCode === uniqueCode);
       this.formation = this.formation.map(f => {
         let payload = null;
         // setup target
@@ -50,7 +50,7 @@ class Formation extends Component {
             ...f,
             backgroundImage: `url(${getThumbnailUrlByImageName(c._uiIconImageName)})`,
             type: Number(c._type),
-            code: code,
+            uniqueCode,
             dragOver: false,
           }
           // move exist queue
@@ -72,11 +72,11 @@ class Formation extends Component {
   /**
    * Delete image from formation
    * @param {*} pid position id 
-   * @param {*} cold character code
+   * @param {*} cold character uniqueCode
    */
-  onRemoveImage(pid = null, code = 0) {
-    const c = this.characters.find(({ _code }) => _code === code);
-    if (code || c) {
+  onRemoveImage(pid = null, uniqueCode = 0) {
+    const c = this.characters.find(({ _uniqueCode }) => _uniqueCode === uniqueCode);
+    if (uniqueCode || c) {
       // Remove image from source
       // select target position id
       this.formation = this.formation.map(f =>
@@ -85,7 +85,7 @@ class Formation extends Component {
             ...f,
             backgroundImage: null,
             type: null,
-            code: 0,
+            uniqueCode: 0,
             dragOver: false,
             queue: 0,
             level: 0,
@@ -101,11 +101,11 @@ class Formation extends Component {
    * @param {*} drag drag or click mode
    * @param {*} tid target id
    * @param {*} sid source id
-   * @param {*} scode source code
+   * @param {*} suCode source uniqueCode
    */
-  onCheckExistImage(drag, tid, sid = null, scode = 0) {
+  onCheckExistImage(drag, tid, sid = null, suCode = 0) {
     let exist = false;
-    const source = this.formation.filter(({ code }) => code === scode);
+    const source = this.formation.filter(({ uniqueCode }) => uniqueCode === suCode);
     if (drag && sid === '0' && source.length > 0) {
       exist = true; // drag mode
     } else if (!drag && source.length > 0) {
@@ -118,8 +118,8 @@ class Formation extends Component {
       setTimeout(() => { this.setState({ alertID: null }) }, 1000);
       // remove target style
       this.onDragChangeStyle(tid, false);
-      del('_code');
-      console.info('Already exist!', scode);
+      del('_uniqueCode');
+      console.info('Already exist!', suCode);
       return true;
     }
     return false;
@@ -155,7 +155,7 @@ class Formation extends Component {
     if (queueMode && !_.isUndefined(formation)) {
       // check is character inside
       if (
-        formation.code > 0 &&                // check data exist
+        formation.uniqueCode > 0 &&                // check data exist
         formation.backgroundImage !== null &&     // check data exist
         queue.filter(q => q === id).length === 0  // can not repeat id
       ) {
@@ -171,21 +171,21 @@ class Formation extends Component {
     } else {
 
       // add character mode
-      const code = get('_code');
-      if (!code) return;
-      if (this.onCheckExistImage(false, id, null, code)) return;
-      this.onAddImage(id, code);
-      del('_code');
+      const uniqueCode = get('_uniqueCode');
+      if (!uniqueCode) return;
+      if (this.onCheckExistImage(false, id, null, uniqueCode)) return;
+      this.onAddImage(id, uniqueCode);
+      del('_uniqueCode');
     }
   }
 
   /**
    * DragStart event
    * sid source position id
-   * scode source position image code
+   * suCode source position image uniqueueCode
    */
-  onDragStart = (ev, scode = 0, sid = null) => {
-    ev.dataTransfer.setData('scode', scode);
+  onDragStart = (ev, suCode = 0, sid = null) => {
+    ev.dataTransfer.setData('suCode', suCode);
     ev.dataTransfer.setData('sid', sid);
   }
 
@@ -209,28 +209,28 @@ class Formation extends Component {
    */
   onDrop = (ev, tid = null) => {
     const sid = ev.dataTransfer.getData('sid');
-    const scode = _.toNumber(ev.dataTransfer.getData('scode'));
+    const suCode = _.toNumber(ev.dataTransfer.getData('suCode'));
     const target = this.formation.find(({ id }) => id === tid);
     // check is exist
-    if (this.onCheckExistImage(true, tid, sid, scode)) return;
+    if (this.onCheckExistImage(true, tid, sid, suCode)) return;
     // check moving or exchanging 
     if (target.backgroundImage === null) {
       // moving
       // console.log('move');
-      this.onAddImage(tid, scode);
-      this.onRemoveImage(sid, scode);
+      this.onAddImage(tid, suCode);
+      this.onRemoveImage(sid, suCode);
     } else {
       // exchage
       // console.log('exchage');
-      this.onAddImage(sid, target.code);
-      this.onAddImage(tid, scode);
+      this.onAddImage(sid, target.uniqueCode);
+      this.onAddImage(tid, suCode);
     }
   }
 
   /**
    * Drag end (Plan: remove by drag to outside)
    */
-  onDragEnd = (ev, id, code) => {
+  onDragEnd = (ev, id, uniqueCode) => {
     ev.preventDefault();
     // console.log(ev.target);
     // console.log(ev.target.getAttribute('id'), id);
@@ -239,28 +239,28 @@ class Formation extends Component {
     // const drag = ev.target.getAttribute('draggable');
     // if (drag) {
     //   console.log('remove')
-    //   this.onRemoveImage(id, code)
+    //   this.onRemoveImage(id, uniqueCode)
     // };
   }
 
   renderFormation(typeShow, queueShow) {
-    return this.formation.map(({ id, top, left, type, backgroundImage, code, dragOver, queue, level }) => {
+    return this.formation.map(({ id, top, left, type, backgroundImage, uniqueCode, dragOver, queue, level }) => {
       return (
         <div
           key={`formation-${id}`}
           className={`box ${dragOver ? 'over' : ''} ${this.state.alertID === id ? 'shake-hard shake-constant shake-constant--hover' : ''}`}
           id={id}
           data-type={type}
-          draggable={code > 0 ? true : false}
+          draggable={uniqueCode > 0 ? true : false}
           style={{ top, left, backgroundImage }}
           onClick={() => this.onFormationClick(id)}
-          onDoubleClick={() => this.onRemoveImage(id, code)}
-          onDragStart={(e) => this.onDragStart(e, code, id)}
+          onDoubleClick={() => this.onRemoveImage(id, uniqueCode)}
+          onDragStart={(e) => this.onDragStart(e, uniqueCode, id)}
           onDragOver={(e) => this.onDragOver(e, id)}
           onDragEnter={(e) => this.onDragEnter(e, id)}
           onDragLeave={(e) => this.onDragLeave(e, id)}
           onDrop={(e) => { this.onDrop(e, id) }}
-          onDragEnd={(e) => this.onDragEnd(e, id, code)}
+          onDragEnd={(e) => this.onDragEnd(e, id, uniqueCode)}
         >
           {typeShow ? <div className='type' style={{ backgroundImage: getIconUrlByTypeId(type) }}></div> : null}
           {queueShow && queue > 0 ? <div className='queue'>{queue}</div> : null}

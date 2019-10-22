@@ -89,7 +89,7 @@ class List extends Component {
     const formation = this.props.dataset.formation.map((f) => {
       return sid !== f.id
         ? f
-        : { ...f, type: 0, backgroundImage: null, code: 0, dragOver: false, queue: 0, level: 0 };
+        : { ...f, type: 0, backgroundImage: null, uniqueCode: 0, dragOver: false, queue: 0, level: 0 };
     });
     this.dispatch(updateDataset({ formation }))
   }

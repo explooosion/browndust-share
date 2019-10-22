@@ -21,10 +21,10 @@ class Mercenary extends Component {
   /**
    * DrageStart Event
    * sid source position id
-   * scode source position image code
+   * suCode source position image uniqueueCode
    */
-  onDragStart = (ev, scode, sid) => {
-    ev.dataTransfer.setData('scode', scode);
+  onDragStart = (ev, suCode, sid) => {
+    ev.dataTransfer.setData('suCode', suCode);
     ev.dataTransfer.setData('sid', sid);
   }
 
@@ -64,11 +64,11 @@ class Mercenary extends Component {
   }
 
   render() {
-    const { _uiIconImageName, _code, _uniqueCode } = this.props.params;
+    const { _uiIconImageName, _uniqueCode } = this.props.params;
     const formation = this.props.dataset.formation;
     const nops = this.props.nameOptions.map(n => n.checked);
     const URL = getThumbnailUrlByImageName(_uiIconImageName);
-    const opacity = _.isUndefined(formation.find(f => f.code === _code))
+    const opacity = _.isUndefined(formation.find(f => f.uniqueCode === _uniqueCode))
       ? 1 : 0.2;
 
     return (
@@ -77,8 +77,8 @@ class Mercenary extends Component {
         style={{ backgroundImage: `url(${URL})`, opacity }}
         data-tooltip={this.getCharNameByLocale(this.props.settings.locale, this.props.params)}
         draggable
-        onClick={() => set('_code', _code)}
-        onDragStart={(e) => this.onDragStart(e, _code, 0)}
+        onClick={() => set('_uniqueCode', _uniqueCode)}
+        onDragStart={(e) => this.onDragStart(e, _uniqueCode, 0)}
         onDoubleClick={() => this.onDoubleClick(_uniqueCode)}
       >
       </div>

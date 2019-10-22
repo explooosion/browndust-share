@@ -47,11 +47,11 @@ export const generateUrlParams = (formation = []) => {
         ? process.env.REACT_APP_WEB_URL_DEV
         : process.env.REACT_APP_WEB_URL;
 
-    // url rule => o{id}o{code}o{queue}o{level}
-    // each group connect by . => o{id}o{code}o{queue}.o{level}...
+    // url rule => o{id}o{uniqueCode}o{queue}o{level}
+    // each group connect by . => o{id}o{uniqueCode}o{queue}.o{level}...
     return url + formation
-        .filter(f => f.code !== 0) // query exist id
-        .map(f => `o${f.id}o${f.code}o${f.queue === 0 ? '' : f.queue}o${f.level === 0 ? '' : f.level}`)
+        .filter(f => f.uniqueCode !== 0) // query exist id
+        .map(f => `o${f.id}o${f.uniqueCode}o${f.queue === 0 ? '' : f.queue}o${f.level === 0 ? '' : f.level}`)
         .join('.');
 }
 
@@ -68,12 +68,12 @@ export const initialFormation = (formation, charactors) => {
             // check position id
             const id = String(f[0]);
             const fm = formation.find(({ id }) => id === String(f[0]));
-            if (_.isUndefined(fm)) { console.error('Invalid url params.', id); return f; }
+            if (_.isUndefined(fm)) { console.error('Invalid url param: id', id); return f; }
 
-            // check charactor by code
-            const code = String(f[1]);
-            const charactor = charactors.find(({ _code }) => _code === code);
-            if (_.isUndefined(charactor)) { console.error('Invalid url params.', code); return f; }
+            // check charactor by uniqueCode
+            const uniqueCode = String(f[1]);
+            const charactor = charactors.find(({ _uniqueCode }) => String(_uniqueCode) === uniqueCode);
+            if (_.isUndefined(charactor)) { console.error('Invalid url params: uniqueCode', uniqueCode); return f; }
 
             const type = Number(charactor._type);
             const backgroundImage = `url(${getThumbnailUrlByImageName(charactor._uiIconImageName)})`;
@@ -82,14 +82,14 @@ export const initialFormation = (formation, charactors) => {
             let level = Number(f[3]) > 15 || Number(f[3]) < 1 ? 0 : Number(f[3]);
             level = _.isNaN(level) ? 0 : level;
             // plan to update object by id
-            return { id, code, type, backgroundImage, queue, level }
+            return { id, uniqueCode, type, backgroundImage, queue, level }
         })
         .forEach(u => {
             const index = formation.findIndex((f) => f.id === u.id);
             if (index === -1) return;
 
             formation[index] = { ...formation[index], ...u }
-            console.info('Received data:', u.id)
+            console.info('Received data:', u.id, u.uniqueCode);
         });
     return formation;
 }

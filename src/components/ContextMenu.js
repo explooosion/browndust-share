@@ -36,9 +36,9 @@ class RightMenu extends Component {
   }
 
   onLinkClick = ({ event }) => {
-    const { code } = this.props.dataset.formation.find(f => f.id === event.target.id);
-    if (code === 0) return;
-    const { _uniqueCode } = this.props.characters.find(c => c._code === code);
+    const { uniqueCode } = this.props.dataset.formation.find(f => f.id === event.target.id);
+    if (uniqueCode === 0) return;
+    const { _uniqueCode } = this.props.characters.find(c => c._uniqueCode === uniqueCode);
     window.open(bookDetailUrl + _uniqueCode, '_blank');
   }
 
