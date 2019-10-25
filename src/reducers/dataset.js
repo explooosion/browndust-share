@@ -6,7 +6,7 @@ export default (state = Dataset, action) => {
     // set up url when formation update
     const formation = _.get(action.payload, 'formation');
     if (!_.isUndefined(formation)) {
-       // window.location.href = generateUrlParams(formation);
+       window.location.href = generateUrlParams(formation);
     }
 
     switch (action.type) {
