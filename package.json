@@ -19,14 +19,15 @@
     "browndust",
     "formation",
     "share",
-    "mercenary"
+    "mercenary",
+    "builder"
   ],
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
-    "download": "node pre-work/tool.js"
+    "update": "node pre-work/tool.js"
   },
   "dependencies": {
     "@emotion/core": "^10.0.22",
