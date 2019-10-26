@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build Website
 on:
   push:
     branches:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [10.x, 12.x, 13.x]
     steps:
     - uses: actions/checkout@master
     - name: Use Node.js ${{ matrix.node-version }}
@@ -23,13 +23,13 @@ jobs:
       env:
         CI: true
 
-  build-and-deploy:
+  publish-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
+    - name: Checkout Master
       uses: actions/checkout@master
 
-    - name: Build and Deploy
+    - name: Create GithubPages Branches 
       uses: JamesIves/github-pages-deploy-action@master
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
