@@ -7,7 +7,6 @@ import './List.scss';
 
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { Checkbox } from 'pretty-checkbox-react';
 import { FaStar } from "react-icons/fa";
 import { css } from '@emotion/core';
@@ -202,6 +201,7 @@ class List extends Component {
   }
 
   render() {
+    // const characters = this.props.charactersGlobal;
     const characters = this.props.characters;
     return (
       <div
@@ -246,10 +246,6 @@ class List extends Component {
       </div>
     );
   }
-}
-
-List.propTypes = {
-  characters: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state => {
