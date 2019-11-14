@@ -65,6 +65,7 @@
       margin: 0 .5rem;
       width: 120px;
       height: 40px;
+      font-family: $input-font;
       background-color: #3e4e56;
       border: 1px solid #bbb;
       border-radius: .25rem;
@@ -139,7 +140,7 @@
 
 #wrapper[data-locale='JP'] {
   .tool {
-    width: 160px;
+    width: 170px;
 
     span {
       font-size: 14px;

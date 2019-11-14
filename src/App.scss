@@ -1,5 +1,9 @@
 @import './scss/index';
 
+#wrapper {
+  padding-bottom: 1rem;
+}
+
 #wrapper[data-locale='JP'] {
   font-family: 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro','Segoe UI', Helvetica, Arial, sans-serif;
 }

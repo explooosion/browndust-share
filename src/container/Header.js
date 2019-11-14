@@ -53,6 +53,10 @@ const Head = styled.header`
       display: none;
       color: #fff;
     }
+
+    .flag-options {
+      max-height: none;
+    }
   }
 `;
 
