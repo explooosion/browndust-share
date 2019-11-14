@@ -1,22 +1,66 @@
 import React, { Component } from 'react';
-import './Header.scss';
-
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import ReactFlagsSelect from 'react-flags-select';
+import styled from 'styled-components';
 
 import { setLocal } from '../actions';
+
+const Head = styled.header`
+  font-size: 20px;
+
+  @media only screen and (max-width: ${p => p.theme.screenXl}) {
+    text-align: center;
+  }
+
+  center {
+    position: relative;
+  }
+
+  .header-text {
+    display: block;
+    margin: 1rem 0;
+    width: 600px;
+    text-decoration: none;
+    color: ${p => p.theme.warning};
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+
+    &:visited {
+      color: ${p => p.theme.warning};
+    }
+
+    small {
+      @media only screen and (max-width: ${p => p.theme.screenSm}) {
+        display: none;
+      }
+    }
+  }
+
+  /* overwrite flag-select */
+  .flag-select {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    font-family: 'Fira Sans', Helvetica, Arial, sans-serif;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    .arrow-down {
+      display: none;
+      color: #fff;
+    }
+  }
+`;
 
 class Header extends Component {
   constructor(props) {
     super(props);
     this.dispatch = props.dispatch;
     this.t = props.t;
-    this.state = {
-      countries: props.settings.countries,
-      customLabels: props.settings.customLabels,
-      transDefault: props.settings.locale,
-    }
   }
 
   onSelectFlag(countryCode) {
@@ -24,9 +68,10 @@ class Header extends Component {
   }
 
   render() {
+    const { locale, countries, customLabels } = this.props.settings;
     return (
-      <header id='header'>
-        <center style={{ position: 'relative' }}>
+      <Head>
+        <center>
           <h1>
             <a href={process.env.REACT_APP_WEB_URL} className='header-text'>
               BROWNDUST <small>{this.t('title')}</small>
@@ -34,15 +79,15 @@ class Header extends Component {
           </h1>
           <ReactFlagsSelect
             className='flag-select'
-            defaultCountry={this.state.transDefault}
-            countries={this.state.countries}
-            customLabels={this.state.customLabels}
+            defaultCountry={locale}
+            countries={countries}
+            customLabels={customLabels}
             selectedSize={30}
             showSelectedLabel={false}
             onSelect={(e) => this.onSelectFlag(e)}
           />
         </center>
-      </header>
+      </Head>
     );
   }
 }
