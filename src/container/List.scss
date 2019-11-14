@@ -101,11 +101,16 @@
     padding: .25rem .5rem;
     width: 625px;
     font-size: 18px;
-    color: #ccc;
+    font-family: $input-font;
+    color: #ddd;
     background-color: $dark;
     border: 1px solid $gray;
     border-radius: .25rem;
     outline: none;
+
+    &::placeholder {
+      color: #ccc;
+    }
   }
 }
 
