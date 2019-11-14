@@ -4,9 +4,9 @@
   position: absolute;
   padding: .3rem .75rem;
   width: 120px;
-  border-radius: .5rem;
   background-color: rgba($dark, .95);
   border: 3px solid rgba(#ccc, 95);
+  border-radius: .5rem;
   z-index: 999;
 
   h3 {
@@ -21,14 +21,14 @@
     }
 
     button {
-      margin: .5rem 0 .25rem;
       float: right;
-      height: 25px;
+      margin: .5rem 0 .25rem;
       width: 60px;
+      height: 25px;
       font-size: 16px;
       background-color: #ccc;
+      border: 0;
       border-radius: .25rem;
-      border: none;
       outline: none;
 
       &:hover {

@@ -1,35 +1,35 @@
 .mercenary {
+  display: inline-block;
   margin: .25rem .3rem;
   width: 70px;
   height: 70px;
-  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   border: 1px solid #ccc;
   border-radius: .5rem;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  transition: opacity .1s ease-in-out;
   -webkit-transition: opacity .1s ease-in-out;
   -moz-transition: opacity .1s ease-in-out;
   -o-transition: opacity .1s ease-in-out;
+  transition: opacity .1s ease-in-out;
   cursor: pointer;
 
   &::before {
-    content: attr(data-tooltip);
     float: left;
     margin: 2px 0 0 2px;
     padding: 1px;
-    border-radius: .25rem;
-    background-color: rgba(#000, .5);
     font-size: 12px;
+    background-color: rgba(#000, .5);
+    border-radius: .25rem;
     visibility: hidden;
+    content: attr(data-tooltip);
   }
 
   &.show::before {
     visibility: visible;
   }
 
-  &.bold:before {
+  &.bold::before {
     font-weight: bold;
   }
 }

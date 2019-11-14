@@ -11,8 +11,8 @@
     display: block;
     margin: 1rem 0;
     width: 600px;
-    color: $warning;
     text-decoration: none;
+    color: $warning;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -34,10 +34,10 @@
     top: 0;
     left: 10px;
     font-family: 'Fira Sans', Helvetica, Arial, sans-serif;
-    user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+    user-select: none;
 
     .arrow-down {
       display: none;

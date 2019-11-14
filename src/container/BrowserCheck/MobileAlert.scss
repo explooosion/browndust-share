@@ -3,17 +3,17 @@
 .m-alert { 
   position: fixed;
   top: 0;
-  left: 0;
   right: 0;
+  left: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 100%;
   height: 80px;
+  text-align: center;
   color: #fff;
   background-color: rgba($success, .9);
-  text-align: center;
-  z-index: 999; 
+  z-index: 999;
 
   &.checked {
     display: none;

@@ -1,9 +1,9 @@
 @import '../scss/index';
 
 .footer {
-  padding: 0 .75rem;
   display: flex;
   justify-content: flex-start;
+  padding: 0 .75rem;
   flex-flow: column;
 
   .footer-copyright {
@@ -20,8 +20,8 @@
   }
 
   .footer-tip {
-    margin-bottom: 1rem;
     color: #fff;
+    margin-bottom: 1rem;
 
     span {
       display: block;
@@ -37,8 +37,8 @@
     -ms-user-select: none;
 
     .footer-link {
-      color: #fff;
       margin-right: .75rem;
+      color: #fff;
 
       &:hover {
         color: lighten($light-warning, 25);

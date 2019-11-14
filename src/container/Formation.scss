@@ -3,26 +3,26 @@
 .formation {
   position: relative;
   margin: 0 auto 1rem;
-  height: 350px;
   width: inherit;
-  background-image: url('../images/formation_background.jpg');
-  background-repeat: no-repeat;
+  height: 350px;
   background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
-  border-radius: .25rem;
   border: 1px solid transparent;
+  border-radius: .25rem;
+  background-image: url('../images/formation_background.jpg');
 
   .box {
     position: absolute;
     width: 103px;
     height: 103px;
-    background-repeat: no-repeat;
     background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
-    user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+    user-select: none;
     cursor: pointer;
 
     &:active {
@@ -32,37 +32,37 @@
     }
 
     &.over {
-      border: 1px solid $warning;
       background-color: rgba(200, 200, 255, .3);
+      border: 1px solid $warning;
     }
   }
 
   &:not(.no-queue) .queue {
     position: absolute;
-    left: 0;
     top: 0;
+    left: 0;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: 36px;
     height: 36px;
-    color: #ffef59;
     font-size: 26px;
-    font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #ffef59;
     background-color: rgba(#000, .5);
   }
 
   &:not(.no-type) .type {
     position: absolute;
-    right: -4px;
     top: -1px;
+    right: -4px;
+    display: inline-block;
     width: 36px;
     height: 36px;
-    background-repeat: no-repeat;
     background-position: center;
+    background-repeat: no-repeat;
     background-size: 100%;
-    display: inline-block;
   }
 
   .level {
@@ -72,10 +72,10 @@
     width: 48px;
     font-size: 19px;
     font-weight: bold;
-    font-style: italic;
+    color: #fff;
     background-color: rgba(#1d7edf, .8);
     border-radius: 1rem;
-    color: #fff;
+    font-style: italic;
 
     &::before {
       content: '+';
@@ -91,17 +91,17 @@
   }
 
   &.reverse .box {
-    transform: rotateY(180deg);
     -webkit-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg);
     -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
 
     .level,
     .queue {
-      transform: rotateY(-180deg);
       -webkit-transform: rotateY(-180deg);
       -moz-transform: rotateY(-180deg);
       -o-transform: rotateY(-180deg);
+      transform: rotateY(-180deg);
     }
   }
 
