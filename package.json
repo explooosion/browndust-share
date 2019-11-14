@@ -27,7 +27,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
-    "update": "node pre-work/tool.js"
+    "update": "node pre-work/tool.js",
+    "lint": "stylelint src/**/*.scss --syntax scss",
+    "lint:fix": "stylelint src/**/*.scss --syntax scss --fix"
   },
   "dependencies": {
     "@emotion/core": "^10.0.22",
@@ -42,6 +44,7 @@
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
+    "polished": "^3.4.2",
     "pretty-checkbox": "^3.0.3",
     "pretty-checkbox-react": "^1.1.0",
     "prop-types": "^15.7.2",
@@ -60,7 +63,11 @@
     "react-transition-group": "^4.3.0",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
-    "store2": "^2.10.0"
+    "sass-extract": "^2.1.0",
+    "sass-extract-js": "^0.4.0",
+    "sass-extract-loader": "^1.1.0",
+    "store2": "^2.10.0",
+    "styled-components": "^4.4.1"
   },
   "devDependencies": {
     "autoprefixer": "^9.7.0",
@@ -71,7 +78,14 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.16.0",
-    "node-sass": "^4.13.0"
+    "node-sass": "^4.13.0",
+    "pre-commit": "^1.2.2",
+    "stylelint": "^11.1.1",
+    "stylelint-config-prettier": "^6.0.0",
+    "stylelint-config-sass-guidelines": "^6.1.0",
+    "stylelint-config-standard": "^19.0.0",
+    "stylelint-order": "^3.1.1",
+    "stylelint-scss": "^3.12.1"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -81,5 +95,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
+  ],
+  "pre-commit": [
+    "lint"
   ]
 }
