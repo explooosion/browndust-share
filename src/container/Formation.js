@@ -9,7 +9,6 @@ import _ from 'lodash';
 
 import { MenuProvider } from 'react-contexify';
 import ContextMenu from '../components/ContextMenu';
-import { get, del } from '../service/Session';
 import { getThumbnailUrlByImageName, getIconUrlByTypeId } from '../utils';
 import { updateDataset } from '../actions';
 import Dialog from '../components/Dialog';
@@ -32,7 +31,7 @@ class Formation extends Component {
 
   /**
    * Add image to formation
-   * @param {*} tid target position id 
+   * @param {*} tid target position id
    * @param {*} uniqueCode character uniqueueCode
    */
   onAddImage(tid = null, uniqueCode = 0) {
@@ -71,7 +70,7 @@ class Formation extends Component {
 
   /**
    * Delete image from formation
-   * @param {*} pid position id 
+   * @param {*} pid position id
    * @param {*} cold character uniqueCode
    */
   onRemoveImage(pid = null, uniqueCode = 0) {
@@ -118,7 +117,7 @@ class Formation extends Component {
       setTimeout(() => { this.setState({ alertID: null }) }, 1000);
       // remove target style
       this.onDragChangeStyle(tid, false);
-      del('_uniqueCode');
+      this.dispatch(updateDataset({ mercenarySelected: null }));
       console.info('Already exist!', suCode);
       return true;
     }
@@ -127,7 +126,7 @@ class Formation extends Component {
 
   /**
    * Dropover style
-   * @param {*} tid 
+   * @param {*} tid
    */
   onDragChangeStyle(tid = null, bool = true) {
     let hasUpdate = false;
@@ -145,10 +144,10 @@ class Formation extends Component {
 
   /**
    * Adding charactor or setting queue
-   * @param {*} id 
+   * @param {*} id
    */
   onFormationClick(id = null) {
-    const { queue, queueMode, queueMax } = this.props.dataset;
+    const { queue, queueMode, queueMax, mercenarySelected } = this.props.dataset;
     const formation = this.formation.find(f => f.id === id);
 
     // queue mode
@@ -171,11 +170,11 @@ class Formation extends Component {
     } else {
 
       // add character mode
-      const uniqueCode = get('_uniqueCode');
+      const uniqueCode = mercenarySelected;
       if (!uniqueCode) return;
       if (this.onCheckExistImage(false, id, null, uniqueCode)) return;
       this.onAddImage(id, uniqueCode);
-      del('_uniqueCode');
+      this.dispatch(updateDataset({ mercenarySelected: null }));
     }
   }
 
@@ -211,9 +210,11 @@ class Formation extends Component {
     const sid = ev.dataTransfer.getData('sid');
     const suCode = _.toNumber(ev.dataTransfer.getData('suCode'));
     const target = this.formation.find(({ id }) => id === tid);
+    this.dispatch(updateDataset({ mercenarySelected: null }));
+
     // check is exist
     if (this.onCheckExistImage(true, tid, sid, suCode)) return;
-    // check moving or exchanging 
+    // check moving or exchanging
     if (target.backgroundImage === null) {
       // moving
       // console.log('move');
@@ -282,7 +283,7 @@ class Formation extends Component {
         ref={this.myRef}
         id='formation'
         className={
-          `formation 
+          `formation
         ${type ? '' : 'no-type'}
         ${backcolor ? '' : 'no-backcolor'}
         ${backimage ? '' : 'no-backimage'}

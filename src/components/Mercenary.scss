@@ -1,3 +1,5 @@
+@import '../scss/index';
+
 .mercenary {
   display: inline-block;
   margin: .25rem .3rem;
@@ -6,13 +8,22 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  border: 1px solid #ccc;
+  border: 1px solid darken(#ccc, 20);
   border-radius: .5rem;
-  -webkit-transition: opacity .1s ease-in-out;
-  -moz-transition: opacity .1s ease-in-out;
-  -o-transition: opacity .1s ease-in-out;
-  transition: opacity .1s ease-in-out;
+  -webkit-transition: all .1s ease-in-out;
+  -moz-transition: all .1s ease-in-out;
+  -o-transition: all .1s ease-in-out;
+  transition: all .1s ease-in-out;
   cursor: pointer;
+
+  &:hover:not(.selected) {
+    border: 1px solid #ccc;
+  }
+
+  &.selected {
+    border-color: $danger;
+  }
+
 
   &::before {
     float: left;

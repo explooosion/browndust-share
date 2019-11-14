@@ -8,13 +8,14 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { sify } from 'chinese-conv';
 
-import { set } from '../service/Session';
 import { getThumbnailUrlByImageName } from '../utils';
 import { bookDetailUrl } from '../config/api';
+import { updateDataset } from '../actions';
 
 class Mercenary extends Component {
   constructor(props) {
     super(props);
+    this.dispatch = props.dispatch;
     this.props = props;
   }
 
@@ -30,6 +31,11 @@ class Mercenary extends Component {
 
   onDoubleClick = (_uniqueCode) => {
     window.open(bookDetailUrl + _uniqueCode, '_blank');
+  }
+
+  onClickSetCode = (_uniqueCode) => {
+    const mercenarySelected = this.props.dataset.mercenarySelected === _uniqueCode ? null : _uniqueCode;
+    this.dispatch(updateDataset({ mercenarySelected }));
   }
 
   getCharNameByLocale = (locale = 'US', params = null) => {
@@ -66,6 +72,7 @@ class Mercenary extends Component {
   render() {
     const { _uiIconImageName, _uniqueCode } = this.props.params;
     const formation = this.props.dataset.formation;
+    const { mercenarySelected } = this.props.dataset;
     const nops = this.props.nameOptions.map(n => n.checked);
     const URL = getThumbnailUrlByImageName(_uiIconImageName);
     const opacity = _.isUndefined(formation.find(f => f.uniqueCode === _uniqueCode))
@@ -73,11 +80,11 @@ class Mercenary extends Component {
 
     return (
       <div
-        className={`mercenary ${nops[0] ? 'show' : ''} ${nops[1] ? 'bold' : ''}`}
+        className={`mercenary ${nops[0] ? 'show' : ''} ${nops[1] ? 'bold' : ''} ${mercenarySelected === _uniqueCode && opacity === 1 ? 'selected' : ''}`}
         style={{ backgroundImage: `url(${URL})`, opacity }}
         data-tooltip={this.getCharNameByLocale(this.props.settings.locale, this.props.params)}
         draggable
-        onClick={() => set('_uniqueCode', _uniqueCode)}
+        onClick={() => this.onClickSetCode(_uniqueCode)}
         onDragStart={(e) => this.onDragStart(e, _uniqueCode, 0)}
         onDoubleClick={() => this.onDoubleClick(_uniqueCode)}
       >
