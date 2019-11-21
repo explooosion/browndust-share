@@ -30,8 +30,9 @@ jobs:
 
     - name: Create GithubPages Branches
       uses: JamesIves/github-pages-deploy-action@releases/v3
-      env:
+      with:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BASE_BRANCH: master
         BRANCH: gh-pages
         FOLDER: build
         BUILD_SCRIPT: cp .env.example .env && yarn && yarn build
