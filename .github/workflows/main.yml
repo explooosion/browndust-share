@@ -4,25 +4,7 @@ on:
     branches:
       - master
 jobs:
-  install-and-test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [10.x]
-    steps:
-    - uses: actions/checkout@master
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@master
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install and Test
-      run: |
-        yarn
-        yarn test
-      env:
-        CI: 'true'
-
-  publish-and-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Master
@@ -32,7 +14,6 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BASE_BRANCH: master
         BRANCH: gh-pages
         FOLDER: build
         BUILD_SCRIPT: cp .env.example .env && yarn && yarn build
