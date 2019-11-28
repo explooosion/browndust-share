@@ -10315,10 +10315,10 @@ react-dev-utils@^9.1.0:
     strip-ansi "5.2.0"
     text-table "0.2.0"
 
-react-device-detect@^1.9.10:
-  version "1.9.10"
-  resolved "https://registry.yarnpkg.com/react-device-detect/-/react-device-detect-1.9.10.tgz#3ea17e1383fef87886fb85cc850747dad306d050"
-  integrity sha512-Rb618NuNwJojJeIgI5UoONwztbd4wMT4TBofzvYOHnPNu61LYYz8b78cXQb7kXRrPn6iI5T1gFtNQh0GxHEPxw==
+react-device-detect@^1.11.13:
+  version "1.11.13"
+  resolved "https://registry.yarnpkg.com/react-device-detect/-/react-device-detect-1.11.13.tgz#8a1f75a53bb927b7f5fc692560d7889696533e71"
+  integrity sha512-Pxc+mtL8ANo83g1FacbowHFRTdE3HPhCyxTI2EB6wYjnMk02+3VtFca5GvoXDNx3wHbw6ArnLWzcXp2jgepq1g==
   dependencies:
     ua-parser-js "^0.7.20"
 
@@ -10351,10 +10351,10 @@ react-html-parser@^2.0.2:
   dependencies:
     htmlparser2 "^3.9.0"
 
-react-i18next@^11.2.2:
-  version "11.2.2"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.2.2.tgz#e5e55ae4187521b01b4eafe483dd96b280106670"
-  integrity sha512-g0Nqa9HBVbS1UMWaUD+tgrlnpDT+wiID1hHj51uYcz6aPS1YFSkH5U4XhEQrJf4Ms5c+vbma12abyT2Mq7e65w==
+react-i18next@^11.2.3:
+  version "11.2.3"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.2.3.tgz#42ef85c461c08638a2f771d2b73b8853b35c3ab7"
+  integrity sha512-7jDll00pTfoU0lMtP1a0k71nnHMOg74Gvi/O7XtUHNenu311tUA7/LdxnjWoMe+zgnsH8Ueq1kI6ILor7HScZw==
   dependencies:
     "@babel/runtime" "^7.3.1"
     html-parse-stringify2 "2.0.1"
@@ -11965,10 +11965,10 @@ stylelint-config-recommended@^3.0.0:
   resolved "https://registry.yarnpkg.com/stylelint-config-recommended/-/stylelint-config-recommended-3.0.0.tgz#e0e547434016c5539fe2650afd58049a2fd1d657"
   integrity sha512-F6yTRuc06xr1h5Qw/ykb2LuFynJ2IxkKfCMf+1xqPffkxh0S09Zc902XCffcsw/XMFq/OzQ1w54fLIDtmRNHnQ==
 
-stylelint-config-sass-guidelines@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/stylelint-config-sass-guidelines/-/stylelint-config-sass-guidelines-6.1.0.tgz#9b3116ad8348d35f606e7ff30627bd00e7d0e810"
-  integrity sha512-0vb45wXET2rrtbDsz6L6VkcADVwfSVsfiz7OHFv/s72b/dfITWFlU6l3hR49aOgPwUu7xWfZA4Vi+fhy44+9kQ==
+stylelint-config-sass-guidelines@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/stylelint-config-sass-guidelines/-/stylelint-config-sass-guidelines-6.2.0.tgz#f71f2b4341b7dc64c6404bd12ef9c2b91512046c"
+  integrity sha512-weTmQt+D/qp9t3gPMgvdtu02W07m5pEKXFXnz7Jb0I85W02IxPSBVpaAu2mibvU0wk5e3McasEnHut5UuwXE/Q==
   dependencies:
     stylelint-order "^3.0.0"
     stylelint-scss "^3.4.0"
