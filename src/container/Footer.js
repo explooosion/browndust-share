@@ -1,58 +1,100 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React, { Component } from 'react';
-import './Footer.scss';
-
-import { withTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { FaGithub } from "react-icons/fa";
 import { GoIssueOpened, GoQuestion } from "react-icons/go";
+import { lighten } from 'polished';
 
-class Footer extends Component {
-  constructor(props) {
-    super(props);
-    this.t = this.props.t;
-    this.state = {
-      helpTips: false,
+const Foot = styled.footer`
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 .75rem;
+  flex-flow: column;
+
+  .footer-tip {
+    margin-top: 1rem;
+    padding: .75rem;
+    color: #fff;
+    background-color: rgba(0, 0, 0, .3);
+    border: 1px solid #ccc;
+    border-radius: .5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .2s ease-in-out;
+
+    &.active {
+      opacity: 1;
+      visibility: initial;
+    }
+
+    span {
+      display: block;
+      font-size: 16px;
+      letter-spacing: 1px;
     }
   }
+`;
 
-  onOpenHelpTips(helpTips) {
-    this.setState({ helpTips });
-  }
+const Items = styled.div`
+  display: flex;
+  align-items: center;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
 
-  render() {
-    const { helpTips } = this.state;
-    return (
-      <footer className='footer'>
-        <div className='footer-items'>
-          <a className='footer-link' alt='github' title='github' href='https://github.com/explooosion/browndust-share' target='_blank' rel="noopener noreferrer"><FaGithub size='2em' /></a>
-          <a className='footer-link' alt='issue' title='issue' href='https://github.com/explooosion/browndust-share/issues' target='_blank' rel="noopener noreferrer"><GoIssueOpened size='2.3em' /></a>
-          <span
-            className='footer-link'
-            onClick={() => this.onOpenHelpTips(!helpTips)}
-          >
-            <GoQuestion size='2.3em' />
-          </span>
-        </div>
-        <div className={`footer-tip ${helpTips ? 'active' : ''}`}>
-          <span>1. {this.t('tip1')}</span>
-          <span>2. {this.t('tip2')}</span>
-          <span>3. {this.t('tip3')}</span>
-          <span>4. {this.t('tip4')}</span>
-          <span>5. {this.t('tip5')}</span>
-          <span>6. {this.t('tip6')}</span>
-        </div>
-        <span className='footer-copyright'>This site is fan-made and not affiliated with NEOWIZ and GAMFS in any way.</span>
-      </footer>
-    );
+  .footer-link {
+    margin-right: .75rem;
+    color: #fff;
+
+    &:hover {
+      color: lighten($light-warning, 5);
+    }
   }
+`;
+
+const CopyRight = styled.span`
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: block;
+  font-size: 14px;
+  color: ${p => lighten(p.theme.gray, 20)};
+
+  @media only screen and (max-width:${p => p.theme.screenXl}) {
+    display: none;
+  }
+`;
+
+function Footer() {
+  const [helpTips, setHelpTips] = useState(false);
+  const { t } = useTranslation();
+
+  return (
+    <Foot>
+      <Items>
+        <a className='footer-link' alt='github' title='github' href='https://github.com/explooosion/browndust-share' target='_blank' rel="noopener noreferrer"><FaGithub size='2em' /></a>
+        <a className='footer-link' alt='issue' title='issue' href='https://github.com/explooosion/browndust-share/issues' target='_blank' rel="noopener noreferrer"><GoIssueOpened size='2.3em' /></a>
+        <span
+          className='footer-link'
+          onClick={() => setHelpTips(!helpTips)}
+        >
+          <GoQuestion size='2.3em' />
+        </span>
+      </Items>
+      <div className={`footer-tip ${helpTips ? 'active' : ''}`}>
+        <span>1. {t('tip1')}</span>
+        <span>2. {t('tip2')}</span>
+        <span>3. {t('tip3')}</span>
+        <span>4. {t('tip4')}</span>
+        <span>5. {t('tip5')}</span>
+        <span>6. {t('tip6')}</span>
+      </div>
+      <CopyRight>This site is fan-made and not affiliated with NEOWIZ and GAMFS in any way.</CopyRight>
+    </Foot>
+  );
 }
 
-Footer.propTypes = {}
-
-const mapStateToProps = state => {
-  return {
-  }
-}
-
-export default withTranslation()(connect(mapStateToProps)(Footer));
+export default Footer;
