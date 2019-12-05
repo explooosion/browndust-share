@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { FaGithub } from "react-icons/fa";
 import { GoIssueOpened, GoQuestion } from "react-icons/go";
-import { lighten } from 'polished';
+import { lighten, rgba } from 'polished';
 
 const Foot = styled.footer`
   display: flex;
@@ -16,7 +16,7 @@ const Foot = styled.footer`
     margin-top: 1rem;
     padding: .75rem;
     color: #fff;
-    background-color: rgba(0, 0, 0, .3);
+    background-color: ${p => rgba(p.theme.dark, 0.3)};
     border: 1px solid #ccc;
     border-radius: .5rem;
     opacity: 0;
@@ -50,7 +50,7 @@ const Items = styled.div`
     color: #fff;
 
     &:hover {
-      color: lighten($light-warning, 5);
+      color: ${p => lighten(0.5, p.theme.lightWarning)}
     }
   }
 `;
@@ -61,7 +61,7 @@ const CopyRight = styled.span`
   left: 20px;
   display: block;
   font-size: 14px;
-  color: ${p => lighten(p.theme.gray, 20)};
+  color: ${p => lighten(0.2, p.theme.gray)};
 
   @media only screen and (max-width:${p => p.theme.screenXl}) {
     display: none;
