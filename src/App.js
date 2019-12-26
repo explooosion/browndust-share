@@ -3,6 +3,7 @@ import './App.scss';
 
 import { HashRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import SnowEffect from 'react-snow-effect';
 import {
   // BrowserView,
   // MobileView,
@@ -50,6 +51,7 @@ class App extends Component {
     return (
       <HashRouter>
         <div id='wrapper' data-locale={this.locale}>
+          {isMobile ? null : <SnowEffect />}
           {isMobile ? <MobileAlert /> : null}
           <Header />
           <section id='container'>

@@ -59,6 +59,7 @@
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
+    "react-snow-effect": "^1.2.0",
     "react-spinners": "^0.7.2",
     "react-transition-group": "^4.3.0",
     "redux": "^4.0.5",
