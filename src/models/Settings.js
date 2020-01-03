@@ -1,4 +1,4 @@
-import { get } from '../service/Cookies';
+import { get } from '../utils/Cookies';
 
 export default {
   locale: get('locale') === undefined ? 'US' : get('locale'),

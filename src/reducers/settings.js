@@ -1,4 +1,4 @@
-import { set } from '../service/Cookies';
+import { set } from '../utils/Cookies';
 import Settings from '../models/Settings';
 import i18n from '../i18n';
 

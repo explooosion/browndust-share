@@ -23,7 +23,7 @@ import NotSupport from './container/BrowserCheck/NotSupport';
 import MobileAlert from './container/BrowserCheck/MobileAlert';
 
 import { setCharacters, setCharactersGlobal, updateDataset } from './actions';
-import { getCharacters, getCharactersGlobal } from './service/Characters';
+import { getCharacters, getCharactersGlobal } from './services/Characters';
 import { initialFormation } from './utils';
 
 class App extends Component {

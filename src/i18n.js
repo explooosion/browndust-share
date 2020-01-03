@@ -1,7 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import detector from "i18next-browser-languagedetector";
-import { get } from './service/Cookies';
+import { get } from './utils/Cookies';
 // the translations
 // (tip move them in a JSON file and import them)
 import translationEN from './locales/US.json';
