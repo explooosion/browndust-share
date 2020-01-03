@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import './App.scss';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
 import { HashRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import SnowEffect from 'react-snow-effect';
 import {
   // BrowserView,
@@ -26,57 +26,81 @@ import { setCharacters, setCharactersGlobal, updateDataset } from './actions';
 import { getCharacters, getCharactersGlobal } from './services/Characters';
 import { initialFormation } from './utils';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.dispatch = props.dispatch;
-    this.state = {};
+const Main = styled.main`
+
+  padding-bottom: 3rem;
+
+  &[data-locale='JP'] {
+    font-family: 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro','Segoe UI', Helvetica, Arial, sans-serif;
   }
 
-  async componentDidMount() {
-    await getCharactersGlobal()
-      .then(data => this.dispatch(setCharactersGlobal(data)));
-    await getCharacters()
-      .then(data => this.dispatch(setCharacters(data)))
-      .then(() => this.dispatch(updateDataset({ formation: initialFormation(this.formation, this.characters) })));
+  &[data-locale='KR'] {
+    font-family: 'Helvetica Neue', 'Apple SD Gothic Neo', 'Segoe UI', Helvetica, Arial, sans-serif;
   }
 
-  render() {
-    this.formation = this.props.dataset.formation;
-    this.characters = this.props.characters;
-    this.locale = this.props.settings.locale;
+  #container {
+    margin: 0 auto;
+    width: 1450px;
 
-    if (isEdge || isIE) return <NotSupport />;
+    @media only screen and (max-width: ${p => p.theme.screenXl}) {
+      width: 100%;
+    }
 
-    return (
-      <HashRouter>
-        <div id='wrapper' data-locale={this.locale}>
-          {isMobile ? null : <SnowEffect />}
-          {isMobile ? <MobileAlert /> : null}
-          <Header />
-          <section id='container'>
-            <main className='main'>
-              <Formation />
-              <Toolbar />
-              <Footer />
-            </main>
-            <List />
-          </section>
-        </div>
-      </HashRouter>
-    );
+    .main {
+      position: relative;
+      float: left;
+      margin: 0 .2rem 0 1rem;
+      width: 700px;
+
+      @media only screen and (max-width: ${p => p.theme.screenXl}) {
+        float: none;
+        margin: 0 auto;
+      }
+    }
   }
-}
+`;
 
-App.propTypes = {}
-
-const mapStateToProps = state => {
-  return {
+export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
+  const { characters, formation, locale } = useSelector(state => ({
     characters: state.characters,
-    charactersGlobal: state.charactersGlobal,
-    dataset: state.dataset,
-    settings: state.settings,
-  }
-}
+    // charactersGlobal: state.charactersGlobal,
+    formation: state.dataset.formation,
+    locale: state.settings.locale,
+  }), shallowEqual);
 
-export default connect(mapStateToProps)(App);
+  useEffect(() => {
+
+    const fetchData = async () => {
+      await getCharactersGlobal()
+        .then(data => dispatch(setCharactersGlobal(data)));
+      await getCharacters()
+        .then(data => dispatch(setCharacters(data)))
+        .then(() => dispatch(updateDataset({ formation: initialFormation(formation, characters) })));
+    }
+
+    setIsLoading(false);
+    if (isLoading) fetchData();
+  }, [characters, formation, dispatch, isLoading, setIsLoading]);
+
+  if (isEdge || isIE) return <NotSupport />;
+
+  return (
+    <HashRouter>
+      <Main data-locale={locale}>
+        {isMobile ? null : <SnowEffect />}
+        {isMobile ? <MobileAlert /> : null}
+        <Header />
+        <section id='container'>
+          <main className='main'>
+            <Formation />
+            <Toolbar />
+            <Footer />
+          </main>
+          <List />
+        </section>
+      </Main>
+    </HashRouter>
+  );
+}
