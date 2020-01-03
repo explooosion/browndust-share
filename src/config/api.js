@@ -3,7 +3,7 @@ export const APIUrl = process.env.NODE_ENV === 'development'
   ? process.env.REACT_APP_API_URL
   : process.env.REACT_APP_API_URL;
 
-// origin, cross-origin permission
+// origin, cross-origin permission
 // const thumbnailUrl = 'https://ic-common.pmang.cloud/static/bdt_book/thumbnail';
 
 export const thumbnailUrl = process.env.NODE_ENV === 'development'
