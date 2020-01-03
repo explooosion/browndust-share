@@ -7,6 +7,7 @@ import { GoIssueOpened, GoQuestion } from "react-icons/go";
 import { lighten, rgba } from 'polished';
 
 const Foot = styled.footer`
+
   display: flex;
   justify-content: flex-start;
   padding: 0 .75rem;
@@ -37,6 +38,7 @@ const Foot = styled.footer`
 `;
 
 const Items = styled.div`
+
   display: flex;
   align-items: center;
   -moz-user-select: none;
@@ -56,6 +58,7 @@ const Items = styled.div`
 `;
 
 const CopyRight = styled.span`
+
   position: fixed;
   bottom: 20px;
   left: 20px;
@@ -63,7 +66,7 @@ const CopyRight = styled.span`
   font-size: 14px;
   color: ${p => lighten(0.2, p.theme.gray)};
 
-  @media only screen and (max-width:${p => p.theme.screenXl}) {
+  @media only screen and (max-width: ${p => p.theme.screenXl}) {
     display: none;
   }
 `;

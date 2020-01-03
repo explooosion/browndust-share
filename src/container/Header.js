@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { setLocal } from '../actions';
 
 const Head = styled.header`
+
   font-size: 20px;
 
   @media only screen and (max-width: ${p => p.theme.screenXl}) {

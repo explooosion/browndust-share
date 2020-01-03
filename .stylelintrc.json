@@ -9,6 +9,9 @@
     "stylelint-order"
   ],
   "rules": {
+    "declaration-block-trailing-semicolon": null,
+    "media-feature-range-operator-space-after": null,
+    "media-feature-range-operator-space-before": null,
     "max-nesting-depth": null,
     "no-empty-source": null,
     "no-descending-specificity": null,
@@ -90,8 +93,10 @@
     ],
     "property-no-vendor-prefix": null,
     "selector-max-compound-selectors": null,
+    "selector-no-qualifying-type": null,
     "selector-max-id": null,
     "scss/at-import-partial-extension-blacklist": null,
-    "value-no-vendor-prefix": null
+    "value-no-vendor-prefix": null,
+    "unicode-bom": "never"
   }
 }

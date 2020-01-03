@@ -4,6 +4,7 @@
     "@babel/preset-env"
   ],
   "plugins": [
+    "babel-plugin-redux-saga",
     "emotion"
   ]
 }

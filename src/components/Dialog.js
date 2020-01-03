@@ -66,7 +66,13 @@ class Dialog extends Component {
       default: renderTemplate = null;
     }
     return (
-      <div id='dialog' style={{ left, top: `${top + -60}px` }}>
+      <div
+        id='dialog'
+        style={{
+          left: left,
+          top: `${top + -60}px`,
+        }}
+      >
         {renderTemplate}
       </div>
     );
