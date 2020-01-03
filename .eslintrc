@@ -1,6 +1,7 @@
 {
     "parser": "babel-eslint",
     "extends": ["airbnb", "prettier"],
+    "plugins": ["react-hooks"],
     "env": {
       "browser": true,
       "node": true,
@@ -43,6 +44,8 @@
           "prop": "ignore"
         }
       ],
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
       "import/prefer-default-export": [0],
       "import/no-unresolved": [0],
       "import/extensions": [0],

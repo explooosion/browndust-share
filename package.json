@@ -80,6 +80,7 @@
     "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
     "node-sass": "^4.13.0",
     "stylelint": "^12.0.1",
     "stylelint-config-prettier": "^8.0.0",
