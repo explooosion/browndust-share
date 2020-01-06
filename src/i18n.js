@@ -1,24 +1,20 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import detector from "i18next-browser-languagedetector";
+import detector from 'i18next-browser-languagedetector';
+import _ from 'lodash';
+
 import { get } from './utils/Cookies';
+
 // the translations
 // (tip move them in a JSON file and import them)
-import translationEN from './locales/US.json';
-import translationTW from './locales/TW.json';
-import translationCN from './locales/CN.json';
-import translationKR from './locales/KR.json';
-import translationJP from './locales/JP.json';
+const locales = ['US', 'TW', 'CN', 'KR', 'JP'];
 
-const lng = get('locale') === undefined ? 'US' : get('locale');
+const resources = locales.reduce((prev, current) => ({
+  ...prev,
+  [current]: { translation: require(`./locales/${current}.json`) },
+}), {});
 
-const resources = {
-  US: { translation: translationEN },
-  TW: { translation: translationTW },
-  CN: { translation: translationCN },
-  KR: { translation: translationKR },
-  JP: { translation: translationJP },
-};
+const lng = _.isUndefined(get('locale')) ? 'US' : get('locale');
 
 i18n
   .use(detector)

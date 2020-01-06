@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware, compose } from 'redux';
+
+import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { ThemeProvider } from 'styled-components';
@@ -13,10 +15,11 @@ import App from './App';
 const theme = require('sass-extract-loader?{"plugins":["sass-extract-js"]}!./scss/_index.scss');
 
 /* eslint-disable no-underscore-dangle */
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
   reducers,
-  composeEnhancers(
+  composeWithDevTools(
     applyMiddleware(thunk),
   ));
 /* eslint-enable */
