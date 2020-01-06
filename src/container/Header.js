@@ -22,11 +22,14 @@ const Head = styled.header`
     display: block;
     margin: 1rem 0;
     width: 600px;
+
+    /* stylelint-disable */
+    font-family: ${p => p.theme.enTitleFont};
+    /* stylelint-enable */
+
     text-decoration: none;
     color: ${p => p.theme.warning};
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
+    user-select: none;
 
     &:visited {
       color: ${p => p.theme.warning};

@@ -27,7 +27,9 @@
     justify-content: space-around;
     width: 130px;
     height: 45px;
-    font-family: $input-font;
+    /* stylelint-disable */
+    font-family: $en-title-font;
+    /* stylelint-enable */
     background-color: #3e4e56;
     border: 1px solid #bbb;
     border-radius: .25rem;

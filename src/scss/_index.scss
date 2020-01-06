@@ -1,12 +1,13 @@
 /* Reset */
 @import './reset/h';
 
+/* Fonts */
+@import './fonts/SansPro';
+@import './fonts/SeagullW01Medium';
+
 /* Models */
 @import './models/color';
 @import './models/config';
 @import './models/screen';
 @import './models/font';
-
-/* Components */
-@import './components/layout';
 
