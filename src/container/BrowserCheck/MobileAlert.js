@@ -1,38 +1,53 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-import React, { Component } from 'react';
-import './MobileAlert.scss';
-
-import { withTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
+import { rgba } from 'polished';
 
 import { FaDesktop, FaHeart } from "react-icons/fa";
 
-class MobileAlert extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      checked: false,
-    }
-    this.t = this.props.t;
+const Main = styled.div`
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+  text-align: center;
+  color: #fff;
+  background-color: ${p => rgba(p.theme.success, 0.95)};
+  z-index: 999;
+
+  &.checked {
+    display: none;
   }
 
-  render() {
-    return (
-      <div
-        className={`m-alert ${this.state.checked ? 'checked' : ''}`}
-        onClick={() => this.setState({ checked: true })}
-      >
-        <span>{this.t('browser-mobile-alert')}<FaHeart size='1.25rem' /><FaDesktop size='1.25rem' /></span>
-      </div>
-    );
+  span {
+    font-size: 25px;
   }
+
+  svg {
+    margin: 0 .25rem;
+  }
+`;
+
+function MobileAlert() {
+  const [checked, setChecked] = useState(false);
+  const { t } = useTranslation();
+
+  return (
+    <Main
+      className={checked ? 'checked' : ''}
+      onClick={() => setChecked(true)}
+    >
+      <span>{t('browser-mobile-alert')}<FaHeart size='1.25rem' /><FaDesktop size='1.25rem' /></span>
+    </Main>
+  );
 }
 
 MobileAlert.propTypes = {}
 
-const mapStateToProps = state => {
-  return {
-  }
-}
-
-export default withTranslation()(connect(mapStateToProps)(MobileAlert));
+export default MobileAlert;
