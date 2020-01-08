@@ -1,12 +1,15 @@
 import { combineReducers } from 'redux';
-import settings from './settings';
-import characters from './characters';
-import charactersGlobal from './charactersGlobal';
-import dataset from './dataset';
 
-export default combineReducers({
-  dataset,
-  characters,
-  charactersGlobal,
-  settings,
-})
+const reducers = [
+  'dataset',
+  'characters',
+  'charactersGlobal',
+  'settings',
+];
+
+export default combineReducers(
+  reducers.reduce((prev, currnet) => ({
+    ...prev,
+    [currnet]: require(`./${currnet}`).default,
+  }), {})
+)
