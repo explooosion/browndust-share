@@ -23,21 +23,23 @@ function downloadThumbnails() {
 
   const thumbnails = require(`./${API_CHARACTERS_FILE_NAME}`);
 
-  thumbnails
-    .map(d => {
-      return {
-        url: `${URL}${d._uiIconImageName.split('*')[1]}.png`,
-        name: `${d._uiIconImageName.split('*')[1]}.png`,
-      }
-    })
-    .forEach(({ url, name }, index, arr) => {
-      http.request(url, response => {
-        const data = new Stream();
-        console.log(`parse:${url}`);
-        response.on('data', chunk => data.push(chunk));
-        response.on('end', () => fs.writeFileSync(`./public/resource/thumbnail/${name}`, data.read()));
-      }).end();
-    });
+  Promise.all(
+    thumbnails
+      .map(d => {
+        return {
+          url: `${URL}${d._uiIconImageName.split('*')[1]}.png`,
+          name: `${d._uiIconImageName.split('*')[1]}.png`,
+        }
+      })
+      .forEach(({ url, name }, index, arr) => {
+        http.request(url, response => {
+          const data = new Stream();
+          console.log(`parse:${url}`);
+          response.on('data', chunk => data.push(chunk));
+          response.on('end', () => fs.writeFileSync(`./public/resource/thumbnail/${name}`, data.read()));
+        }).end();
+      })
+  );
 
   fs.unlinkSync(`./pre-work/${API_CHARACTERS_FILE_NAME}`);
 }
