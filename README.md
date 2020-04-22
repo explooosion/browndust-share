@@ -55,7 +55,7 @@ This website support in the following browsers:
 
 ![img](https://media.giphy.com/media/fuQmvP1aoiPSGLkv6Q/giphy.gif)
 
-## Deploay
+## Deploy
 
 Installation.
 
