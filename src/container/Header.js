@@ -48,6 +48,7 @@ const Head = styled.header`
     top: 0;
     left: 10px;
     font-family: 'Fira Sans', Helvetica, Arial, sans-serif;
+    color: #222;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
