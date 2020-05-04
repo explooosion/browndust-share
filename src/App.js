@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { HashRouter } from 'react-router-dom';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import SnowEffect from 'react-snow-effect';
+// import SnowEffect from 'react-snow-effect';
 import {
   // BrowserView,
   // MobileView,
@@ -89,7 +89,7 @@ export default function App() {
   return (
     <HashRouter>
       <Main data-locale={locale}>
-        {isMobile ? null : <SnowEffect />}
+        {/** isMobile ? null : <SnowEffect /> */}
         {isMobile ? <MobileAlert /> : null}
         <Header />
         <section id='container'>
