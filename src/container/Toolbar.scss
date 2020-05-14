@@ -139,19 +139,3 @@
     }
   }
 }
-
-#wrapper[data-locale='JP'] {
-  .tool {
-    width: 170px;
-
-    span {
-      font-size: 14px;
-    }
-  }
-}
-
-#wrapper[data-locale='US'] {
-  .tool.tool-queue {
-    width: 160px;
-  }
-}
