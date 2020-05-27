@@ -18,8 +18,9 @@ import { getIconUrlByTypeId } from '../utils';
 import { updateDataset } from '../actions';
 
 const override = css`
-    display: block;
-    margin: 20vh auto 0;
+
+  display: block;
+  margin: 20vh auto 0;
 `;
 
 class List extends Component {

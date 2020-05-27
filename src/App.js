@@ -31,13 +31,11 @@ const Main = styled.main`
   padding-bottom: 3rem;
 
   &[data-locale='JP'] {
+    font-family: 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro','Segoe UI', Helvetica, Arial, sans-serif;
+
     .tool.tool-queue {
       width: 160px;
     }
-  }
-
-  &[data-locale='JP'] {
-    font-family: 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro','Segoe UI', Helvetica, Arial, sans-serif;
 
     .tool {
       width: 160px;

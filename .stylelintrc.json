@@ -9,7 +9,10 @@
     "stylelint-order"
   ],
   "rules": {
+    "function-name-case": null,
     "declaration-block-trailing-semicolon": null,
+    "declaration-block-semicolon-newline-after": null,
+    "media-feature-name-no-unknown": null,
     "media-feature-range-operator-space-after": null,
     "media-feature-range-operator-space-before": null,
     "max-nesting-depth": null,
@@ -97,6 +100,7 @@
     "selector-max-id": null,
     "scss/at-import-partial-extension-blacklist": null,
     "value-no-vendor-prefix": null,
+    "value-keyword-case": null,
     "unicode-bom": "never"
   }
 }
