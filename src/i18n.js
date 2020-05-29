@@ -7,7 +7,7 @@ import { get } from './utils/Cookies';
 
 // the translations
 // (tip move them in a JSON file and import them)
-const locales = ['US', 'TW', 'CN', 'KR', 'JP'];
+const locales = ['US', 'ES', 'DE', 'TW', 'CN', 'JP', 'KR', 'TH'];
 
 const resources = locales.reduce((prev, current) => ({
   ...prev,

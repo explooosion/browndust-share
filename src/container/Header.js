@@ -62,6 +62,11 @@ const Head = styled.header`
     .flag-options {
       max-height: none;
     }
+
+    /* stylelint-disable-next-line */
+    .flag-select__options {
+      display: table;
+    }
   }
 `;
 

@@ -102,15 +102,26 @@ class List extends Component {
     if (search === '') return characters;
 
     return this.props.charactersGlobal.filter(c => {
-      const { _charName, _charName_ENG, _charName_TW, _charName_JAP } = c;
+      const {
+        _charName,
+        _charName_ENG,
+        _charName_TW,
+        _charName_JAP,
+        _charName_SPA,
+        _charName_GER,
+        _charName_TH,
+      } = c;
       let match = false;
       console.log(search, _charName_TW, _charName_TW.indexOf(search))
       switch (this.props.settings.locale) {
         case 'US': match = _charName_ENG.indexOf(search) > -1; break;
+        case 'ES': match = _charName_SPA.indexOf(search) > -1; break;
+        case 'DE': match = _charName_GER.indexOf(search) > -1; break;
         case 'TW': match = _charName_TW.indexOf(search) > -1 || sify(_charName_TW).indexOf(search) > -1; break;
         case 'CN': match = _charName_TW.indexOf(search) > -1 || sify(_charName_TW).indexOf(search) > -1; break;
-        case 'KR': match = _charName.indexOf(search) > -1; break;
         case 'JP': match = _charName_JAP.indexOf(search) > -1; break;
+        case 'KR': match = _charName.indexOf(search) > -1; break;
+        case 'TH': match = _charName_TH.indexOf(search) > -1; break;
         default: match = true;
       }
       return match;

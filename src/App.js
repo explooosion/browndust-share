@@ -30,11 +30,36 @@ const Main = styled.main`
 
   padding-bottom: 3rem;
 
+  &[data-locale='ES'] {
+    .tool.tool-queue {
+      width: 120px;
+    }
+
+    .tool {
+      width: 140px;
+    }
+  }
+
+  &[data-locale='DE'] {
+    .tool.tool-queue,
+    .tool.tool-download {
+      width: 160px;
+    }
+
+    .tool.tool-reset {
+      width: 100px;
+    }
+
+    .tool {
+      width: 150px;
+    }
+  }
+
   &[data-locale='JP'] {
     font-family: 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro','Segoe UI', Helvetica, Arial, sans-serif;
 
     .tool.tool-queue {
-      width: 160px;
+      width: 140px;
     }
 
     .tool {
@@ -48,6 +73,20 @@ const Main = styled.main`
 
   &[data-locale='KR'] {
     font-family: 'Helvetica Neue', 'Apple SD Gothic Neo', 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+
+  &[data-locale='TH'] {
+    .tool.tool-queue {
+      width: 150px;
+    }
+
+    .tool {
+      width: 140px;
+
+      span {
+        font-size: 14px;
+      }
+    }
   }
 
   #container {

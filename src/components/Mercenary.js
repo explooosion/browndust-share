@@ -41,15 +41,32 @@ class Mercenary extends Component {
   getCharNameByLocale = (locale = 'US', params = null) => {
     if (_.isNull(params)) return;
 
-    const { _uniqueCode, _charName, _charName_ENG, _charName_TW, _charName_JAP } = params;
+    const {
+      _uniqueCode,
+
+      _charName,
+      _charName_ENG,
+      _charName_TW,
+      _charName_JAP,
+      _charName_SPA,
+      _charName_GER,
+      _charName_TH,
+    } = params;
+
     let name = '';
     switch (locale) {
       case 'US': name = _charName_ENG; break;
+      case 'ES': name = _charName_SPA; break;
+      case 'DE': name = _charName_GER; break;
       case 'TW': name = _charName_TW; break;
       case 'CN': name = sify(_charName_TW); break;
-      case 'KR': name = _charName; break;
       case 'JP': name = _charName_JAP; break;
-      default: name = _charName_ENG; break;
+      case 'KR': name = _charName; break;
+      case 'TH': name = _charName_TH; break;
+      default:
+        console.warn('can not find character by locale.')
+        name = _charName_ENG;
+        break;
     }
     // check the name is empty
     if (!_.isEmpty(name)) return name;
