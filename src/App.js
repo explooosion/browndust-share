@@ -85,11 +85,14 @@ export default function App() {
   useEffect(() => {
 
     const fetchData = async () => {
-      await getCharactersGlobal()
-        .then(data => dispatch(setCharactersGlobal(data)));
-      await getCharacters()
-        .then(data => dispatch(setCharacters(data)))
-        .then(() => dispatch(updateDataset({ formation: initialFormation(formation, characters) })));
+      const _cGlobal = await getCharactersGlobal();
+      await dispatch(setCharactersGlobal(_cGlobal));
+
+      const _c = await getCharacters();
+      await dispatch(setCharacters(_c));
+
+      const _f = initialFormation(formation, _c);
+      await dispatch(updateDataset({ formation: _f }));
     }
 
     setIsLoading(false);
