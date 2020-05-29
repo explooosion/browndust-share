@@ -6,6 +6,9 @@ export const getCharacters = async () => {
       ? response.json()
       : console.warn('Change api url to github.') || fetch(process.env.REACT_APP_API_URL_DEV).then(d => d.json())
     )
+    .catch(() =>
+      console.warn('Change api url to github.') || fetch(process.env.REACT_APP_API_URL_DEV).then(d => d.json())
+    )
 }
 
 export const getCharactersGlobal = async () => {
@@ -13,5 +16,8 @@ export const getCharactersGlobal = async () => {
     .then(response => response.ok
       ? response.json()
       : console.warn('Change global api url to github.') || fetch(process.env.REACT_APP_API_URL_GLOBAL_DEV).then(d => d.json())
+    )
+    .catch(() =>
+      console.warn('Change global api url to github.') || fetch(process.env.REACT_APP_API_URL_GLOBAL_DEV).then(d => d.json())
     )
 }
