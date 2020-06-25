@@ -129,9 +129,9 @@ After running script, you will get new images.
 
 - [Brown Dust Wiki](https://browndust.wiki/wiki/Brown_Dust_Wiki)
 
-- [browndust-api](https://browndust-api.pmang.cloud/book/getAllCharacters)
+- [browndust-api](https://browndust-api.pmang.cloud/v1/book/character/getAll)
 
-- [browndust-global-api](https://browndust-global-api.pmang.cloud/book/getAllCharacters)
+- [browndust-global-api](https://browndust-global-api.pmang.cloud/v1/book/character/getAll)
 
 ## Introduction
 

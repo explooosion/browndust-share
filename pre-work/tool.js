@@ -19,11 +19,11 @@ https.request(API_CHARACTERS_KOREA, response => {
 
 return;
 
-function downloadThumbnails() {
+async function downloadThumbnails() {
 
   const thumbnails = require(`./${API_CHARACTERS_FILE_NAME}`);
 
-  Promise.all(
+  await Promise.all(
     thumbnails
       .map(d => {
         return {
@@ -41,7 +41,7 @@ function downloadThumbnails() {
       })
   );
 
-  fs.unlinkSync(`./pre-work/${API_CHARACTERS_FILE_NAME}`);
+  await fs.unlinkSync(`./pre-work/${API_CHARACTERS_FILE_NAME}`);
 }
 
 // icons.forEach(({ url, name }, index, arr) => {
