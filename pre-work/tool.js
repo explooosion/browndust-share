@@ -6,9 +6,9 @@ const moment = require('moment');
 
 const URL = 'http://ic-common.pmang.cloud/static/bdt_book/thumbnail/';
 
-const API_CHARACTERS_KOREA = 'https://browndust-api.pmang.cloud/book/getAllCharacters';
+const API_CHARACTERS_KOREA = 'https://browndust-api.pmang.cloud/v1/book/character/getAll';
 
-const API_CHARACTERS_FILE_NAME = `getAllCharacters_${moment().format('YYYY-MM-DD HH:mm:SSS')}.json`;
+const API_CHARACTERS_FILE_NAME = `getAll_${moment().format('YYYY-MM-DD HH:mm:SSS')}.json`;
 
 https.request(API_CHARACTERS_KOREA, response => {
   const data = new Stream();
