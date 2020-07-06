@@ -78,10 +78,13 @@ class Mercenary extends Component {
 
     switch (locale) {
       case 'US': name = cGlobal._charName_ENG; break;
+      case 'ES': name = cGlobal._charName_SPA; break;
+      case 'DE': name = cGlobal._charName_GER; break;
       case 'TW': name = cGlobal._charName_TW; break;
       case 'CN': name = sify(cGlobal._charName_TW); break;
-      case 'KR': name = cGlobal._charName; break;
       case 'JP': name = cGlobal._charName_JAP; break;
+      case 'KR': name = cGlobal._charName; break;
+      case 'TH': name = cGlobal._charName_TH; break;
       default: name = cGlobal._charName; break;
     }
 
