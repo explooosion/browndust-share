@@ -68,21 +68,23 @@ class Mercenary extends Component {
         name = _charName_ENG;
         break;
     }
-    // check the name is empty
-    if (!_.isEmpty(name)) return name;
-    // if empty return korea name, but global api is faild..
+
+    // if global api is faild then return korea name
     if (_.isUndefined(this.props.charactersGlobal)) return _charName;
-    // if empty return korea name
+
     const cGlobal = this.props.charactersGlobal.find(c => c._uniqueCode === _uniqueCode);
+    // if global api doesn't release current character then return korea name
     if (_.isUndefined(cGlobal)) return _charName;
+
     switch (locale) {
       case 'US': name = cGlobal._charName_ENG; break;
       case 'TW': name = cGlobal._charName_TW; break;
       case 'CN': name = sify(cGlobal._charName_TW); break;
       case 'KR': name = cGlobal._charName; break;
       case 'JP': name = cGlobal._charName_JAP; break;
-      default: name = cGlobal._charName_ENG; break;
+      default: name = cGlobal._charName; break;
     }
+
     return _.isEmpty(name) ? cGlobal._charName : name;
   }
 

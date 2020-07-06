@@ -114,7 +114,7 @@ const Main = styled.main`
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
-  const { characters, formation, locale } = useSelector(state => ({
+  const { formation, locale } = useSelector(state => ({
     characters: state.characters,
     // charactersGlobal: state.charactersGlobal,
     formation: state.dataset.formation,
@@ -136,7 +136,7 @@ export default function App() {
 
     setIsLoading(false);
     if (isLoading) fetchData();
-  }, [characters, formation, dispatch, isLoading, setIsLoading]);
+  }, [formation, dispatch, isLoading, setIsLoading]);
 
   if (isEdge || isIE) return <NotSupport />;
 
