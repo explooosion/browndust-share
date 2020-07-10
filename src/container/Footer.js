@@ -8,17 +8,21 @@ import { lighten, rgba } from 'polished';
 
 const Foot = styled.footer`
 
+  position: relative;
   display: flex;
   justify-content: flex-start;
   padding: 0 .75rem;
   flex-flow: column;
 
   .footer-tip {
+    position: absolute;
+    top: -11rem;
+    left: 9rem;
     margin-top: 1rem;
     padding: .75rem;
     color: #fff;
-    background-color: ${p => rgba(p.theme.dark, 0.3)};
-    border: 1px solid #ccc;
+    background-color: #162028;
+    border: 1px solid ${p => p.theme.warning};
     border-radius: .5rem;
     opacity: 0;
     visibility: hidden;

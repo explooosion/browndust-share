@@ -1,12 +1,12 @@
-@import '../scss/index';
+@import "../scss/index";
 
 .list {
   float: right;
-  margin: 0 1rem 0 .2rem;
-  padding: .8rem 0;
+  margin: 0 1rem 0 0.2rem;
+  padding: 0.8rem 0;
   width: 700px;
-  background-color: rgba(0, 0, 0, .3);
-  border-radius: .5rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
 
   @media only screen and (max-width: $screen-xl) {
     float: none;
@@ -18,7 +18,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin-bottom: .8rem;
+  margin-bottom: 0.8rem;
 
   /* border: 1px solid red; */
   .type {
@@ -32,9 +32,9 @@
     /* stylelint-enable */
     background-color: #3e4e56;
     border: 1px solid #bbb;
-    border-radius: .25rem;
+    border-radius: 0.25rem;
     outline: none;
-    box-shadow: 1px 1px 3px 2px rgba(20%, 20%, 40%, .5);
+    box-shadow: 1px 1px 3px 2px rgba(20%, 20%, 40%, 0.5);
     -moz-user-select: none !important;
     -webkit-user-select: none !important;
     -ms-user-select: none !important;
@@ -100,14 +100,14 @@
 
   .search-text {
     margin: 0 auto;
-    padding: .25rem .5rem;
+    padding: 0.25rem 0.5rem;
     width: 625px;
     font-size: 18px;
     font-family: $input-font;
     color: #ddd;
     background-color: $dark;
     border: 1px solid $gray;
-    border-radius: .25rem;
+    border-radius: 0.25rem;
     outline: none;
 
     &::placeholder {
@@ -123,12 +123,22 @@
   height: 65vh;
   scrollbar-color: $gray $light-black;
 
+  &:hover {
+    &::-webkit-scrollbar-thumb {
+      background-color: #3e4e56;
+    }
+
+    &::-webkit-scrollbar {
+      background-color: $light-black;
+    }
+  }
+
   &::-webkit-scrollbar {
     width: 6px;
-    background-color: $light-black;
+    background-color: transparent;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: $gray;
+    background-color: transparent;
   }
 }
