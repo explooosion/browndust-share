@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { FaGithub } from "react-icons/fa";
 import { GoIssueOpened, GoQuestion } from "react-icons/go";
-import { lighten, rgba } from 'polished';
+import { lighten } from 'polished';
 
 const Foot = styled.footer`
 
