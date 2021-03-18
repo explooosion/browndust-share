@@ -7342,10 +7342,10 @@ html-parse-stringify2@2.0.1:
   dependencies:
     void-elements "^2.0.1"
 
-html-parse-stringify@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/html-parse-stringify/-/html-parse-stringify-2.0.0.tgz#d461b53fce26acc3be07e0b98c355c003c4fc8d1"
-  integrity sha512-CW6e38VbOU/lRtPnPu2N0iAcFrM6RrNGO7L32Hrh0tVo698UuJweEdlLuCtPjoUOtoW1ojZdImIv+0SFlWmmPQ==
+html-parse-stringify@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/html-parse-stringify/-/html-parse-stringify-2.0.1.tgz#fe9e670d4d5ec104b1ec13a9dc4bb8e4bbec811f"
+  integrity sha512-eJBedD1fo2+TIMSiLFPOnrhK5dLExLQsmrrfmxCL8bBtSoH9kElg5lr3ekJMDoqLjSSPeT7vVQO07cRu28vp4w==
   dependencies:
     void-elements "3.1.0"
 
@@ -11691,7 +11691,7 @@ pretty-checkbox-react@^3.0.3:
     nanoid "^3.1.10"
     react-merge-refs "^1.1.0"
 
-pretty-checkbox@^3.1.0:
+pretty-checkbox@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/pretty-checkbox/-/pretty-checkbox-3.0.3.tgz#d49c8013a8fc08ee0c2d6ebde453464bfdbc428e"
   integrity sha1-1JyAE6j8CO4MLW695FNGS/28Qo4=

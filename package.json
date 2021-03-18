@@ -37,7 +37,7 @@
     "classnames": "^2.2.6",
     "clipboard": "^2.0.6",
     "csshake": "^1.5.3",
-    "html-parse-stringify": "^2.0.0",
+    "html-parse-stringify": "^2.0.1",
     "html-to-image": "^0.1.1",
     "i18next": "^19.9.0",
     "i18next-browser-languagedetector": "^6.0.1",
