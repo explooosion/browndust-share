@@ -8,22 +8,23 @@ const URL = 'http://ic-common.pmang.cloud/static/bdt_book/thumbnail/';
 
 const API_CHARACTERS_KOREA = 'https://browndust-api.pmang.cloud/v1/book/character/getAll';
 
-const API_CHARACTERS_FILE_NAME = `getAll_${moment().format('YYYY-MM-DD HH:mm:SSS')}.json`;
+const API_CHARACTERS_FILE_NAME = `getAll_${moment().format('YYYYMMDDTHHmmSSS')}.json`;
 
 https.request(API_CHARACTERS_KOREA, response => {
   const data = new Stream();
   console.log('Download api resource...');
   response.on('data', chunk => data.push(chunk));
-  response.on('end', () => fs.writeFile(`./pre-work/${API_CHARACTERS_FILE_NAME}`, data.read(), downloadThumbnails));
+  response.on('end', () => fs.writeFile(`${__dirname}/${API_CHARACTERS_FILE_NAME}`, data.read(), downloadThumbnails));
 }).end();
 
 return;
 
-async function downloadThumbnails() {
+function downloadThumbnails(error) {
+
+  if (error) throw Error('downloadThumbnails', error);
 
   const thumbnails = require(`./${API_CHARACTERS_FILE_NAME}`);
-
-  await Promise.all(
+  Promise.all(
     thumbnails
       .map(d => {
         return {
@@ -32,23 +33,27 @@ async function downloadThumbnails() {
         }
       })
       .forEach(({ url, name }, index, arr) => {
-        http.request(url, response => {
-          const data = new Stream();
-          console.log(`parse:${url}`);
-          response.on('data', chunk => data.push(chunk));
-          response.on('end', () => fs.writeFileSync(`./public/resource/thumbnail/${name}`, data.read()));
-        }).end();
+        try {
+          http.request(url, response => {
+            const data = new Stream();
+            console.log(`parse:${url}`);
+            response.on('data', chunk => data.push(chunk));
+            response.on('end', () => fs.writeFileSync(`./public/resource/thumbnail/${name}`, data.read()));
+          }).end();
+        } catch (error) {
+          console.log('thumbnails', error);
+        }
       })
-  );
-
-  await fs.unlinkSync(`./pre-work/${API_CHARACTERS_FILE_NAME}`);
+  ).then(() => {
+    fs.unlinkSync(`${__dirname}/${API_CHARACTERS_FILE_NAME}`);
+  });
 }
 
 // icons.forEach(({ url, name }, index, arr) => {
 //     http.request(url, response => {
 //         const data = new Stream();
-//         console.log(`parse:${url}`);
+//         console.log(`parse: ${ url }`);
 //         response.on('data', chunk => data.push(chunk));
-//         response.on('end', () => fs.writeFileSync(`./public/resource/icon/${name}`, data.read()));
+//         response.on('end', () => fs.writeFileSync(`./ public / resource / icon / ${ name }`, data.read()));
 //     }).end();
 // });
