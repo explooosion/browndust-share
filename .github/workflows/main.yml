@@ -9,7 +9,10 @@ jobs:
     steps:
     - name: Checkout Master
       uses: actions/checkout@master
-
+    - name: Setup Node Version
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
     - name: Create GithubPages Branches
       uses: JamesIves/github-pages-deploy-action@releases/v2
       env:
