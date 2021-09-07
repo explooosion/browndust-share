@@ -54,18 +54,17 @@ const Head = styled.header`
     -ms-user-select: none;
     user-select: none;
 
-    .arrow-down {
-      display: none;
-      color: #fff;
+    > button {
+      border: none;
+      &::after {
+        border-top-color: #fff;
+        border-bottom-color: #fff;
+      }
     }
 
-    .flag-options {
-      max-height: none;
-    }
-
-    /* stylelint-disable-next-line */
-    .flag-select__options {
-      display: table;
+    > ul {
+      min-width: 160px;
+      min-height: 280px;
     }
   }
 `;
@@ -93,7 +92,7 @@ class Header extends Component {
           </h1>
           <ReactFlagsSelect
             className='flag-select'
-            defaultCountry={locale}
+            selected={locale}
             countries={countries}
             customLabels={customLabels}
             selectedSize={30}

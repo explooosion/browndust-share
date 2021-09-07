@@ -9,7 +9,7 @@ import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { Checkbox } from 'pretty-checkbox-react';
 import { FaStar } from "react-icons/fa";
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import HashLoader from 'react-spinners/HashLoader';
 import { sify } from 'chinese-conv';
 
@@ -133,17 +133,17 @@ class List extends Component {
    */
   renderTypes() {
     return this.state.types.map(({ type, label }) =>
-      (
-        <button
-          key={`type-${label}`}
-          type='button'
-          className={`type  ${type === this.state.type ? 'active' : ''}`}
-          onClick={() => this.setState({ type })}
-        >
-          <i style={{ backgroundImage: getIconUrlByTypeId(type) }}></i>
-          <span>{label}</span>
-        </button>
-      ));
+    (
+      <button
+        key={`type-${label}`}
+        type='button'
+        className={`type  ${type === this.state.type ? 'active' : ''}`}
+        onClick={() => this.setState({ type })}
+      >
+        <i style={{ backgroundImage: getIconUrlByTypeId(type) }}></i>
+        <span>{label}</span>
+      </button>
+    ));
   }
 
   /**
@@ -151,19 +151,19 @@ class List extends Component {
    */
   renderFilterStars() {
     return this.state.stars.map(({ label, checked }, index) =>
-      (
-        <Checkbox
-          key={`start-${index}`}
-          shape='round'
-          color='info'
-          animation='jelly'
-          icon={<i className="mdi mdi-check" />}
-          checked={checked}
-          onChange={() => this.onStarChange(label)}
-        >
-          {label}
-        </Checkbox>
-      ));
+    (
+      <Checkbox
+        key={`start-${index}`}
+        shape='round'
+        color='info'
+        animation='jelly'
+        icon={<i className="mdi mdi-check" />}
+        checked={checked}
+        onChange={() => this.onStarChange(label)}
+      >
+        {label}
+      </Checkbox>
+    ));
   }
 
   /**
