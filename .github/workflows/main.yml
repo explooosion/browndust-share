@@ -20,4 +20,4 @@ jobs:
         BASE_BRANCH: master
         BRANCH: gh-pages
         FOLDER: build
-        BUILD_SCRIPT: cp .env.example .env && yarn && yarn build
+        BUILD_SCRIPT: cp .env.example .env && yarn install --ignore-engines && yarn build
