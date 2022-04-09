@@ -18,8 +18,6 @@ https.request(API_CHARACTERS_KOREA, response => {
   response.on('end', () => fs.writeFile(`${__dirname}/${API_CHARACTERS_FILE_NAME}`, data.read(), downloadThumbnails));
 }).end();
 
-return;
-
 function downloadThumbnails(error) {
 
   if (error) throw Error('downloadThumbnails', error);
@@ -37,12 +35,10 @@ function downloadThumbnails(error) {
             const data = new Stream();
             console.log(`parse:${url}`);
             response.on('data', chunk => data.push(chunk));
-            response.on('end', () => {
-              fs.writeFileSync(`./public/resource/thumbnail/${name}`, data.read());
-            });
+            response.on('end', () => fs.writeFileSync(`./public/resource/thumbnail/${name}`, data.read()));
           }).end();
         } catch (error) {
-          console.log('thumbnails', error);
+          console.log('error thumbnails', error);
         }
       })
   ).then(() => {
