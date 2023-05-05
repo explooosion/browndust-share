@@ -4,7 +4,7 @@
   float: right;
   margin: 0 1rem 0 0.2rem;
   padding: 0.8rem 0;
-  width: 700px;
+  width: 800px;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 0.5rem;
 
@@ -24,8 +24,8 @@
   .type {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 130px;
+    justify-content: center;
+    width: 145px;
     height: 45px;
     /* stylelint-disable */
     font-family: $en-title-font;
@@ -53,6 +53,7 @@
     i {
       display: inline-block;
       margin-top: 3px;
+      margin-right: 0.5rem;
       width: 34px;
       height: 34px;
       background-position: center;
@@ -66,7 +67,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 0 1rem;
+  padding: 0 2rem;
   font-size: 18px;
 
   .filter-title {
@@ -94,14 +95,13 @@
 }
 
 .search {
-  margin: 1rem auto;
+  padding: 1rem 2rem;
   width: 100%;
-  text-align: center;
 
   .search-text {
     margin: 0 auto;
-    padding: 0.25rem 0.5rem;
-    width: 625px;
+    padding: 0.5rem;
+    width: 100%;
     font-size: 18px;
     font-family: $input-font;
     color: #ddd;

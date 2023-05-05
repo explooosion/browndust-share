@@ -36,7 +36,8 @@ class List extends Component {
         { label: '5', checked: true, star: 5 },
         { label: '4', checked: false, star: 4 },
         { label: '3', checked: false, star: 3 },
-        { label: this.t('normal'), checked: false, star: 2 },
+        { label: '2', checked: false, star: 2 },
+        { label: '1', checked: false, star: 1 },
       ],
       nameOptions: [
         { label: this.t('show'), checked: true },
@@ -50,7 +51,6 @@ class List extends Component {
     let nameOptions = [];
 
     stars = state.stars;
-    stars[3].label = t('normal');
 
     nameOptions = state.nameOptions;
     nameOptions[0].label = t('show');
@@ -223,7 +223,7 @@ class List extends Component {
             (this.state.stars[2].checked && Number(_star) === 4) ||
             (this.state.stars[3].checked && Number(_star) === 3) ||
             (this.state.stars[4].checked && Number(_star) === 2) ||
-            (this.state.stars[4].checked && Number(_star) === 1))
+            (this.state.stars[5].checked && Number(_star) === 1))
         );
       })
       .map((c, index) => {
