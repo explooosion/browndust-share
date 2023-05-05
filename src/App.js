@@ -91,7 +91,7 @@ const Main = styled.main`
 
   #container {
     margin: 0 auto;
-    width: 1450px;
+    width: 1550px;
 
     @media only screen and (max-width: ${p => p.theme.screenXl}) {
       width: 100%;
