@@ -29,7 +29,8 @@
     "eject": "react-scripts eject",
     "download": "node pre-work/tool.js",
     "lint": "stylelint src/**/**/**/**/**/**/*.js",
-    "lint:fix": "stylelint src/**/**/**/**/**/**/*.js --fix"
+    "lint:fix": "stylelint src/**/**/**/**/**/**/*.js --fix",
+    "format": "npx prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore"
   },
   "dependencies": {
     "@emotion/react": "^11.4.1",
