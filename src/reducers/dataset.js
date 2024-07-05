@@ -1,20 +1,69 @@
-import _ from 'lodash';
-import Dataset from '../models/Dataset';
-import { generateUrlParams } from '../utils';
+import { createSlice } from "@reduxjs/toolkit";
 
-export default (state = Dataset, action) => {
-    // set up url when formation update
-    const formation = _.get(action.payload, 'formation');
-    if (!_.isUndefined(formation)) {
-       window.location.href = generateUrlParams(formation);
-    }
+import Dataset from "../models/Dataset";
 
-    switch (action.type) {
-        case 'RESET_FORMATION':
-            return { ...state, ...action.payload };
-        case 'UPDATE_FORMATION':
-            return { ...state, ...action.payload };
-        default:
-            return state;
-    }
-}
+const initialState = { ...Dataset };
+
+const keys = {
+    id: "a1",
+    top: "9px",
+    left: "11px",
+    type: 0,
+    backgroundImage: null,
+    uniqueCode: 0,
+    dragOver: false,
+    queue: 0,
+    level: 0,
+};
+
+export const DATA_KEYS = [
+    "type",
+    "backgroundImage",
+    "uniqueCode",
+    "queue",
+    "level",
+];
+
+export const datasetSlice = createSlice({
+    name: "dataset",
+    initialState,
+    reducers: {
+        setRef: (state, action) => {
+            state.ref = action.payload;
+        },
+        setFormation: (state, action) => {
+            state.formation = action.payload;
+        },
+        setLevelDialog: (state, action) => {
+            state.levelDialog = action.payload;
+        },
+        setMercenarySelected: (state, action) => {
+            state.mercenarySelected = action.payload;
+        },
+        setOptions: (state, action) => {
+            state.options = action.payload;
+        },
+        setQueue: (state, action) => {
+            state.queue = action.payload;
+        },
+        setQueueMode: (state, action) => {
+            state.queueMode = action.payload;
+        },
+        reset() {
+            return { ...Dataset };
+        },
+    },
+});
+
+export const {
+    setRef,
+    setFormation,
+    setLevelDialog,
+    setMercenarySelected,
+    setOptions,
+    setQueue,
+    setQueueMode,
+    reset,
+} = datasetSlice.actions;
+
+export default datasetSlice.reducer;

@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    @apply bg-gray-900;
+    @apply text-yellow-400;
+
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+[data-type="1"] {
+    @apply bg-yellow-800;
+}
+
+[data-type="2"] {
+    @apply bg-indigo-800;
+}
+
+[data-type="3"] {
+    @apply bg-violet-800;
+}
+
+[data-type="4"] {
+    @apply bg-lime-800;
+}

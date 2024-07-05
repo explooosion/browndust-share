@@ -2,16 +2,7 @@ import { get } from '../utils/Cookies';
 
 export default {
   locale: get('locale') === undefined ? 'US' : get('locale'),
-  countries: [
-    'US',
-    'ES',
-    'DE',
-    'TW',
-    'CN',
-    'JP',
-    'KR',
-    'TH',
-  ],
+  countries: ['US', 'ES', 'DE', 'TW', 'CN', 'JP', 'KR', 'TH'],
   // language rule: https://github.com/ekwonye-richard/react-flags-select/blob/master/src/countries.js
   customLabels: {
     US: 'English',
