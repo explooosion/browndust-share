@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import ReactFlagsSelect from "react-flags-select";
 
@@ -8,8 +8,10 @@ import { setLocale } from "../reducers/settings";
 const Header = memo(function Header() {
     const { t } = useTranslation();
     const dispatch = useDispatch();
+
     const { locale, countries, customLabels } = useSelector(
         (state) => state.settings,
+        shallowEqual,
     );
 
     const onSelectFlag = (countryCode) => {

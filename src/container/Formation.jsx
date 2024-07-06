@@ -2,10 +2,10 @@ import { useEffect, memo } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import pick from "lodash/pick";
 import { useContextMenu } from "react-contexify";
-import "react-contexify/dist/ReactContexify.css";
 
 import Dialog from "../components/Dialog";
-import ContextMenu from "../components/ContextMenu";
+import RightMenu from "../components/RightMenu";
+
 import {
     getThumbnailUrlByImageName,
     getBackgroundColorStyleByType,
@@ -420,7 +420,7 @@ const Formation = memo(function Formation() {
             }`}
         >
             {renderFormation(type, queueOption)}
-            <ContextMenu />
+            <RightMenu />
             {levelDialog.show ? <Dialog {...levelDialog} mode="level" /> : null}
         </div>
     );
