@@ -1,5 +1,9 @@
 {
     "title": "棕色尘埃 × 阵型分享",
+    "mythic": "神话",
+    "exalted": "超越",
+    "legend": "传说",
+    "other": "其他",
     "attacker": "攻击",
     "defender": "防御",
     "magician": "魔法",
@@ -9,7 +13,7 @@
     "normal": "一般",
     "show": "显示",
     "bold": "粗体",
-    "search":"请输入关键字",
+    "search": "请输入关键字",
     "show-content": "显示内容",
     "mercenary-type": "佣兵类型",
     "mercenary-queue": "出手顺序",

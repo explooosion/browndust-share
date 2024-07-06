@@ -1,10 +1,22 @@
-import _ from 'lodash';
+import { createSlice } from "@reduxjs/toolkit";
+import isArray from "lodash/isArray";
 
-export default (state = [], action) => {
-    switch (action.type) {
-        case 'SET_CHARACTERS_GLOBAL':
-            return _.isArray(action.payload) ? action.payload : state;
-        default:
-            return state;
-    }
-}
+const initialState = {
+    list: [],
+};
+
+const charactersGlobalSlice = createSlice({
+    name: "charactersGlobal",
+    initialState,
+    reducers: {
+        setCharactersGlobal(state, action) {
+            if (isArray(action.payload)) {
+                state.list = action.payload;
+            }
+        },
+    },
+});
+
+export const { setCharactersGlobal } = charactersGlobalSlice.actions;
+
+export default charactersGlobalSlice.reducer;

@@ -1,10 +1,22 @@
-import _ from 'lodash';
+import { createSlice } from "@reduxjs/toolkit";
+import isArray from "lodash/isArray";
 
-export default (state = [], action) => {
-    switch (action.type) {
-        case 'SET_CHARACTERS':
-            return _.isArray(action.payload) ? action.payload : state;
-        default:
-            return state;
-    }
-}
+const initialState = {
+    list: [],
+};
+
+const charactersSlice = createSlice({
+    name: "characters",
+    initialState,
+    reducers: {
+        setCharacters(state, action) {
+            if (isArray(action.payload)) {
+                state.list = action.payload;
+            }
+        },
+    },
+});
+
+export const { setCharacters } = charactersSlice.actions;
+
+export default charactersSlice.reducer;

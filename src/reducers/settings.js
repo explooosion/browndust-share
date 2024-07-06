@@ -1,14 +1,22 @@
-import { set } from '../utils/Cookies';
-import Settings from '../models/Settings';
-import i18n from '../i18n';
+import { createSlice } from "@reduxjs/toolkit";
 
-export default (state = Settings, action) => {
-  switch (action.type) {
-    case 'SET_LOCALE':
-      i18n.changeLanguage(action.payload.locale);
-      set('locale', action.payload.locale);
-      return { ...state, ...action.payload };
-    default:
-      return state;
-  }
-}
+import { get, set } from "../utils/Cookies";
+import i18n from "../i18n";
+
+const settingsSlice = createSlice({
+    name: "settings",
+    initialState: {
+        locale: get("locale") === undefined ? "US" : get("locale"),
+    },
+    reducers: {
+        setLocale(state, action) {
+            i18n.changeLanguage(action.payload);
+            set("locale", action.payload);
+            state.locale = action.payload;
+        },
+    },
+});
+
+export const { setLocale } = settingsSlice.actions;
+
+export default settingsSlice.reducer;

@@ -1,6 +1,25 @@
 {
-  "arrowParens": "avoid",
-  "printWidth": 100,
-  "singleQuote": true,
-  "semi": true
+  "arrowParens": "always",
+  "bracketSpacing": true,
+  "endOfLine": "lf",
+  "htmlWhitespaceSensitivity": "css",
+  "insertPragma": false,
+  "jsxSingleQuote": false,
+  "printWidth": 80,
+  "proseWrap": "preserve",
+  "quoteProps": "as-needed",
+  "requirePragma": false,
+  "semi": true,
+  "tabWidth": 4,
+  "trailingComma": "all",
+  "useTabs": false,
+  "vueIndentScriptAndStyle": false,
+  "overrides": [
+      {
+          "files": ["*.yaml"],
+          "options": {
+              "tabWidth": 2
+          }
+      }
+  ]
 }

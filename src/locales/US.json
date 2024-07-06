@@ -1,5 +1,9 @@
 {
     "title": "formation × share",
+    "mythic": "Mythic",
+    "exalted": "Exalted",
+    "legend": "Legend",
+    "other": "Other",
     "attacker": "Warrior",
     "defender": "Defender",
     "magician": "Magician",

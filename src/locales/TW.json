@@ -1,5 +1,9 @@
 {
     "title": "棕色塵埃 × 陣型分享",
+    "mythic": "神話",
+    "exalted": "超越",
+    "legend": "傳說",
+    "other": "其他",
     "attacker": "攻擊",
     "defender": "防禦",
     "magician": "魔法",
