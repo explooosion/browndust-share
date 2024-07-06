@@ -384,7 +384,14 @@ const Formation = memo(function Formation() {
                             ></div>
                         ) : null}
                         {queueShow && queue > 0 ? (
-                            <div className="absolute top-0 left-0 flex items-center justify-center w-9 h-9 text-yellow-400 bg-black bg-opacity-50">
+                            <div
+                                className="absolute top-0 left-0 flex items-center justify-center w-9 h-9 text-yellow-400 bg-black bg-opacity-50"
+                                style={{
+                                    ...(reverse
+                                        ? { transform: `rotateY(180deg)` }
+                                        : {}),
+                                }}
+                            >
                                 {queue}
                             </div>
                         ) : null}

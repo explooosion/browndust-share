@@ -113,12 +113,12 @@ export const resizeImageURL = (datas, w = null, h = w / 2) => {
 };
 
 /**
- * Generate URL parameters based on the formation.
- * @param {Array} formation - The formation array.
- * @returns {string|boolean} The generated URL parameters or false if the formation is empty.
+ * Generate URL parameters based on the _formation.
+ * @param {Array} _formation - The _formation array.
+ * @returns {string|boolean} The generated URL parameters or false if the _formation is empty.
  */
-export const generateUrlParams = (formation = []) => {
-    if (formation.length === 0) return false;
+export const generateUrlParams = (_formation = []) => {
+    if (_formation.length === 0) return false;
 
     const url =
         import.meta.env.MODE === "development"
@@ -129,7 +129,7 @@ export const generateUrlParams = (formation = []) => {
     // each group connect by . => o{id}o{uniqueCode}o{queue}.o{level}...
     return (
         url +
-        formation
+        _formation
             .filter((f) => f.uniqueCode !== 0) // query exist id
             .map(
                 (f) =>
@@ -142,12 +142,14 @@ export const generateUrlParams = (formation = []) => {
 };
 
 /**
- * Initialize the formation based on the URL parameters.
- * @param {Array} formation - The formation array.
+ * Initialize the _formation based on the URL parameters.
+ * @param {Array} _formation - The _formation array.
  * @param {Array} charactors - The charactors array.
- * @returns {Array} The updated formation array.
+ * @returns {Array} The updated _formation array.
  */
-export const initialFormation = (formation = [], charactors = []) => {
+export const initialFormation = (_formation = [], _charactors = []) => {
+    const formation = [..._formation];
+
     window.location.hash
         .replace("#/", "")
         .split(".")
@@ -163,16 +165,16 @@ export const initialFormation = (formation = [], charactors = []) => {
 
             // check position id
             const id = String(f[0]);
-            const fm = formation.find(({ id }) => id === String(f[0]));
+            const fm = _formation.find(({ id }) => id === String(f[0]));
             if (isUndefined(fm)) {
                 console.warn("Invalid url param: id", id);
                 return f;
             }
 
             // check charactor by uniqueCode
-            const uniqueCode = String(f[1]);
-            const charactor = charactors.find(
-                ({ _uniqueCode }) => String(_uniqueCode) === uniqueCode,
+            const uniqueCode = Number(f[1]);
+            const charactor = _charactors.find(
+                ({ _uniqueCode }) => _uniqueCode === uniqueCode,
             );
             if (isUndefined(charactor)) {
                 console.warn("Invalid url params: uniqueCode", uniqueCode);
@@ -183,21 +185,18 @@ export const initialFormation = (formation = [], charactors = []) => {
             const backgroundImage = `url(${getThumbnailUrlByImageName(
                 charactor._uiIconImageName,
             )})`;
-            const queue =
-                Number(f[2]) > 0 && Number(f[2]) <= 12 ? Number(f[2]) : 0;
+            const queue = Number(f[2]) > 0 ? Number(f[2]) : 0;
 
-            let level =
-                Number(f[3]) > 15 || Number(f[3]) < 1 ? 0 : Number(f[3]);
+            let level = Number(f[3]) > 0 ? Number(f[3]) : 0;
             level = isNaN(level) ? 0 : level;
             // plan to update object by id
             return { id, uniqueCode, type, backgroundImage, queue, level };
         })
         .forEach((u) => {
-            const index = formation.findIndex((f) => f.id === u.id);
+            const index = _formation.findIndex((f) => f.id === u.id);
             if (index === -1) return;
 
-            formation[index] = { ...formation[index], ...u };
-            console.info("Received data:", u.id, u.uniqueCode);
+            formation[index] = { ..._formation[index], ...u };
         });
     return formation;
 };

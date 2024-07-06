@@ -38,6 +38,7 @@ export const datasetSlice = createSlice({
             state.queueMode = action.payload;
         },
         reset() {
+            window.history.replaceState({}, "", location.origin);
             return { ...Dataset };
         },
     },
