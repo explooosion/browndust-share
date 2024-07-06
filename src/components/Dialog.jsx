@@ -2,7 +2,7 @@ import { useState, memo } from "react";
 import PropTypes from "prop-types";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import _ from "lodash";
+import isUndefined from "lodash/isUndefined";
 
 import { setFormation, setLevelDialog } from "../reducers/dataset";
 
@@ -26,7 +26,7 @@ const Dialog = memo(function Dialog({ id, left, top, mode }) {
     // }, []);
 
     const onLevelClick = (id) => {
-        if (_.isUndefined(id) || level > 15 || level < 0) return;
+        if (isUndefined(id) || level > 15 || level < 0) return;
 
         const payload = {
             levelDialog,

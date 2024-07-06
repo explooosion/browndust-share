@@ -1,20 +1,20 @@
-import { createSlice } from '@reduxjs/toolkit';
-import _ from 'lodash';
+import { createSlice } from "@reduxjs/toolkit";
+import isArray from "lodash/isArray";
 
 const initialState = {
-  list: [],
+    list: [],
 };
 
 const charactersSlice = createSlice({
-  name: 'characters',
-  initialState,
-  reducers: {
-    setCharacters(state, action) {
-      if (_.isArray(action.payload)) {
-        state.list = action.payload;
-      }
+    name: "characters",
+    initialState,
+    reducers: {
+        setCharacters(state, action) {
+            if (isArray(action.payload)) {
+                state.list = action.payload;
+            }
+        },
     },
-  },
 });
 
 export const { setCharacters } = charactersSlice.actions;

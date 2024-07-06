@@ -9,7 +9,7 @@ const Search = memo(function Search(props) {
 
     return (
         <input
-            className="w-full p-2 text-lg bg-gray-800 border border-gray-600 rounded"
+            className="w-full p-2 text-md bg-gray-800 border border-gray-600 rounded"
             type="text"
             placeholder={t("search")}
             value={search}

@@ -21,7 +21,7 @@ const Stars = memo(function Star(props) {
 
     const renderFilterStars = () =>
         stars.map(({ label, checked }, index) => (
-            <div className="text-xl" key={`star-${index}`}>
+            <div key={`star-${index}`}>
                 <Checkbox
                     shape="round"
                     color="info"
@@ -36,7 +36,7 @@ const Stars = memo(function Star(props) {
         ));
 
     return (
-        <div className="flex items-center">
+        <div className="flex items-center text-md">
             <div className="flex justify-center items-center space-x-1">
                 <FaStar />
                 <span>{t("star")}：</span>

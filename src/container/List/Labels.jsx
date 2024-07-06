@@ -18,7 +18,7 @@ const Labels = memo(function Labels({ nameOptions, setNameOptions }) {
 
     const renderFilterNameOptions = () =>
         nameOptions.map(({ label, checked }, index) => (
-            <div className="text-xl" key={`name-${index}`}>
+            <div key={`name-${index}`}>
                 <Checkbox
                     shape="round"
                     color="info"
@@ -33,7 +33,7 @@ const Labels = memo(function Labels({ nameOptions, setNameOptions }) {
         ));
 
     return (
-        <div className="flex items-center">
+        <div className="flex items-center text-sm">
             <span>{t("name")}：</span>
             {renderFilterNameOptions()}
         </div>

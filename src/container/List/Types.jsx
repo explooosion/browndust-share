@@ -8,14 +8,14 @@ const Types = memo(function Types({ currentType, setCurrentType }) {
     const { t } = useTranslation();
 
     const types = [
-        { type: null, filterType: 0, growType: 4, label: "神話" },
-        { type: null, filterType: 1, growType: 3, label: "超越" },
-        { type: null, filterType: 2, growType: 2, label: "傳說" },
+        { type: null, filterType: 0, growType: 4, label: t("mythic") },
+        { type: null, filterType: 1, growType: 3, label: t("exalted") },
+        { type: null, filterType: 2, growType: 2, label: t("legend") },
         { type: 1, filterType: 3, growType: 1, label: t("attacker") },
         { type: 2, filterType: 4, growType: 1, label: t("defender") },
         { type: 3, filterType: 5, growType: 1, label: t("magician") },
         { type: 4, filterType: 6, growType: 1, label: t("supporter") },
-        { type: null, filterType: 7, growType: 1, label: "合作" },
+        { type: null, filterType: 7, growType: 1, label: t("other") },
     ];
 
     return (

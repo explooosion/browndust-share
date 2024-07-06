@@ -1,4 +1,4 @@
-import _ from "lodash";
+import isUndefined from "lodash/isUndefined";
 import colors from "tailwindcss/colors";
 
 import { thumbnailUrl, iconlUrl } from "../config/api";
@@ -164,7 +164,7 @@ export const initialFormation = (formation = [], charactors = []) => {
             // check position id
             const id = String(f[0]);
             const fm = formation.find(({ id }) => id === String(f[0]));
-            if (_.isUndefined(fm)) {
+            if (isUndefined(fm)) {
                 console.warn("Invalid url param: id", id);
                 return f;
             }
@@ -174,7 +174,7 @@ export const initialFormation = (formation = [], charactors = []) => {
             const charactor = charactors.find(
                 ({ _uniqueCode }) => String(_uniqueCode) === uniqueCode,
             );
-            if (_.isUndefined(charactor)) {
+            if (isUndefined(charactor)) {
                 console.warn("Invalid url params: uniqueCode", uniqueCode);
                 return f;
             }
@@ -188,7 +188,7 @@ export const initialFormation = (formation = [], charactors = []) => {
 
             let level =
                 Number(f[3]) > 15 || Number(f[3]) < 1 ? 0 : Number(f[3]);
-            level = _.isNaN(level) ? 0 : level;
+            level = isNaN(level) ? 0 : level;
             // plan to update object by id
             return { id, uniqueCode, type, backgroundImage, queue, level };
         })

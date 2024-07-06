@@ -1,7 +1,9 @@
 import { memo, useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import _ from "lodash";
+import isUndefined from "lodash/isUndefined";
+import isNull from "lodash/isNull";
+import isEmpty from "lodash/isEmpty";
 import { sify } from "chinese-conv";
 
 import { getThumbnailUrlByImageName } from "../utils";
@@ -22,7 +24,7 @@ const Mercenary = memo(function Mercenary({ params, nameOptions }) {
     const { _uiIconImageName, _uniqueCode } = params;
     const nops = nameOptions.map((n) => n.checked);
     const URL = getThumbnailUrlByImageName(_uiIconImageName);
-    const opacity = _.isUndefined(
+    const opacity = isUndefined(
         formation.find((f) => f.uniqueCode === _uniqueCode),
     )
         ? 1
@@ -48,7 +50,7 @@ const Mercenary = memo(function Mercenary({ params, nameOptions }) {
 
     const getCharNameByLocale = useCallback(
         (locale, params) => {
-            if (_.isNull(params)) return "";
+            if (isNull(params)) return "";
 
             /* eslint-disable */
             const {
@@ -84,7 +86,7 @@ const Mercenary = memo(function Mercenary({ params, nameOptions }) {
                 name = nameMap[locale] || cGlobal._charName;
             }
 
-            return _.isEmpty(name) ? cGlobal?._charName : name;
+            return isEmpty(name) ? cGlobal?._charName : name;
         },
         [charactersGlobal],
     );

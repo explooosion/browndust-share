@@ -42,7 +42,7 @@ const App = memo(function App() {
             <main className="p-4">
                 <div className="mx-auto max-w-[1550px]">
                     <Header />
-                    <section className="flex justify-between py-5">
+                    <section className="flex-col md:flex-row flex items-start justify-around py-5 px-2 md:px-0">
                         <section className="space-y-4">
                             <Formation />
                             <Toolbar />
