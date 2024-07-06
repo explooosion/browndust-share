@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import _ from "lodash";
@@ -18,6 +18,7 @@ const Mercenary = memo(function Mercenary({ params, nameOptions }) {
     const charactersGlobal = useSelector(
         (state) => state.charactersGlobal.list,
     );
+
     const { _uiIconImageName, _uniqueCode } = params;
     const nops = nameOptions.map((n) => n.checked);
     const URL = getThumbnailUrlByImageName(_uiIconImageName);
@@ -27,106 +28,71 @@ const Mercenary = memo(function Mercenary({ params, nameOptions }) {
         ? 1
         : 0.2;
 
-    const onDragStart = (event, suCode, sid) => {
+    const onDragStart = useCallback((event, suCode, sid) => {
         event.dataTransfer.setData("suCode", suCode);
         event.dataTransfer.setData("sid", sid);
-    };
+    }, []);
 
-    const onDoubleClick = (_uniqueCode) => {
+    const onDoubleClick = useCallback((_uniqueCode) => {
         window.open(bookDetailUrl + _uniqueCode, "_blank");
-    };
+    }, []);
 
-    const onClickSetCode = (_uniqueCode) => {
-        const uniqueCode =
-            mercenarySelected === _uniqueCode ? null : _uniqueCode;
-        dispatch(setMercenarySelected(uniqueCode));
-    };
+    const onClickSetCode = useCallback(
+        (_uniqueCode) => {
+            const uniqueCode =
+                mercenarySelected === _uniqueCode ? null : _uniqueCode;
+            dispatch(setMercenarySelected(uniqueCode));
+        },
+        [dispatch, mercenarySelected],
+    );
 
-    const getCharNameByLocale = (locale = "US", params = null) => {
-        if (_.isNull(params)) return;
+    const getCharNameByLocale = useCallback(
+        (locale, params) => {
+            if (_.isNull(params)) return "";
 
-        const {
-            _uniqueCode,
-            _charName,
-            _charName_ENG,
-            _charName_TW,
-            _charName_JAP,
-            _charName_SPA,
-            _charName_GER,
-            _charName_TH,
-        } = params;
+            /* eslint-disable */
+            const {
+                _uniqueCode,
+                _charName,
+                _charName_ENG,
+                _charName_TW,
+                _charName_JAP,
+                _charName_SPA,
+                _charName_GER,
+                _charName_TH,
+            } = params;
+            /* eslint-enable */
 
-        let name = "";
-        switch (locale) {
-            case "US":
-                name = _charName_ENG;
-                break;
-            case "ES":
-                name = _charName_SPA;
-                break;
-            case "DE":
-                name = _charName_GER;
-                break;
-            case "TW":
-                name = _charName_TW;
-                break;
-            case "CN":
-                name = sify(_charName_TW);
-                break;
-            case "JP":
-                name = _charName_JAP;
-                break;
-            case "KR":
-                name = _charName;
-                break;
-            case "TH":
-                name = _charName_TH;
-                break;
-            default:
-                console.warn("can not find character by locale.");
-                name = _charName_ENG;
-                break;
-        }
+            const nameMap = {
+                US: _charName_ENG,
+                ES: _charName_SPA,
+                DE: _charName_GER,
+                TW: _charName_TW,
+                CN: sify(_charName_TW),
+                JP: _charName_JAP,
+                KR: _charName,
+                TH: _charName_TH,
+            };
 
-        if (_.isUndefined(charactersGlobal)) return _charName;
+            let name = nameMap[locale] || _charName_ENG;
 
-        const cGlobal = charactersGlobal.find(
-            (c) => c._uniqueCode === _uniqueCode,
-        );
-        if (_.isUndefined(cGlobal)) return _charName;
+            const cGlobal = charactersGlobal.find(
+                (c) => c._uniqueCode === _uniqueCode,
+            );
 
-        switch (locale) {
-            case "US":
-                name = cGlobal._charName_ENG;
-                break;
-            case "ES":
-                name = cGlobal._charName_SPA;
-                break;
-            case "DE":
-                name = cGlobal._charName_GER;
-                break;
-            case "TW":
-                name = cGlobal._charName_TW;
-                break;
-            case "CN":
-                name = sify(cGlobal._charName_TW);
-                break;
-            case "JP":
-                name = cGlobal._charName_JAP;
-                break;
-            case "KR":
-                name = cGlobal._charName;
-                break;
-            case "TH":
-                name = cGlobal._charName_TH;
-                break;
-            default:
-                name = cGlobal._charName;
-                break;
-        }
+            if (cGlobal) {
+                name = nameMap[locale] || cGlobal._charName;
+            }
 
-        return _.isEmpty(name) ? cGlobal._charName : name;
-    };
+            return _.isEmpty(name) ? cGlobal?._charName : name;
+        },
+        [charactersGlobal],
+    );
+
+    const charName = useMemo(
+        () => getCharNameByLocale(settings.locale, params),
+        [settings.locale, params, getCharNameByLocale],
+    );
 
     return (
         <div
@@ -139,7 +105,7 @@ const Mercenary = memo(function Mercenary({ params, nameOptions }) {
             } before:content-[attr(data-tooltip)]`}
             draggable
             style={{ backgroundImage: `url(${URL})`, opacity }}
-            data-tooltip={getCharNameByLocale(settings.locale, params)}
+            data-tooltip={charName}
             onClick={() => onClickSetCode(_uniqueCode)}
             onDragStart={(e) => onDragStart(e, _uniqueCode, 0)}
             onDoubleClick={() => onDoubleClick(_uniqueCode)}
@@ -148,8 +114,16 @@ const Mercenary = memo(function Mercenary({ params, nameOptions }) {
 });
 
 Mercenary.propTypes = {
-    nameOptions: PropTypes.array.isRequired,
-    params: PropTypes.object.isRequired,
+    nameOptions: PropTypes.arrayOf(
+        PropTypes.shape({
+            label: PropTypes.string.isRequired,
+            checked: PropTypes.bool.isRequired,
+        }),
+    ).isRequired,
+    params: PropTypes.shape({
+        _uiIconImageName: PropTypes.string.isRequired,
+        _uniqueCode: PropTypes.number.isRequired,
+    }).isRequired,
 };
 
 export default Mercenary;
