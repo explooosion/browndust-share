@@ -5,7 +5,6 @@ import _ from "lodash";
 
 import { get } from "./utils/Cookies";
 
-// 导入所有翻译文件
 import US from "./locales/US.json";
 import ES from "./locales/ES.json";
 import DE from "./locales/DE.json";

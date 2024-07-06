@@ -6,6 +6,9 @@ import "./i18n";
 import store from "./store";
 import App from "./App";
 
+import "@djthoms/pretty-checkbox";
+import "react-contexify/dist/ReactContexify.css";
+
 const root = document.getElementById("root");
 
 ReactDOM.createRoot(root).render(

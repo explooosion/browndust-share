@@ -14,7 +14,6 @@ const store = configureStore({
         settings: settingsReducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
-    devTools: true, // import.meta.MODE !== 'production',
 });
 
 export default store;
