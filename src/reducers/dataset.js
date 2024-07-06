@@ -4,18 +4,6 @@ import Dataset from "../models/Dataset";
 
 const initialState = { ...Dataset };
 
-const keys = {
-    id: "a1",
-    top: "9px",
-    left: "11px",
-    type: 0,
-    backgroundImage: null,
-    uniqueCode: 0,
-    dragOver: false,
-    queue: 0,
-    level: 0,
-};
-
 export const DATA_KEYS = [
     "type",
     "backgroundImage",

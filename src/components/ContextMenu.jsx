@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import "react-contexify/dist/ReactContexify.css";
 import { FaBookMedical, FaTrash, FaFortAwesomeAlt } from "react-icons/fa";
@@ -6,23 +7,16 @@ import { Menu, Item, Separator } from "react-contexify";
 import { setFormation, setLevelDialog } from "../reducers/dataset";
 import { bookDetailUrl } from "../config/api";
 
-function RightMenu() {
+const RightMenu = memo(function RightMenu() {
     const dispatch = useDispatch();
 
-    const formation = useSelector(
-        (state) => state.dataset.formation,
-        shallowEqual,
-    );
-
-    const levelDialog = useSelector(
-        (state) => state.dataset.levelDialog,
-        shallowEqual,
-    );
-
-    const characters = useSelector(
-        (state) => state.characters.list,
-        shallowEqual,
-    );
+    const { formation, levelDialog, characters } = useSelector((state) => {
+        return {
+            formation: state.dataset.formation,
+            levelDialog: state.dataset.levelDialog,
+            characters: state.characters.list,
+        };
+    }, shallowEqual);
 
     const CTMENU_EVENTS = {
         "ctmenu-item-link": ({ props }) => {
@@ -34,21 +28,21 @@ function RightMenu() {
             );
             window.open(bookDetailUrl + _uniqueCode, "_blank");
         },
-        "ctmenu-item-addLevel": ({ event }) => {
+        "ctmenu-item-addLevel": ({ event, props }) => {
             const dialog = {
                 ...levelDialog,
                 show: true,
-                left: event.clientX,
-                top: event.clientY,
-                id: event.target.id,
+                left: event.clientX - 50,
+                top: event.clientY - 50,
+                id: props.uniqueCode,
             };
             dispatch(setLevelDialog(dialog));
         },
-        "ctmenu-item-clearAll": ({ event }) => {
-            const formation = formation.map((f) =>
-                f.id === event.target.id ? { ...f, level: 0 } : f,
+        "ctmenu-item-clearAll": ({ props }) => {
+            const payload = formation.map((f) =>
+                f.uniqueCode === props.uniqueCode ? { ...f, level: 0 } : f,
             );
-            dispatch(setFormation(formation));
+            dispatch(setFormation(payload));
         },
     };
 
@@ -89,6 +83,6 @@ function RightMenu() {
             </Item>
         </Menu>
     );
-}
+});
 
 export default RightMenu;

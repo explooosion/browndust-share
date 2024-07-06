@@ -16,18 +16,6 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-[data-type="1"] {
-    @apply bg-yellow-800;
-}
-
-[data-type="2"] {
-    @apply bg-indigo-800;
-}
-
-[data-type="3"] {
-    @apply bg-violet-800;
-}
-
-[data-type="4"] {
-    @apply bg-lime-800;
+#flag-select button {
+    @apply text-gray-200;
 }

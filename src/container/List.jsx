@@ -11,7 +11,7 @@ import isNull from "lodash/isNull";
 import isNumber from "lodash/isNumber";
 
 import Mercenary from "../components/Mercenary";
-import { getIconUrlByTypeId } from "../utils";
+import { getBackgroundImageStyleByFilterType } from "../utils";
 import { setFormation } from "../reducers/dataset";
 
 const List = memo(function List() {
@@ -176,7 +176,7 @@ const List = memo(function List() {
                             <i
                                 className="w-7 h-7 bg-center bg-no-repeat bg-cover"
                                 style={{
-                                    backgroundImage: getIconUrlByTypeId(
+                                    ...getBackgroundImageStyleByFilterType(
                                         type.filterType,
                                     ),
                                 }}

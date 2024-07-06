@@ -1,32 +1,78 @@
 import _ from "lodash";
+import colors from "tailwindcss/colors";
+
 import { thumbnailUrl, iconlUrl } from "../config/api";
 
-/**
- * Get the icon URL based on the character type ID.
- * @param {number} type - The character type ID.
- * @returns {string} The icon URL.
- */
-export const getIconUrlByTypeId = (type) => {
+export const getBackgroundColorStyleByType = (type) => {
+    const style = { backgroundColor: "" };
     switch (type) {
-        case 0:
-            return "";
         case 1:
-            return "";
+            style.backgroundColor = colors.yellow[800];
+            break;
         case 2:
-            return `url(${iconlUrl}/icon_charType__legend.png)`;
+            style.backgroundColor = colors.indigo[800];
+            break;
         case 3:
-            return `url(${iconlUrl}/icon_charType__warrior.png)`;
+            style.backgroundColor = colors.violet[800];
+            break;
         case 4:
-            return `url(${iconlUrl}/icon_charType__defender.png)`;
-        case 5:
-            return `url(${iconlUrl}/icon_charType__magician.png)`;
-        case 6:
-            return `url(${iconlUrl}/icon_charType__supporter.png)`;
-        case 7:
-            return "";
+            style.backgroundColor = colors.lime[800];
+            break;
         default:
-            return "";
+            break;
     }
+    return style;
+};
+
+export const getBackgroundImageStyleByType = (type) => {
+    const style = { backgroundImage: "" };
+    switch (type) {
+        case 1:
+            style.backgroundImage = `url(${iconlUrl}/icon_charType__warrior.png)`;
+            break;
+        case 2:
+            style.backgroundImage = `url(${iconlUrl}/icon_charType__defender.png)`;
+            break;
+        case 3:
+            style.backgroundImage = `url(${iconlUrl}/icon_charType__magician.png)`;
+            break;
+        case 4:
+            style.backgroundImage = `url(${iconlUrl}/icon_charType__supporter.png)`;
+            break;
+        default:
+            break;
+    }
+    return style;
+};
+
+export const getBackgroundImageStyleByFilterType = (filterType) => {
+    const style = { backgroundImage: "" };
+    switch (filterType) {
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            style.backgroundImage = `url(${iconlUrl}/icon_charType__legend.png)`;
+            break;
+        case 3:
+            style.backgroundImage = `url(${iconlUrl}/icon_charType__warrior.png)`;
+            break;
+        case 4:
+            style.backgroundImage = `url(${iconlUrl}/icon_charType__defender.png)`;
+            break;
+        case 5:
+            style.backgroundImage = `url(${iconlUrl}/icon_charType__magician.png)`;
+            break;
+        case 6:
+            style.backgroundImage = `url(${iconlUrl}/icon_charType__supporter.png)`;
+            break;
+        case 7:
+            break;
+        default:
+            break;
+    }
+    return style;
 };
 
 /**
@@ -60,7 +106,7 @@ export const resizeImageURL = (datas, w = null, h = w / 2) => {
             resolve(dataURI);
         };
         img.src = datas;
-        // img.crossOrigin = 'anonymous';
+        // img.crossOrigin = "anonymous";
         img.crossOrigin = "use-credentials";
         // document.body.appendChild(img);
     });

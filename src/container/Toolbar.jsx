@@ -1,5 +1,5 @@
 import { useState, useEffect, memo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { MdRefresh, MdGetApp } from "react-icons/md";
 import { FaLink } from "react-icons/fa";
@@ -24,8 +24,15 @@ import { resizeImageURL } from "../utils";
 const Toolbar = memo(function Toolbar() {
     const dispatch = useDispatch();
     const { t } = useTranslation();
-    const dataset = useSelector((state) => state.dataset);
-    const { formation, options, queueMode } = dataset;
+
+    const { formation, options, queueMode, ref } = useSelector((state) => {
+        return {
+            formation: state.dataset.formation,
+            options: state.dataset.options,
+            queueMode: state.dataset.queueMode,
+            ref: state.dataset.ref,
+        };
+    }, shallowEqual);
 
     const [downloadSizeSelected, setDownloadSizeSelected] = useState(1);
     const [downloadSizeCustom, setDownloadSizeCustom] = useState(0);
@@ -56,7 +63,7 @@ const Toolbar = memo(function Toolbar() {
         }
     };
 
-    const onDownloadClick = () => {
+    const onDownloadClick = async () => {
         const size =
             downloadSizeSelected !== 4
                 ? downloadSize.find((d) => d.value === downloadSizeSelected)
@@ -64,16 +71,22 @@ const Toolbar = memo(function Toolbar() {
                 : Number(downloadSizeCustom);
 
         if (Number(size) <= 0) return;
-        console.log("onDownloadClick", size);
-        // toPng(dataset.ref()).then(async dataUrl => {
-        //   const newDataUri = await resizeImageURL(dataUrl, size);
-        //   const a = document.createElement('a');
-        //   a.href = newDataUri;
-        //   a.download = `output-${moment().format('YYYYMMDDTHmmss')}.png`;
-        //   document.body.appendChild(a);
-        //   a.click();
-        //   document.body.removeChild(a);
-        // });
+
+        try {
+            const dataUrl = await toPng(document.getElementById(ref), {
+                skipFonts: true,
+            });
+
+            const newDataUri = await resizeImageURL(dataUrl, size);
+            const a = document.createElement("a");
+            a.href = newDataUri;
+            a.download = `output-${moment().format("YYYYMMDDTHmmss")}.png`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        } catch (e) {
+            console.error("Download error:", e);
+        }
     };
 
     const onResetClick = () => {
@@ -182,7 +195,7 @@ const Toolbar = memo(function Toolbar() {
             <div className="flex items-center space-x-4">
                 <button
                     type="button"
-                    className="flex items-center justify-around w-32 h-10 bg-gray-800 border border-gray-600 text-white rounded shadow"
+                    className="flex items-center justify-around w-36 h-10 bg-gray-800 hover:bg-gray-700 active:bg-gray-600 border border-gray-600 text-white rounded shadow"
                     onClick={onResetClick}
                 >
                     <MdRefresh size="2em" color="#fff" />
@@ -190,8 +203,8 @@ const Toolbar = memo(function Toolbar() {
                 </button>
                 <button
                     type="button"
-                    className={`flex items-center justify-around w-32 h-10 border text-white rounded shadow ${
-                        queueMode ? "bg-red-400" : "bg-red-600"
+                    className={`flex items-center justify-around w-36 h-10 active:bg-red-600 border border-red-600 text-white rounded shadow ${
+                        queueMode ? "bg-red-400" : "bg-red-700"
                     }`}
                     onClick={onQueueClick}
                 >
@@ -216,7 +229,7 @@ const Toolbar = memo(function Toolbar() {
                 </button>
                 <button
                     type="button"
-                    className="flex items-center justify-around w-32 h-10 bg-blue-600 border border-blue-400 text-white rounded shadow"
+                    className="flex items-center justify-around w-36 h-10 bg-blue-600 hover:bg-blue-500 active:bg-blue-400 border border-blue-400 text-white rounded shadow"
                     onClick={onDownloadClick}
                 >
                     <MdGetApp size="2em" color="#fff" />
@@ -227,13 +240,13 @@ const Toolbar = memo(function Toolbar() {
             <div className="flex space-x-4">
                 <input
                     id="tool-copylink-text"
-                    className="p-1 w-full text-md text-gray-400 bg-gray-900 border border-gray-600 rounded"
+                    className="flex-grow p-1 text-md text-gray-400 bg-gray-900 border border-gray-600 rounded"
                     value={window.location.href}
                     readOnly
                 />
                 <button
                     type="button"
-                    className="flex items-center justify-around w-32 h-10 bg-green-600 border border-green-400 text-white rounded shadow tool-copylink"
+                    className="flex items-center justify-around w-36 h-10 bg-green-600 border border-green-400 text-white rounded shadow tool-copylink"
                     data-clipboard-target="#tool-copylink-text"
                 >
                     <FaLink size="1.5em" color="#fff" />

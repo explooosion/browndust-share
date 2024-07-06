@@ -1,43 +1,58 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import PropTypes from "prop-types";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import _ from "lodash";
 
 import { setFormation, setLevelDialog } from "../reducers/dataset";
 
-const Dialog = ({ id, left, top, mode }) => {
+const Dialog = memo(function Dialog({ id, left, top, mode }) {
     const { t } = useTranslation();
     const dispatch = useDispatch();
-    const dataset = useSelector((state) => state.dataset);
     const [level, setLevel] = useState(0);
 
-    useEffect(() => {
-        if (_.isNull(id)) return;
-        const formation = dataset.formation.find((f) => f.id === id);
-        const level = _.isUndefined(formation) ? 0 : formation.level;
-        setLevel(level);
-    }, [id, dataset.formation]);
+    const { formation, levelDialog } = useSelector((state) => {
+        return {
+            formation: state.dataset.formation,
+            levelDialog: state.dataset.levelDialog,
+        };
+    }, shallowEqual);
+
+    // useEffect(() => {
+    //     if (_.isNull(id)) return;
+    //     const formation = formation.find((f) => f.id === id);
+    //     const level = _.isUndefined(formation) ? 0 : formation.level;
+    //     setLevel(level);
+    // }, []);
 
     const onLevelClick = (id) => {
         if (_.isUndefined(id) || level > 15 || level < 0) return;
-        const formation = dataset.formation.map((f) =>
-            f.id === id ? { ...f, level } : f,
+
+        const payload = {
+            levelDialog,
+            formation,
+        };
+
+        payload.formation = formation.map((f) =>
+            f.uniqueCode === id ? { ...f, level } : f,
         );
 
-        const levelDialog = {
+        payload.levelDialog = {
             show: false,
             id: null,
             left: 0,
             top: 0,
         };
-        dispatch(setLevelDialog(levelDialog));
-        dispatch(setFormation(formation));
+
+        dispatch(setLevelDialog(payload.levelDialog));
+        dispatch(setFormation(payload.formation));
     };
 
     const renderLevelDialog = (id) => (
-        <div className="dialog-level">
-            <h3 className="text-center text-gray-200">{t("Level")}</h3>
+        <div className="w-[150px]">
+            <h3 className="font-bold text-center text-gray-200 mb-2">
+                {t("Level")}
+            </h3>
             <hr />
             <input
                 type="number"
@@ -45,17 +60,14 @@ const Dialog = ({ id, left, top, mode }) => {
                 max={15}
                 value={level}
                 onChange={(e) => setLevel(e.target.value)}
-                onKeyPress={({ charCode }) =>
-                    charCode === 13 ? onLevelClick(id) : null
-                }
                 onFocus={(e) => e.target.select()}
-                className="w-full text-lg p-1"
+                className="w-full p-1 text-black"
                 autoFocus
             />
             <button
                 type="button"
                 onClick={() => onLevelClick(id)}
-                className="float-right mt-2 mb-1 w-16 h-6 text-lg bg-gray-300 rounded-md outline-none hover:bg-gray-400 active:bg-white"
+                className="float-right mt-2 mb-1 w-16 h-6 text-lg text-black bg-gray-300 hover:bg-gray-200 rounded outline-none  active:bg-white"
             >
                 OK
             </button>
@@ -80,7 +92,7 @@ const Dialog = ({ id, left, top, mode }) => {
             {renderTemplate}
         </div>
     );
-};
+});
 
 Dialog.propTypes = {
     id: PropTypes.number,

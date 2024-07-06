@@ -30,6 +30,7 @@ const Header = memo(function Header() {
                 </h1>
                 <div className="absolute top-0 left-2.5 font-sans text-gray-800">
                     <ReactFlagsSelect
+                        id="flag-select"
                         selected={locale}
                         countries={countries}
                         customLabels={customLabels}

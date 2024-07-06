@@ -1,17 +1,20 @@
 import { useEffect, memo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import pick from "lodash/pick";
 import { useContextMenu } from "react-contexify";
 import "react-contexify/dist/ReactContexify.css";
 
 import Dialog from "../components/Dialog";
 import ContextMenu from "../components/ContextMenu";
-import { getThumbnailUrlByImageName, getIconUrlByTypeId } from "../utils";
+import {
+    getThumbnailUrlByImageName,
+    getBackgroundColorStyleByType,
+    getBackgroundImageStyleByType,
+} from "../utils";
 import {
     setRef,
     setFormation,
     setQueue,
-    setQueueMode,
     setMercenarySelected,
     DATA_KEYS,
 } from "../reducers/dataset";
@@ -19,22 +22,37 @@ import {
 const Formation = memo(function Formation() {
     const dispatch = useDispatch();
 
-    const characters = useSelector((state) => state.characters.list);
-    const options = useSelector((state) => state.dataset.options);
-    const formation = useSelector((state) => state.dataset.formation);
-    const levelDialog = useSelector((state) => state.dataset.levelDialog);
-    const mercenarySelected = useSelector(
-        (state) => state.dataset.mercenarySelected,
-    );
-    const queue = useSelector((state) => state.dataset.queue);
-
-    const { type, backcolor, backimage, queue: queueOption, reverse } = options;
+    const {
+        ref,
+        characters,
+        options,
+        formation,
+        levelDialog,
+        queue,
+        queueMode,
+        mercenarySelected,
+    } = useSelector((state) => {
+        return {
+            ref: state.dataset.ref,
+            characters: state.characters.list,
+            options: state.dataset.options,
+            formation: state.dataset.formation,
+            levelDialog: state.dataset.levelDialog,
+            queue: state.dataset.queue,
+            queueMode: state.dataset.queueMode,
+            mercenarySelected: state.dataset.mercenarySelected,
+        };
+    }, shallowEqual);
 
     const { show } = useContextMenu({
         id: "ctmenu",
     });
 
+    const { type, backcolor, backimage, queue: queueOption, reverse } = options;
+
     const onRemoveFormation = (pid) => {
+        if (queueMode) return;
+
         const payload = formation.map((f) => {
             if (f.id === pid) {
                 return {
@@ -77,6 +95,62 @@ const Formation = memo(function Formation() {
 
     const onFormationClick = (id) => {
         const target = formation.find((f) => f.id === id);
+
+        if (target.uniqueCode && queueMode) {
+            const payload = {
+                formation: [...formation],
+                queue: [...queue],
+            };
+
+            let nextQueue = 1;
+
+            // Update queue and determine the nextQueue value
+            const queueIndex = payload.queue.findIndex((q) => q.id === id);
+            if (queueIndex > -1) {
+                payload.queue = payload.queue.filter((q) => q.id !== id);
+            } else {
+                if (payload.queue.length > 0) {
+                    nextQueue = payload.queue.length + 1;
+                }
+                payload.queue.push({ id, queue: nextQueue });
+            }
+
+            // Update formation queue values and handle queue removal
+            payload.formation = payload.formation.map((f) => {
+                if (f.id === id) {
+                    return {
+                        ...f,
+                        queue: f.queue === 0 ? nextQueue : 0,
+                    };
+                }
+                return f;
+            });
+
+            // Adjust subsequent queue numbers if an item is removed
+            if (queueIndex > -1) {
+                payload.queue = payload.queue.map((q, index) => ({
+                    ...q,
+                    queue: index + 1,
+                }));
+            }
+
+            // Update formation to reflect the new queue numbers
+            payload.formation = payload.formation.map((f) => {
+                if (f.queue > 0) {
+                    const newQueueValue =
+                        payload.queue.find((q) => q.id === f.id)?.queue || 0;
+                    return {
+                        ...f,
+                        queue: newQueueValue,
+                    };
+                }
+                return f;
+            });
+
+            dispatch(setQueue(payload.queue));
+            dispatch(setFormation(payload.formation));
+        }
+
         const source = formation.find(
             (f) => f.uniqueCode === mercenarySelected,
         );
@@ -270,17 +344,27 @@ const Formation = memo(function Formation() {
                 queue,
                 level,
             }) => {
+                const draggable = uniqueCode > 0;
                 return (
                     <div
                         key={`formation-${id}`}
-                        className={`absolute w-[6.5rem] h-[6.5rem] bg-center bg-no-repeat bg-cover cursor-pointer ${
+                        className={`absolute w-[6.5rem] h-[6.5rem] bg-center bg-no-repeat bg-cover ${
                             dragOver
                                 ? "bg-[rgba(200,200,255,0.3)] border border-yellow-500"
                                 : ""
-                        }`}
-                        data-type={type}
-                        draggable={uniqueCode > 0}
-                        style={{ top, left, backgroundImage }}
+                        } ${draggable ? "cursor-pointer" : ""}`}
+                        draggable={draggable}
+                        style={{
+                            top,
+                            left,
+                            backgroundImage,
+                            ...(backcolor
+                                ? getBackgroundColorStyleByType(type)
+                                : {}),
+                            ...(reverse
+                                ? { transform: `rotateY(180deg)` }
+                                : {}),
+                        }}
                         onClick={() => onFormationClick(id)}
                         onDoubleClick={() => onRemoveFormation(id)}
                         onContextMenu={(e) => onContextMenu(e, uniqueCode)}
@@ -295,7 +379,7 @@ const Formation = memo(function Formation() {
                             <div
                                 className="absolute top-0 right-0 w-9 h-9 bg-center bg-no-repeat"
                                 style={{
-                                    backgroundImage: getIconUrlByTypeId(type),
+                                    ...getBackgroundImageStyleByType(type),
                                 }}
                             ></div>
                         ) : null}
@@ -306,11 +390,14 @@ const Formation = memo(function Formation() {
                         ) : null}
                         {level > 0 ? (
                             <div
-                                className={`absolute bottom-1 left-1 w-12 text-white bg-blue-700 bg-opacity-80 rounded-full font-bold italic ${
-                                    level < 10 ? "pl-2" : ""
-                                }`}
+                                className="absolute bottom-1 left-1 flex justify-center items-center text-center w-12 text-white bg-blue-700 bg-opacity-70 rounded-full font-bold italic"
+                                style={{
+                                    ...(reverse
+                                        ? { transform: `rotateY(180deg)` }
+                                        : {}),
+                                }}
                             >
-                                {level}
+                                {level && `+${level}`}
                             </div>
                         ) : null}
                     </div>
@@ -325,12 +412,11 @@ const Formation = memo(function Formation() {
 
     return (
         <div
-            className={`relative w-[700px] h-[350px] bg-center bg-cover rounded border border-transparent bg-[url('images/formation_background.jpg')] ${
-                type ? "" : "no-type"
-            } ${backcolor ? "" : "no-backcolor"} ${
-                backimage ? "" : "no-backimage"
-            } ${queueOption ? "" : "no-queue"} ${
-                reverse ? "transform rotate-y-180" : ""
+            id={ref}
+            className={`relative w-[700px] h-[350px] bg-center bg-cover bg-[#17293C] rounded border border-transparent ${
+                backimage
+                    ? "bg-[url('images/formation_background.jpg')]"
+                    : "bg-none"
             }`}
         >
             {renderFormation(type, queueOption)}
