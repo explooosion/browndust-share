@@ -21,7 +21,8 @@ const LOG_DIR = `${LOG_BASE_DIR}/${CURRENT_DATE}`;
 const SUCCESS_LOG_FILE_NAME = `${LOG_DIR}/success.log`;
 const ERROR_LOG_FILE_NAME = `${LOG_DIR}/error.log`;
 
-// 確保 log 目錄存在
+// 刪除當前日期目錄及其內容（如果存在），然後重新創建目錄
+fs.removeSync(LOG_DIR);
 fs.ensureDirSync(LOG_DIR);
 
 // 下載 JSON 資源
