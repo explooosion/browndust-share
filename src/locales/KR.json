@@ -1,5 +1,9 @@
 {
     "title": "진형 × 순서",
+    "mythic": "신화",
+    "exalted": "초월",
+    "legend": "전설",
+    "other": "기타",
     "attacker": "공격",
     "defender": "방어",
     "magician": "마법",

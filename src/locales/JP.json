@@ -1,5 +1,9 @@
 {
     "title": "形成 × 共有する",
+    "mythic": "神話",
+    "exalted": "超越",
+    "legend": "伝説",
+    "other": "その他",
     "attacker": "攻撃",
     "defender": "防衛",
     "magician": "魔法",
@@ -9,7 +13,7 @@
     "normal": "全般",
     "show": "ディスプレイ",
     "bold": "太字",
-    "search":"キーワードを入力してください",
+    "search": "キーワードを入力してください",
     "show-content": "画像内容",
     "mercenary-type": "種類",
     "mercenary-queue": "順序",
